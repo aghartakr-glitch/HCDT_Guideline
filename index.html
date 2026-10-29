@@ -23,7 +23,8 @@ html{scroll-behavior:smooth;scroll-padding-top:2rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
 html[lang=ko] body{font-family:var(--font-ko);word-break:keep-all;-webkit-font-smoothing:initial}
-h1,h2,h3,h4{margin:0 0 1rem;line-height:1.2;font-weight:600}
+h1,h2,h3,h4,h5,h6{margin:0 0 1rem;line-height:1.2;font-weight:500}
+h1{font-weight:600}
 p{margin:0 0 1.5em}
 a{color:var(--purple);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -64,9 +65,9 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 /* ===== Sections ===== */
 .section{padding:1.5rem 0 1rem;border-top:1px solid rgba(0,0,0,.12);margin-top:3rem}
 @media(min-width:783px){.section{padding:3rem 0 1.5rem;margin-top:4rem}}
-.section__title{display:flex;align-items:baseline;gap:1rem;font-size:2rem;font-weight:600;margin-bottom:2rem}
+.section__title{display:flex;align-items:baseline;gap:1rem;font-size:1.75rem;font-weight:500;margin-bottom:2rem}
 .section__title .no{color:var(--purple)}
-@media(min-width:783px){.section__title{font-size:3.75rem;gap:1.5rem}}
+@media(min-width:783px){.section__title{font-size:2.25rem;gap:1rem}}
 .lede{max-width:760px;font-size:1.125rem;font-weight:500}
 @media(min-width:783px){.lede{font-size:1.375rem}}
 .lede p:last-child{margin-bottom:0}
@@ -77,7 +78,7 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 /* ===== Logo slots (승인 파일 자리) ===== */
 .slot{position:relative;display:flex;align-items:center;justify-content:center;margin:0;min-height:12rem;padding:2rem;width:100%}
 .slot img{display:block;width:100%;max-height:18rem;object-fit:contain}
-.slot--light{background:#fff;border:1px solid rgba(0,0,0,.15)}
+.slot--light{background:#fff}
 .slot--navy{background:var(--navy)}
 .slot--purple{background:var(--purple)}
 .slot--tight{min-height:9rem;padding:1.25rem}
@@ -98,7 +99,7 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 
 /* ===== Color pair cards (03) ===== */
 .pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
-.pair h3{font-size:1.75rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.pair h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
 .pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
 .pair{container:pair/inline-size}
 .pair__body{display:grid;gap:2rem;grid-template-columns:minmax(0,1fr)}
@@ -108,7 +109,7 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .swatches .sw__name{font-size:.8125rem}
 .swatches dl.vals{font-size:.6875rem;gap:.0625rem .5rem}
 /* 기본형·제한공간형 로고는 같은 높이 (이미지 높이 --ih 를 폭에서 계산: 4.443 + 0.5614 = 비율 합) */
-.pair__body{--ih:max(2.5rem,calc((100cqi - 6rem) / 5.0044))}
+.pair__body{--ih:clamp(2.5rem,calc((100cqi - 6rem) / 5.0044),8rem)}
 .pair__logos .slot{min-height:0;padding:1.25rem;height:calc(var(--ih) + 2.5rem);flex:none;width:auto}
 .pair__logos .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
 .pair__logos .logo-item:nth-child(1) .slot{width:calc(var(--ih) * 4.443 + 2.5rem)}
@@ -117,7 +118,6 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .pair__logos .dl{gap:.25rem}
 .pair__logos .dl a{padding:.1875rem .5rem;font-size:.6875rem}
 .pair__logos .dl{max-width:100%}
-@container pair (min-width:760px){.pair__body{--ih:max(2.5rem,calc((100cqi - 240px - 2rem - 6rem) / 5.0044));grid-template-columns:minmax(0,1fr) 240px}.textcolor__box{height:max(calc(var(--ih) + 2.5rem),7rem)}}
 .logo-item{min-width:0}
 .dl{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem}
 .dl a{display:inline-block;padding:.25rem .75rem;border:1px solid var(--purple);border-radius:9999em;color:var(--purple);font-size:.75rem;font-weight:600;line-height:1.4;background:transparent;transition:background-color 150ms,color 150ms}
@@ -129,11 +129,7 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .sw__name{font-size:.875rem;font-weight:600;margin:.5rem 0 .25rem}
 dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
 dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
-.textcolor p{margin:0;color:var(--aux);font-size:.9375rem;line-height:1.4}
-.textcolor__box p:nth-child(1){font-weight:300}.textcolor__box p:nth-child(2){font-weight:400}.textcolor__box p:nth-child(3){font-weight:700}.textcolor__box p:nth-child(4){font-weight:900}
-.textcolor .eyebrow{color:#000}
 /* 연한 보조색은 흰 배경 가독성이 낮으므로 회색 바탕에서 보여줌 */
-.textcolor__box{background:#fff;border:1px solid rgba(0,0,0,.15);padding:1rem 1.25rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 
 /* ===== Role chips (04, 05) ===== */
 .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
@@ -162,7 +158,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 .type__rule{max-width:520px;font-size:.9375rem;font-weight:500;margin-top:1rem}
 
 /* ===== Footer (사이트 푸터) ===== */
-.footer{margin-top:7.5rem;background:var(--navy);color:#fff;padding:1.5rem 1rem 3rem;box-shadow:0 -3rem rgba(0,27,84,.4),0 -6rem rgba(0,27,84,.3)}
+.footer{margin-top:7.5rem;background:var(--navy);color:#fff;padding:1.5rem 1rem 3rem;box-shadow:0 -3rem color-mix(in srgb,var(--ui) 55%,#fff),0 -6rem color-mix(in srgb,var(--ui) 28%,#fff)}
 @media(min-width:783px){.footer{padding:3rem 0}}
 .footer a{color:#fff}
 .footer__info{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem}
@@ -171,13 +167,11 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 @media(min-width:783px){.footer__address{font-size:1rem;flex:0 0 50%}}
 .footer__address p{margin:0 0 1rem}
 .footer__logo img{width:20rem;max-width:100%;height:auto;filter:brightness(0) invert(1)}
-.footer__copyright{margin:0;color:#b57fff;font-size:.75rem}
+.footer__copyright{margin:0;color:var(--ui);font-size:.75rem}
 @media(min-width:783px){.footer__copyright{text-align:center;font-size:.875rem;margin-top:1.5rem}}
 
 
 ::selection{background:var(--ui);color:#000}
-.hero{margin:1.5rem 0 0}
-.hero img{display:block;width:min(520px,100%);height:auto}
 .vtabs{margin-top:1.5rem}
 /* ===== Top tabs ===== */
 .vtabs{display:flex;gap:2rem;border-bottom:1px solid rgba(0,0,0,.15);margin:2rem 0 0}
@@ -252,7 +246,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 <header class="header">
   <div class="wrap">
     <a class="header__logo" href="https://hcdt.unist.ac.kr/" aria-label="UNIST HCD+T">
-      <img src="https://hcdt.unist.ac.kr/wp-core/wp-content/themes/unistdesign/assets/logo-hcdt.svg" alt="UNIST HCD+T">
+      <img data-hero src="assets/logo/general-verdigris.svg" alt="UNIST HCD+T">
     </a>
     <div class="header__right">
       <ul class="primary-menu">
@@ -272,8 +266,6 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   <h1 class="page__title">Visual Guideline</h1>
   <p class="page__meta">Version 1.0 · November 2026</p>
 
-
-  <div class="hero"><img data-hero alt="HCDT logo"></div>
 
   <div class="vtabs" role="tablist">
     <button type="button" role="tab" id="t-logo" aria-selected="true" aria-controls="tab-logo" data-tab="tab-logo"><span>Logo System</span></button>
@@ -335,11 +327,6 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div>
           </div>
         </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
-          </div>
-        </div>
       </div>
     </article>
 
@@ -352,11 +339,6 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-terracotta.svg" alt="General use, Terracotta"></figure><div class="dl" data-dl="general-terracotta"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div>
-          </div>
-        </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
       </div>
@@ -373,11 +355,6 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div>
           </div>
         </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
-          </div>
-        </div>
       </div>
     </article>
 
@@ -390,11 +367,6 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-asparagus.svg" alt="General use, Asparagus Soup"></figure><div class="dl" data-dl="general-asparagus"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div>
-          </div>
-        </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
       </div>
@@ -454,9 +426,9 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
       <div>
         <div class="type__h">Spoqa Han Sans (4 Styles)</div>
         <div class="type__sub">For Korean</div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div><p class="spec__body ko-spec w-regular">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div><p class="spec__body ko-spec w-bold">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div><p class="spec__body ko-spec w-light">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
       </div>
     </div>
   </section>

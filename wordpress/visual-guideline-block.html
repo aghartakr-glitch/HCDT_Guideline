@@ -14,7 +14,8 @@
 }
 .hcdt-vig *,.hcdt-vig *::before,.hcdt-vig *::after{box-sizing:border-box}
 .hcdt-vig{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
-.hcdt-vig h1,.hcdt-vig h2,.hcdt-vig h3,.hcdt-vig h4{margin:0 0 1rem;line-height:1.2;font-weight:600}
+.hcdt-vig h1,.hcdt-vig h2,.hcdt-vig h3,.hcdt-vig h4,.hcdt-vig h5,.hcdt-vig h6{margin:0 0 1rem;line-height:1.2;font-weight:500}
+.hcdt-vig h1{font-weight:600}
 .hcdt-vig p{margin:0 0 1.5em}
 .hcdt-vig a{color:var(--purple);text-decoration:none}
 .hcdt-vig a:hover{text-decoration:underline}
@@ -34,9 +35,9 @@
 .hcdt-vig .callout::before{left:34px;top:42px}}
 .hcdt-vig .section{padding:1.5rem 0 1rem;border-top:1px solid rgba(0,0,0,.12);margin-top:3rem}
 @media(min-width:783px){.hcdt-vig .section{padding:3rem 0 1.5rem;margin-top:4rem}}
-.hcdt-vig .section__title{display:flex;align-items:baseline;gap:1rem;font-size:2rem;font-weight:600;margin-bottom:2rem}
+.hcdt-vig .section__title{display:flex;align-items:baseline;gap:1rem;font-size:1.75rem;font-weight:500;margin-bottom:2rem}
 .hcdt-vig .section__title .no{color:var(--purple)}
-@media(min-width:783px){.hcdt-vig .section__title{font-size:3.75rem;gap:1.5rem}}
+@media(min-width:783px){.hcdt-vig .section__title{font-size:2.25rem;gap:1rem}}
 .hcdt-vig .lede{max-width:760px;font-size:1.125rem;font-weight:500}
 @media(min-width:783px){.hcdt-vig .lede{font-size:1.375rem}}
 .hcdt-vig .lede p:last-child{margin-bottom:0}
@@ -45,7 +46,7 @@
 .hcdt-vig .badge{display:inline-block;background:var(--warn);color:#000;font-size:.875rem;font-weight:500;padding:.5rem 1rem;margin-bottom:1.5rem;line-height:1.3}
 .hcdt-vig .slot{position:relative;display:flex;align-items:center;justify-content:center;margin:0;min-height:12rem;padding:2rem;width:100%}
 .hcdt-vig .slot img{display:block;width:100%;max-height:18rem;object-fit:contain}
-.hcdt-vig .slot--light{background:#fff;border:1px solid rgba(0,0,0,.15)}
+.hcdt-vig .slot--light{background:#fff}
 .hcdt-vig .slot--navy{background:var(--navy)}
 .hcdt-vig .slot--purple{background:var(--purple)}
 .hcdt-vig .slot--tight{min-height:9rem;padding:1.25rem}
@@ -64,7 +65,7 @@
 @media(min-width:783px){.hcdt-vig .pair-grid{grid-template-columns:1fr 1fr}}
 .hcdt-vig .cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
 .hcdt-vig .pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
-.hcdt-vig .pair h3{font-size:1.75rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.hcdt-vig .pair h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
 .hcdt-vig .pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
 .hcdt-vig .pair{container:pair/inline-size}
 .hcdt-vig .pair__body{display:grid;gap:2rem;grid-template-columns:minmax(0,1fr)}
@@ -73,7 +74,7 @@
 .hcdt-vig .swatches .sw__chip{aspect-ratio:16/9}
 .hcdt-vig .swatches .sw__name{font-size:.8125rem}
 .hcdt-vig .swatches dl.vals{font-size:.6875rem;gap:.0625rem .5rem}
-.hcdt-vig .pair__body{--ih:max(2.5rem,calc((100cqi - 6rem) / 5.0044))}
+.hcdt-vig .pair__body{--ih:clamp(2.5rem,calc((100cqi - 6rem) / 5.0044),8rem)}
 .hcdt-vig .pair__logos .slot{min-height:0;padding:1.25rem;height:calc(var(--ih) + 2.5rem);flex:none;width:auto}
 .hcdt-vig .pair__logos .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
 .hcdt-vig .pair__logos .logo-item:nth-child(1) .slot{width:calc(var(--ih) * 4.443 + 2.5rem)}
@@ -82,8 +83,6 @@
 .hcdt-vig .pair__logos .dl{gap:.25rem}
 .hcdt-vig .pair__logos .dl a{padding:.1875rem .5rem;font-size:.6875rem}
 .hcdt-vig .pair__logos .dl{max-width:100%}
-@container pair (min-width:760px){.hcdt-vig .pair__body{--ih:max(2.5rem,calc((100cqi - 240px - 2rem - 6rem) / 5.0044));grid-template-columns:minmax(0,1fr) 240px}
-.hcdt-vig .textcolor__box{height:max(calc(var(--ih) + 2.5rem),7rem)}}
 .hcdt-vig .logo-item{min-width:0}
 .hcdt-vig .dl{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem}
 .hcdt-vig .dl a{display:inline-block;padding:.25rem .75rem;border:1px solid var(--purple);border-radius:9999em;color:var(--purple);font-size:.75rem;font-weight:600;line-height:1.4;background:transparent;transition:background-color 150ms,color 150ms}
@@ -97,13 +96,6 @@
 .hcdt-vig dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
 .hcdt-vig dl.vals dt{font-weight:500;opacity:.7}
 .hcdt-vig dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
-.hcdt-vig .textcolor p{margin:0;color:var(--aux);font-size:.9375rem;line-height:1.4}
-.hcdt-vig .textcolor__box p:nth-child(1){font-weight:300}
-.hcdt-vig .textcolor__box p:nth-child(2){font-weight:400}
-.hcdt-vig .textcolor__box p:nth-child(3){font-weight:700}
-.hcdt-vig .textcolor__box p:nth-child(4){font-weight:900}
-.hcdt-vig .textcolor .eyebrow{color:#000}
-.hcdt-vig .textcolor__box{background:#fff;border:1px solid rgba(0,0,0,.15);padding:1rem 1.25rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .hcdt-vig .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
 .hcdt-vig .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
 .hcdt-vig .role i{width:1.5rem;height:1.5rem;display:block}
@@ -129,8 +121,6 @@
 .hcdt-vig .w-light{font-weight:300}
 .hcdt-vig .type__rule{max-width:520px;font-size:.9375rem;font-weight:500;margin-top:1rem}
 .hcdt-vig ::selection{background:var(--ui);color:#000}
-.hcdt-vig .hero{margin:1.5rem 0 0}
-.hcdt-vig .hero img{display:block;width:min(520px,100%);height:auto}
 .hcdt-vig .vtabs{margin-top:1.5rem}
 .hcdt-vig .vtabs{display:flex;gap:2rem;border-bottom:1px solid rgba(0,0,0,.15);margin:2rem 0 0}
 .hcdt-vig .vtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.75rem 0;font:inherit;font-size:1.125rem;font-weight:600;color:rgba(0,0,0,.45);cursor:pointer;display:flex;gap:.625rem;align-items:baseline}
@@ -205,9 +195,7 @@
 </style>
 <div class="hcdt-vig">
 <p class="page__meta" style="font-size:.75rem;font-weight:500;opacity:.7;margin:1rem 0 2rem">Version 1.0 · November 2026</p>
-<div class="hero"><img data-hero alt="HCDT logo"></div>
-
-  <div class="vtabs" role="tablist">
+<div class="vtabs" role="tablist">
     <button type="button" role="tab" id="t-logo" aria-selected="true" aria-controls="tab-logo" data-tab="tab-logo"><span>Logo System</span></button>
     <button type="button" role="tab" id="t-tools" aria-selected="false" aria-controls="tab-tools" data-tab="tab-tools"><span>Useful Template</span></button>
   </div>
@@ -267,11 +255,6 @@
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div>
           </div>
         </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
-          </div>
-        </div>
       </div>
     </article>
 
@@ -284,11 +267,6 @@
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-terracotta.svg" alt="General use, Terracotta"></figure><div class="dl" data-dl="general-terracotta"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div>
-          </div>
-        </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
       </div>
@@ -305,11 +283,6 @@
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div>
           </div>
         </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
-          </div>
-        </div>
       </div>
     </article>
 
@@ -322,11 +295,6 @@
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-asparagus.svg" alt="General use, Asparagus Soup"></figure><div class="dl" data-dl="general-asparagus"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div>
-          </div>
-        </div>
-        <div class="textcolor">
-          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
-            <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
       </div>
@@ -386,9 +354,9 @@
       <div>
         <div class="type__h">Spoqa Han Sans (4 Styles)</div>
         <div class="type__sub">For Korean</div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div><p class="spec__body ko-spec w-regular">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div><p class="spec__body ko-spec w-bold">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div><p class="spec__body ko-spec w-light">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
       </div>
     </div>
   </section>
