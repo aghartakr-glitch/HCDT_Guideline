@@ -250,10 +250,16 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 #tab-tools .subtabs button:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 #tab-tools .subtabs[hidden]{display:none}
 #tool-view .tv-bar{display:flex;justify-content:flex-end;align-items:center;gap:1rem;margin:.75rem 0}
-#tool-view .tv-wide{appearance:none;font:600 .8125rem/1 inherit;font-family:inherit;padding:6px 14px;border:1px solid var(--purple);border-radius:9999em;background:#fff;color:var(--purple);cursor:pointer}
-#tool-view .tv-wide:hover{background:color-mix(in srgb,var(--ui) 30%,#fff)}
-#tool-view .tv-wide[aria-pressed=true]{background:var(--purple);color:#fff}
-@media(min-width:1000px){#tool-view.wide{width:99vw;margin-left:calc(50% - 49.5vw)}}
+#tool-view .tv-wide{appearance:none;font:600 .8125rem/1 inherit;font-family:inherit;padding:7px 16px;border:1px solid var(--ui);border-radius:9999em;background:var(--ui);color:#000;cursor:pointer}
+#tool-view .tv-wide:hover{background:#fff;border-color:var(--ui)}
+#tool-view .tv-wide[aria-pressed=true]{background:#fff;border-color:var(--purple);color:var(--purple)}
+#tool-view .tv-name{font-weight:600;font-size:.9375rem;display:none;margin-right:auto}
+@media(min-width:1000px){
+  #tool-view.wide{position:fixed;inset:0;z-index:999999;background:#fff;margin:0;padding:0 1rem;display:flex;flex-direction:column;width:auto}
+  #tool-view.wide .tv-bar{margin:.375rem 0;flex:0 0 auto}
+  #tool-view.wide .tv-name{display:block}
+  #tool-view.wide .tv-frame{flex:1 1 auto;height:auto!important;min-height:0;border:0}
+}
 @media(max-width:999px){#tool-view .tv-wide{display:none}}
 #tool-view .tv-frame{display:block;width:100%;height:max(760px,calc(100vh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden}
 </style>
@@ -532,7 +538,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     </ul>
   </div>
   <div id="tool-view" role="tabpanel" hidden>
-    <div class="tv-bar"><button type="button" class="tv-wide" aria-pressed="false">Wide view ⤢</button></div>
+    <div class="tv-bar"><span class="tv-name"></span><button type="button" class="tv-wide" aria-pressed="false">Wide view ⤢</button></div>
     <iframe class="tv-frame" title="HCDT tool" allow="clipboard-write; fullscreen"></iframe>
   </div>
 </div>
@@ -716,13 +722,13 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
-  (function(){ var wb=root.querySelector('#tool-view .tv-wide'), tv=root.querySelector('#tool-view'); wb.addEventListener('click',function(){ var on=wb.getAttribute('aria-pressed')!=='true'; wb.setAttribute('aria-pressed',on); wb.textContent=on?'Normal view ⤡':'Wide view ⤢'; tv.classList.toggle('wide',on); setTimeout(sendZoom,60); }); window.addEventListener('resize',function(){ setTimeout(sendZoom,120); }); })();
-  function sendZoom(){ try{ var tv=root.querySelector('#tool-view'), z=1; if(tv.classList.contains('wide')){ var nw=tv.parentNode.getBoundingClientRect().width; z=Math.min(1.6,Math.max(1,tvFrame.getBoundingClientRect().width/nw)); z=Math.round(z*100)/100; } if(tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtZoom:z},'*'); }catch(e){} }
+  (function(){ var wb=root.querySelector('#tool-view .tv-wide'), tv=root.querySelector('#tool-view'); wb.addEventListener('click',function(){ var on=wb.getAttribute('aria-pressed')!=='true'; wb.setAttribute('aria-pressed',on); wb.textContent=on?'Normal view ⤡':'Wide view ⤢'; tv.classList.toggle('wide',on); document.documentElement.style.overflow=on?'hidden':''; tv.querySelector('.tv-name').textContent=(root.querySelector('.subtabs [aria-selected=true]')||{}).textContent||''; sendZoom(); setTimeout(sendZoom,150); }); document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&tv.classList.contains('wide')) wb.click(); }); })();
+  function sendZoom(){ try{ var on=root.querySelector('#tool-view').classList.contains('wide'); if(tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtWide:on},'*'); }catch(e){} }
   function sendAux(){ try{ var c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim(); if(/^#[0-9a-f]{6}$/i.test(c)&&tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtAux:c},'*'); }catch(e){} }
   tvFrame.addEventListener('load',function(){ sendAux(); sendZoom(); });
   window.addEventListener('message',function(e){
     var d=e.data; if(!d||!d.hcdtFrame||e.source!==tvFrame.contentWindow) return;
-    if(d.app||!d.h) tvFrame.style.height=''; else tvFrame.style.height=Math.max(480,d.h+2)+'px';
+    if(d.app||!d.h||root.querySelector('#tool-view').classList.contains('wide')) tvFrame.style.height=''; else tvFrame.style.height=Math.max(480,d.h+2)+'px';
     sendAux(); sendZoom();
   });
   window.hcdtToolsHome=function(){
