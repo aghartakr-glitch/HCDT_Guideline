@@ -716,13 +716,14 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
-  (function(){ var wb=root.querySelector('#tool-view .tv-wide'), tv=root.querySelector('#tool-view'); wb.addEventListener('click',function(){ var on=wb.getAttribute('aria-pressed')!=='true'; wb.setAttribute('aria-pressed',on); wb.textContent=on?'Normal view ⤡':'Wide view ⤢'; tv.classList.toggle('wide',on); }); })();
+  (function(){ var wb=root.querySelector('#tool-view .tv-wide'), tv=root.querySelector('#tool-view'); wb.addEventListener('click',function(){ var on=wb.getAttribute('aria-pressed')!=='true'; wb.setAttribute('aria-pressed',on); wb.textContent=on?'Normal view ⤡':'Wide view ⤢'; tv.classList.toggle('wide',on); setTimeout(sendZoom,60); }); window.addEventListener('resize',function(){ setTimeout(sendZoom,120); }); })();
+  function sendZoom(){ try{ var tv=root.querySelector('#tool-view'), z=1; if(tv.classList.contains('wide')){ var nw=tv.parentNode.getBoundingClientRect().width; z=Math.min(1.6,Math.max(1,tvFrame.getBoundingClientRect().width/nw)); z=Math.round(z*100)/100; } if(tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtZoom:z},'*'); }catch(e){} }
   function sendAux(){ try{ var c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim(); if(/^#[0-9a-f]{6}$/i.test(c)&&tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtAux:c},'*'); }catch(e){} }
-  tvFrame.addEventListener('load',sendAux);
+  tvFrame.addEventListener('load',function(){ sendAux(); sendZoom(); });
   window.addEventListener('message',function(e){
     var d=e.data; if(!d||!d.hcdtFrame||e.source!==tvFrame.contentWindow) return;
     if(d.app||!d.h) tvFrame.style.height=''; else tvFrame.style.height=Math.max(480,d.h+2)+'px';
-    sendAux();
+    sendAux(); sendZoom();
   });
   window.hcdtToolsHome=function(){
     var v=root.querySelector('#tool-view'); v.hidden=true; v.querySelector('iframe').removeAttribute('data-src'); v.querySelector('iframe').src='about:blank';
