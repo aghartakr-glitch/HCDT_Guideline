@@ -60,6 +60,14 @@
 .hcdt-vig .slot .ph{display:flex;flex-direction:column;gap:.25rem;align-items:center;text-align:center;font-family:var(--mono);font-size:.75rem;color:rgba(0,0,0,.45);border:1px dashed rgba(0,0,0,.3);padding:1rem;width:100%}
 .hcdt-vig .slot--navy .ph{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.4)}
 .hcdt-vig .slot figcaption{display:none}
+.hcdt-vig .cs{position:relative;width:100%;max-width:560px;aspect-ratio:var(--w)/var(--h);--ix:calc(var(--d)/var(--w)*100%);--iy:calc(var(--d)/var(--h)*100%);outline:1px dashed #73d888;outline-offset:0}
+.hcdt-vig .slot .cs img{width:100%;height:100%;max-height:none;object-fit:fill}
+.hcdt-vig .cs__in{position:absolute;inset:var(--iy) var(--ix);border:1px dashed rgba(0,0,0,.35);pointer-events:none}
+.hcdt-vig .cs__d{position:absolute;display:flex;align-items:center;justify-content:center;width:14px;height:14px;background:#73d888;color:#000;font:700 9px/1 var(--font-en);transform:translate(-50%,-50%)}
+.hcdt-vig .cs__d--t{left:50%;top:calc(var(--iy)/2)}
+.hcdt-vig .cs__d--b{left:50%;top:calc(100% - var(--iy)/2)}
+.hcdt-vig .cs__d--l{top:50%;left:calc(var(--ix)/2)}
+.hcdt-vig .cs__d--r{top:50%;left:calc(100% - var(--ix)/2)}
 .hcdt-vig .pair-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
 @media(min-width:783px){.hcdt-vig .pair-grid{grid-template-columns:1fr 1fr}}
 .hcdt-vig .cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
@@ -330,7 +338,7 @@
       <p class="ko">보호 여백은 기본 모듈 단위인 D를 기준으로 합니다. 풀버전의 모든 방향에 최소 D 이상의 여백을 확보해야 하며, 이 영역 안에는 텍스트·이미지·그래픽 요소를 배치하지 않습니다.</p>
     </div>
     <div class="pair-grid" style="margin-top:2rem">
-      <figure class="slot slot--light"><img data-file="clearspace-full.svg" alt="Clear space diagram, Full Version"></figure>
+      <figure class="slot slot--light"><div class="cs" style="--w:703.54;--h:172.55;--d:19.91"><img data-file="clearspace-full.svg" alt="Clear space diagram, Full Version"><i class="cs__in"></i><b class="cs__d cs__d--t">D</b><b class="cs__d cs__d--b">D</b><b class="cs__d cs__d--l">D</b><b class="cs__d cs__d--r">D</b></div></figure>
       <figure class="slot slot--light"><img data-file="full-navy.svg" alt="Full Version"></figure>
     </div>
   </section>
@@ -345,11 +353,11 @@
     <div class="pair-grid" style="margin-top:2rem">
       <div>
         <div class="eyebrow"><span class="en">For General Use</span><span class="ko">기본형</span></div>
-        <figure class="slot slot--light"><img data-file="clearspace-general.svg" alt="Clear space, General Use"></figure>
+        <figure class="slot slot--light"><div class="cs" style="--w:903.13;--h:247.53;--d:28.56"><img data-file="clearspace-general.svg" alt="Clear space diagram, General Use"><i class="cs__in"></i><b class="cs__d cs__d--t">D</b><b class="cs__d cs__d--b">D</b><b class="cs__d cs__d--l">D</b><b class="cs__d cs__d--r">D</b></div></figure>
       </div>
       <div>
         <div class="eyebrow"><span class="en">For Use in Limited Space</span><span class="ko">제한 공간용</span></div>
-        <figure class="slot slot--light"><img data-file="clearspace-limited.svg" alt="Clear space, Limited Space"></figure>
+        <figure class="slot slot--light"><div class="cs" style="--w:188.77;--h:302.41;--d:21.65;max-width:240px"><img data-file="clearspace-limited.svg" alt="Clear space diagram, Limited Space"><i class="cs__in"></i><b class="cs__d cs__d--t">D</b><b class="cs__d cs__d--b">D</b><b class="cs__d cs__d--l">D</b><b class="cs__d cs__d--r">D</b></div></figure>
       </div>
     </div>
   </section>
