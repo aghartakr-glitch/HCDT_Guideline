@@ -718,7 +718,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261029g'; }
+    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261029h'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
@@ -730,6 +730,18 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     var d=e.data; if(!d||!d.hcdtFrame||e.source!==tvFrame.contentWindow) return;
     if(d.app||!d.h||root.querySelector('#tool-view').classList.contains('wide')) tvFrame.style.height=''; else tvFrame.style.height=Math.max(480,d.h+2)+'px';
     sendAux(); sendZoom();
+  });
+  /* tooltips from the tool iframe are drawn here so they can sit above the button */
+  var tipEl=null;
+  window.addEventListener('message',function(e){
+    var d=e.data; if(!d||d.hcdtTip===undefined||e.source!==tvFrame.contentWindow) return;
+    if(!tipEl){ tipEl=document.createElement('div'); tipEl.setAttribute('style','position:fixed;z-index:2147483647;pointer-events:none;max-width:360px;padding:6px 10px;border-radius:6px;color:#000;font:500 12px/1.4 Helvetica,Arial,sans-serif;box-shadow:0 2px 8px rgba(0,0,0,.18);display:none'); document.body.appendChild(tipEl); }
+    if(!d.hcdtTip){ tipEl.style.display='none'; return; }
+    var f=tvFrame.getBoundingClientRect(), r=d.r, c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim();
+    tipEl.style.background=/^#[0-9a-f]{6}$/i.test(c)?c:'#E8E041'; tipEl.textContent=d.t; tipEl.style.display='block';
+    var w=tipEl.offsetWidth,h=tipEl.offsetHeight, L=f.left+r.l+r.w/2-w/2, T=f.top+r.t-h-8;
+    if(T<6) T=f.top+r.t+r.h+8;
+    tipEl.style.left=Math.max(6,Math.min(L,innerWidth-w-6))+'px'; tipEl.style.top=T+'px';
   });
   window.hcdtToolsHome=function(){
     var v=root.querySelector('#tool-view'); v.hidden=true; v.querySelector('iframe').removeAttribute('data-src'); v.querySelector('iframe').src='about:blank';
