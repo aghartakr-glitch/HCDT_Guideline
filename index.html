@@ -718,13 +718,13 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261029h'; }
+    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261029i'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
   (function(){ var wb=root.querySelector('#tool-view .tv-wide'), tv=root.querySelector('#tool-view'); wb.addEventListener('click',function(){ var on=wb.getAttribute('aria-pressed')!=='true'; wb.setAttribute('aria-pressed',on); wb.textContent=on?'Normal view ⤡':'Wide view ⤢'; tv.classList.toggle('wide',on); document.documentElement.style.overflow=on?'hidden':''; tv.querySelector('.tv-name').textContent=(root.querySelector('.subtabs [aria-selected=true]')||{}).textContent||''; sendZoom(); setTimeout(sendZoom,150); }); document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&tv.classList.contains('wide')) wb.click(); }); })();
   function sendZoom(){ try{ var on=root.querySelector('#tool-view').classList.contains('wide'); if(tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtWide:on},'*'); }catch(e){} }
-  function sendAux(){ try{ var c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim(); if(/^#[0-9a-f]{6}$/i.test(c)&&tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtAux:c},'*'); }catch(e){} }
+  function sendAux(){ try{ var c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim(); if(/^#[0-9a-f]{6}$/i.test(c)&&tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtAux:c,hcdtTipOK:1},'*'); }catch(e){} }
   tvFrame.addEventListener('load',function(){ sendAux(); sendZoom(); });
   window.addEventListener('message',function(e){
     var d=e.data; if(!d||!d.hcdtFrame||e.source!==tvFrame.contentWindow) return;
