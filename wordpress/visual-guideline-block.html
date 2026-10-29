@@ -178,11 +178,12 @@
 .hcdt-vig #tab-tools .tl:hover .p-letter .l2,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .l2{transform:translateX(-45%) rotate(2deg)}
 .hcdt-vig #tab-tools .tl:hover .p-letter .l3,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .l3{transform:translateX(5%) rotate(4deg)}
 @media(prefers-reduced-motion:reduce){.hcdt-vig #tab-tools .tpic *{transition:none!important}}
-.hcdt-vig #tool-view .tv-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;margin:2rem 0 1rem}
-.hcdt-vig #tool-view .tv-back{appearance:none;font:inherit;font-size:.8125rem;font-weight:600;color:var(--purple);background:none;border:1px solid var(--purple);border-radius:9999em;padding:.375rem .875rem;cursor:pointer}
-.hcdt-vig #tool-view .tv-back:hover{background:var(--ui);color:var(--purple)}
-.hcdt-vig #tool-view .tv-name{font-size:1.25rem;font-weight:600}
-.hcdt-vig #tool-view .tv-open{margin-left:auto;font-size:.8125rem;font-weight:600}
+.hcdt-vig #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:0 1.75rem;margin:1.5rem 0 0;border-bottom:1px solid rgba(0,0,0,.15)}
+.hcdt-vig #tab-tools .subtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.625rem 0;font:inherit;font-size:1rem;font-weight:500;color:rgba(0,0,0,.45);cursor:pointer}
+.hcdt-vig #tab-tools .subtabs button:hover{color:#000;border-bottom-color:var(--ui)}
+.hcdt-vig #tab-tools .subtabs button[aria-selected=true]{color:#000;border-bottom-color:var(--ui)}
+.hcdt-vig #tool-view .tv-bar{display:flex;justify-content:flex-end;margin:.75rem 0}
+.hcdt-vig #tool-view .tv-open{font-size:.8125rem;font-weight:600}
 .hcdt-vig #tool-view .tv-frame{display:block;width:100%;height:max(760px,calc(100vh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff}
 
 .hcdt-vig{font-family:neue-haas-unica,"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1rem;font-weight:300;line-height:1.5;color:#000;padding-bottom:4rem}
@@ -364,6 +365,7 @@
 </div>
 
 <div class="tabpanel" id="tab-tools" role="tabpanel" hidden>
+  <div class="subtabs" role="tablist" aria-label="Useful Template"></div>
   <div id="tools-list">
     <div class="lede" style="margin-top:2.5rem">
       <p class="en">Five tools for the Department of Human-Centered Design + Technology. Each one works inside the N-FUD 2026 identity: approved logos, colors and grids only.</p>
@@ -437,11 +439,7 @@
     </ul>
   </div>
   <div id="tool-view" hidden>
-    <div class="tv-bar">
-      <button type="button" class="tv-back">← Back</button>
-      <span class="tv-name"></span>
-      <a class="tv-open" href="#" target="_blank" rel="noopener">Open in new tab ↗</a>
-    </div>
+    <div class="tv-bar"><a class="tv-open" href="#" target="_blank" rel="noopener">Open in new tab ↗</a></div>
     <iframe class="tv-frame" title="HCDT tool" allow="clipboard-write; fullscreen"></iframe>
   </div>
 </div>
@@ -520,7 +518,7 @@
     tabBtns.forEach(function(b){ b.setAttribute('aria-selected', b.getAttribute('data-tab') === id ? 'true' : 'false'); });
     [].slice.call(root.querySelectorAll('.tabpanel')).forEach(function(p){ p.hidden = (p.id !== id); });
   }
-  tabBtns.forEach(function(b){ b.addEventListener('click', function(){ showTab(b.getAttribute('data-tab')); }); });
+  tabBtns.forEach(function(b){ b.addEventListener('click', function(){ var id=b.getAttribute('data-tab'); showTab(id); if(id==='tab-tools'&&window.hcdtToolsHome) window.hcdtToolsHome(); }); });
   if(/useful-template/.test(location.hash)){ showTab('tab-tools'); }
 
   /* 도구 미리보기 모션 (마우스를 올리면 재생) */
@@ -564,21 +562,32 @@
     a.addEventListener('mouseenter',on); a.addEventListener('mouseleave',function(){c.stop()});
     a.addEventListener('focus',on); a.addEventListener('blur',function(){c.stop()});
 
-    /* 클릭하면 새 페이지가 아니라 이 화면 안에서 열기 */
     a.addEventListener('click',function(e){
       if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1) return;
-      e.preventDefault(); c.stop();
-      var v=root.querySelector('#tool-view');
-      v.querySelector('.tv-name').textContent=a.getAttribute('data-name');
-      v.querySelector('.tv-open').href=a.href;
-      v.querySelector('iframe').src=a.href;
-      root.querySelector('#tools-list').hidden=true; v.hidden=false;
-      var bar=root.querySelector('.vtabs'); if(bar&&bar.scrollIntoView) bar.scrollIntoView({block:'start'});
+      e.preventDefault(); c.stop(); openTool(a.getAttribute('data-name'));
     });
   });
-  var back=root.querySelector('#tool-view .tv-back');
-  if(back) back.addEventListener('click',function(){
-    var v=root.querySelector('#tool-view'); v.querySelector('iframe').src='about:blank'; v.hidden=true; root.querySelector('#tools-list').hidden=false;
+  /* 하위 탭: Name Card · Letter · Slides · Poster · Logo Motion (Overview 없음) */
+  var toolLinks=[].slice.call(root.querySelectorAll('#tab-tools .tl'));
+  var subBox=root.querySelector('#tab-tools .subtabs');
+  toolLinks.forEach(function(a){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.setAttribute('aria-selected','false');
+    b.textContent=a.getAttribute('data-name'); b.setAttribute('data-tool',a.getAttribute('data-name'));
+    b.addEventListener('click',function(){ openTool(a.getAttribute('data-name')); });
+    subBox.appendChild(b);
   });
+  function openTool(name){
+    var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
+    var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
+    [].slice.call(subBox.children).forEach(function(b){ b.setAttribute('aria-selected', b.getAttribute('data-tool')===name?'true':'false'); });
+    v.querySelector('.tv-open').href=a.href;
+    if(f.getAttribute('data-src')!==a.href){ f.setAttribute('data-src',a.href); f.src=a.href; }
+    root.querySelector('#tools-list').hidden=true; v.hidden=false;
+  }
+  window.hcdtToolsHome=function(){
+    var v=root.querySelector('#tool-view'); v.hidden=true; v.querySelector('iframe').removeAttribute('data-src'); v.querySelector('iframe').src='about:blank';
+    root.querySelector('#tools-list').hidden=false;
+    [].slice.call(subBox.children).forEach(function(b){ b.setAttribute('aria-selected','false'); });
+  };
 })();
 </script>
