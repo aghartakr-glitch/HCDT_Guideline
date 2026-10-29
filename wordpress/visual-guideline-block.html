@@ -10,6 +10,7 @@
   --font-ko:"Spoqa Han Sans Neo","Spoqa Han Sans",sans-serif;
   --mono:ibm-plex-mono,SFMono-Regular,Menlo,Consolas,monospace;
   --wrap:1280px;
+  --ui:#64d8d8;
 }
 .hcdt-vig *,.hcdt-vig *::before,.hcdt-vig *::after{box-sizing:border-box}
 .hcdt-vig{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
@@ -67,25 +68,27 @@
 .hcdt-vig .pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
 .hcdt-vig .pair{container:pair/inline-size}
 .hcdt-vig .pair__body{display:grid;gap:2rem;grid-template-columns:minmax(0,1fr)}
-.hcdt-vig .pair__logos{container:logos/inline-size;display:flex;gap:1rem;align-items:flex-start}
+.hcdt-vig .pair__logos{display:flex;gap:1rem;align-items:flex-start}
 .hcdt-vig .swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;align-content:start;max-width:300px}
 .hcdt-vig .swatches .sw__chip{aspect-ratio:16/9}
 .hcdt-vig .swatches .sw__name{font-size:.8125rem}
 .hcdt-vig .swatches dl.vals{font-size:.6875rem;gap:.0625rem .5rem}
-.hcdt-vig .pair__logos{--ih:max(2.5rem,calc((100cqi - 6rem) / 5.0044))}
+.hcdt-vig .pair__body{--ih:max(2.5rem,calc((100cqi - 6rem) / 5.0044))}
 .hcdt-vig .pair__logos .slot{min-height:0;padding:1.25rem;height:calc(var(--ih) + 2.5rem);flex:none;width:auto}
 .hcdt-vig .pair__logos .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
 .hcdt-vig .pair__logos .logo-item:nth-child(1) .slot{width:calc(var(--ih) * 4.443 + 2.5rem)}
 .hcdt-vig .pair__logos .logo-item:nth-child(2) .slot{width:calc(var(--ih) * 0.5614 + 2.5rem)}
 .hcdt-vig .pair__logos .logo-item{flex:none;min-width:0}
-.hcdt-vig .pair__logos .logo-item:nth-child(2) .dl{flex-direction:column;align-items:flex-start}
+.hcdt-vig .pair__logos .dl{gap:.25rem}
+.hcdt-vig .pair__logos .dl a{padding:.1875rem .5rem;font-size:.6875rem}
 .hcdt-vig .pair__logos .dl{max-width:100%}
-@container pair (min-width:760px){.hcdt-vig .pair__body{grid-template-columns:minmax(0,1fr) 260px}}
+@container pair (min-width:760px){.hcdt-vig .pair__body{--ih:max(2.5rem,calc((100cqi - 240px - 2rem - 6rem) / 5.0044));grid-template-columns:minmax(0,1fr) 240px}
+.hcdt-vig .textcolor__box{height:max(calc(var(--ih) + 2.5rem),7rem)}}
 .hcdt-vig .logo-item{min-width:0}
 .hcdt-vig .dl{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem}
 .hcdt-vig .dl a{display:inline-block;padding:.25rem .75rem;border:1px solid var(--purple);border-radius:9999em;color:var(--purple);font-size:.75rem;font-weight:600;line-height:1.4;background:transparent;transition:background-color 150ms,color 150ms}
-.hcdt-vig .dl a:hover{background:var(--purple);color:#fff;text-decoration:none}
-.hcdt-vig .dlall{margin-top:2.5rem;padding:1.25rem 0;border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12)}
+.hcdt-vig .dl a:hover{background:var(--ui);color:var(--purple);text-decoration:none}
+.hcdt-vig .dlall{margin-top:2.5rem;padding:1.25rem 0;border-top:1px solid rgba(0,0,0,.12)}
 .hcdt-vig .dlall .dl{margin:0 0 .75rem}
 .hcdt-vig .dlall .cap{margin:.25rem 0 0;max-width:760px}
 .hcdt-vig .sw{margin:0}
@@ -94,13 +97,13 @@
 .hcdt-vig dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
 .hcdt-vig dl.vals dt{font-weight:500;opacity:.7}
 .hcdt-vig dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
-.hcdt-vig .textcolor p{margin:0 0 .25rem;color:var(--aux);font-size:1rem}
-.hcdt-vig .textcolor p:nth-child(2){font-weight:300}
-.hcdt-vig .textcolor p:nth-child(3){font-weight:400}
-.hcdt-vig .textcolor p:nth-child(4){font-weight:700}
-.hcdt-vig .textcolor p:nth-child(5){font-weight:900}
+.hcdt-vig .textcolor p{margin:0;color:var(--aux);font-size:.9375rem;line-height:1.4}
+.hcdt-vig .textcolor__box p:nth-child(1){font-weight:300}
+.hcdt-vig .textcolor__box p:nth-child(2){font-weight:400}
+.hcdt-vig .textcolor__box p:nth-child(3){font-weight:700}
+.hcdt-vig .textcolor__box p:nth-child(4){font-weight:900}
 .hcdt-vig .textcolor .eyebrow{color:#000}
-.hcdt-vig .textcolor__box{background:#f4f4f6;padding:1rem}
+.hcdt-vig .textcolor__box{background:#fff;border:1px solid rgba(0,0,0,.15);padding:1rem 1.25rem;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .hcdt-vig .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
 .hcdt-vig .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
 .hcdt-vig .role i{width:1.5rem;height:1.5rem;display:block}
@@ -125,30 +128,37 @@
 .hcdt-vig .w-bold{font-weight:700}
 .hcdt-vig .w-light{font-weight:300}
 .hcdt-vig .type__rule{max-width:520px;font-size:.9375rem;font-weight:500;margin-top:1rem}
+.hcdt-vig ::selection{background:var(--ui);color:#000}
+.hcdt-vig .hero{margin:1.5rem 0 0}
+.hcdt-vig .hero img{display:block;width:min(520px,100%);height:auto}
+.hcdt-vig .vtabs{margin-top:1.5rem}
 .hcdt-vig .vtabs{display:flex;gap:2rem;border-bottom:1px solid rgba(0,0,0,.15);margin:2rem 0 0}
 .hcdt-vig .vtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.75rem 0;font:inherit;font-size:1.125rem;font-weight:600;color:rgba(0,0,0,.45);cursor:pointer;display:flex;gap:.625rem;align-items:baseline}
 .hcdt-vig .vtabs button .n{color:inherit;font-weight:600}
-.hcdt-vig .vtabs button:hover{color:#000}
-.hcdt-vig .vtabs button[aria-selected=true]{color:#000;border-bottom-color:var(--purple)}
+.hcdt-vig .vtabs button:hover{color:#000;border-bottom-color:var(--ui)}
+.hcdt-vig .vtabs button[aria-selected=true]{color:#000;border-bottom-color:var(--ui)}
 .hcdt-vig .vtabs button[aria-selected=true] .n{color:var(--purple)}
 @media(min-width:783px){.hcdt-vig .vtabs button{font-size:1.5rem}}
 .hcdt-vig .tabpanel[hidden]{display:none}
-.hcdt-vig #tab-tools .tools{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:2.5rem 2rem;grid-template-columns:minmax(0,1fr)}
-@media(min-width:783px){.hcdt-vig #tab-tools .tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
-.hcdt-vig #tab-tools .tl{display:block;color:inherit;border-top:3px solid var(--purple);padding-top:1rem;cursor:pointer}
+.hcdt-vig #tab-tools .tools{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:3rem 2rem;grid-template-columns:minmax(0,1fr)}
+@media(min-width:620px){.hcdt-vig #tab-tools .tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:960px){.hcdt-vig #tab-tools .tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.hcdt-vig #tab-tools .tools>li{display:flex}
+.hcdt-vig #tab-tools .tl{display:flex;flex-direction:column;width:100%;color:inherit;border-top:3px solid var(--purple);padding-top:1rem;cursor:pointer;transition:border-color 150ms}
+.hcdt-vig #tab-tools .tl:hover,.hcdt-vig #tab-tools .tl:focus-visible{border-top-color:var(--ui)}
 .hcdt-vig #tab-tools .tl:hover{text-decoration:none}
 .hcdt-vig #tab-tools .tl:focus-visible{outline:2px solid var(--purple);outline-offset:4px}
-.hcdt-vig #tab-tools .ttxt{display:grid;gap:.5rem;margin-top:1rem}
+.hcdt-vig #tab-tools .ttxt{display:flex;flex-direction:column;gap:.5rem;margin-top:1rem;flex:1}
 .hcdt-vig #tab-tools .tk{font-family:var(--mono);font-size:.75rem;color:var(--purple);font-weight:600}
 .hcdt-vig #tab-tools .ttxt h3{font-size:1.5rem;margin:0}
 .hcdt-vig #tab-tools .tl:hover h3{color:var(--purple)}
 .hcdt-vig #tab-tools .ttxt p{margin:0;font-size:.9375rem;max-width:56ch}
-.hcdt-vig #tab-tools .tchips{display:flex;flex-wrap:wrap;gap:.375rem}
+.hcdt-vig #tab-tools .tchips{margin-bottom:.75rem;display:flex;flex-wrap:wrap;gap:.375rem}
 .hcdt-vig #tab-tools .tchips span{font-size:.6875rem;font-weight:600;border:1px solid rgba(0,0,0,.25);border-radius:9999em;padding:.0625rem .5rem}
-.hcdt-vig #tab-tools .tgo{justify-self:start;font-size:.8125rem;font-weight:600;color:var(--purple);border:1px solid var(--purple);border-radius:9999em;padding:.375rem .875rem;transition:background-color 150ms,color 150ms}
-.hcdt-vig #tab-tools .tl:hover .tgo,.hcdt-vig #tab-tools .tl:focus-visible .tgo{background:var(--purple);color:#fff}
+.hcdt-vig #tab-tools .tgo{align-self:flex-start;margin-top:auto;font-size:.8125rem;font-weight:600;color:var(--purple);border:1px solid var(--purple);border-radius:9999em;padding:.375rem .875rem;transition:background-color 150ms,color 150ms}
+.hcdt-vig #tab-tools .tl:hover .tgo,.hcdt-vig #tab-tools .tl:focus-visible .tgo{background:var(--ui);color:var(--purple)}
 .hcdt-vig #tab-tools .tgo svg{width:.75rem;height:.75rem;margin-left:.375rem}
-.hcdt-vig #tab-tools .tpic{position:relative;aspect-ratio:320/216;width:100%;max-width:360px;background:#f4f4f6;overflow:hidden;isolation:isolate}
+.hcdt-vig #tab-tools .tpic{position:relative;aspect-ratio:320/216;width:100%;background:#f4f4f6;overflow:hidden;isolation:isolate}
 .hcdt-vig #tab-tools .tpic .pcap{position:absolute;left:10px;bottom:10px;z-index:5;font-size:.75rem;font-weight:500;background:#fff;border:1px solid rgba(0,0,0,.15);border-radius:9999em;padding:2px 9px;opacity:0;transition:opacity .2s}
 .hcdt-vig #tab-tools .tl:hover .pcap,.hcdt-vig #tab-tools .tl:focus-visible .pcap{opacity:1}
 .hcdt-vig #tab-tools .tpic svg.full{position:absolute;inset:0;width:100%;height:100%;max-width:none}
@@ -180,7 +190,7 @@
 @media(prefers-reduced-motion:reduce){.hcdt-vig #tab-tools .tpic *{transition:none!important}}
 .hcdt-vig #tool-view .tv-bar{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;margin:2rem 0 1rem}
 .hcdt-vig #tool-view .tv-back{appearance:none;font:inherit;font-size:.8125rem;font-weight:600;color:var(--purple);background:none;border:1px solid var(--purple);border-radius:9999em;padding:.375rem .875rem;cursor:pointer}
-.hcdt-vig #tool-view .tv-back:hover{background:var(--purple);color:#fff}
+.hcdt-vig #tool-view .tv-back:hover{background:var(--ui);color:var(--purple)}
 .hcdt-vig #tool-view .tv-name{font-size:1.25rem;font-weight:600}
 .hcdt-vig #tool-view .tv-open{margin-left:auto;font-size:.8125rem;font-weight:600}
 .hcdt-vig #tool-view .tv-frame{display:block;width:100%;height:max(760px,calc(100vh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff}
@@ -195,7 +205,9 @@
 </style>
 <div class="hcdt-vig">
 <p class="page__meta" style="font-size:.75rem;font-weight:500;opacity:.7;margin:1rem 0 2rem">Version 1.0 · November 2026</p>
-<div class="vtabs" role="tablist">
+<div class="hero"><img data-hero alt="HCDT logo"></div>
+
+  <div class="vtabs" role="tablist">
     <button type="button" role="tab" id="t-logo" aria-selected="true" aria-controls="tab-logo" data-tab="tab-logo"><span>Logo System</span></button>
     <button type="button" role="tab" id="t-tools" aria-selected="false" aria-controls="tab-tools" data-tab="tab-tools"><span>Useful Template</span></button>
   </div>
@@ -203,23 +215,20 @@
 <div class="tabpanel" id="tab-logo" role="tabpanel">
   <div class="callout" style="margin-top:2.5rem">
     <p class="en">This document is a reference guide. Always use approved logo files and templates downloaded from the HCDT website. Do not recreate, edit, screenshot, or extract artwork from this document.</p>
-    <p class="ko">본 문서는 참고용 가이드입니다. 로고와 템플릿은 반드시 HCDT 웹사이트에서 제공하는 승인 파일을 사용합니다. 본 문서의 로고를 재제작·수정·캡처·추출하여 사용하지 마십시오.</p>
   </div>
 
   <!-- Download all -->
   <div class="dlall">
-    <div class="eyebrow"><span class="en">Download all logos</span><span class="ko">로고 전체 받기</span></div>
+    <div class="eyebrow"><span class="en">Download all logos</span></div>
     <div class="dl" data-dlall></div>
     <p class="cap en">SVG files are the originals without clear space. PNG and PDF files include a white background and the clear space (D).</p>
-    <p class="cap ko">SVG는 여백 없는 원본입니다. PNG·PDF는 흰 배경과 보호 여백(D)이 포함되어 있습니다.</p>
   </div>
 
   <!-- 01 -->
   <section class="section" id="full">
-    <h2 class="section__title"><span class="no">01</span><span class="en">Full Version</span><span class="ko">풀버전</span></h2>
+    <h2 class="section__title"><span class="no">01</span><span class="en">Full Version</span></h2>
     <div class="lede">
       <p class="en">The Full Version is the official lockup for formal documents and institutional communications and must always appear with the UNIST logo. Use UNIST Navy on a white background, or white on a UNIST Navy background. Auxiliary colours are not used in this version.</p>
-      <p class="ko">풀버전은 공식 문서 및 대외 커뮤니케이션을 위한 공식 조합형으로, 반드시 UNIST 로고와 함께 사용합니다. 흰색 배경에서는 UNIST Navy 단색으로, UNIST Navy 배경에서는 흰색 단색으로 적용합니다. 이 버전에는 보조색을 사용하지 않습니다.</p>
     </div>
     <div class="pair-grid" style="margin-top:2rem">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-navy.svg" alt="Full Version, UNIST Navy on white"></figure><div class="dl" data-dl="full-navy"></div></div>
@@ -229,11 +238,10 @@
 
   <!-- 02 -->
   <section class="section" id="full-ko">
-    <h2 class="section__title"><span class="no">02</span><span class="en">Full Version: if Korean is necessary</span><span class="ko">풀버전: 국문이 필요한 경우</span></h2>
-    <div class="badge"><span class="en">Not recommended for general use. The English logo is preferred.</span><span class="ko">일반적인 사용은 권장하지 않습니다. 영문 로고 사용을 권장합니다.</span></div>
+    <h2 class="section__title"><span class="no">02</span><span class="en">Full Version: if Korean is necessary</span></h2>
+    <div class="badge"><span class="en">Not recommended for general use. The English logo is preferred.</span></div>
     <div class="lede">
       <p class="en">Use this version only when Korean-language identification is essential. It must always appear with the UNIST logo, in UNIST Indigo only. Do not use it as a standalone mark, short version, or auxiliary-color version.</p>
-      <p class="ko">국문 표기가 반드시 필요한 경우에만 사용합니다. 반드시 UNIST 로고와 함께 UNIST Indigo 단색으로 적용합니다. 단독 로고, 숏버전, 보조색 적용 버전으로 사용하지 않습니다.</p>
     </div>
     <div class="pair-grid" style="margin-top:2rem">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-ko-navy.svg" alt="Korean Full Version on white"></figure><div class="dl" data-dl="full-ko-navy"></div></div>
@@ -243,10 +251,9 @@
 
   <!-- 03 -->
   <section class="section" id="other">
-    <h2 class="section__title"><span class="no">03</span><span class="en">Other Use Cases</span><span class="ko">기타 사용 사례</span></h2>
+    <h2 class="section__title"><span class="no">03</span><span class="en">Other Use Cases</span></h2>
     <div class="lede">
       <p class="en">These are approved color-pair versions for general departmental communication. Use one auxiliary color per logo application. Do not combine multiple auxiliary colors within one logo.</p>
-      <p class="ko">본 버전은 일반 학과 커뮤니케이션을 위한 승인된 색상 조합입니다. 하나의 로고 적용에는 하나의 보조색만 사용합니다. 여러 보조색을 하나의 로고에 함께 사용하지 않습니다.</p>
     </div>
 
     <!-- Verdigris -->
@@ -254,15 +261,14 @@
       <h3><i></i>Verdigris</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-verdigris.svg" alt="General use, Verdigris"></figure><div class="dl" data-dl="general-verdigris"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div>
           </div>
         </div>
         <div class="textcolor">
-          <div class="textcolor__box">
-            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
             <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
@@ -274,15 +280,14 @@
       <h3><i></i>Terracotta</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-terracotta.svg" alt="General use, Terracotta"></figure><div class="dl" data-dl="general-terracotta"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div>
           </div>
         </div>
         <div class="textcolor">
-          <div class="textcolor__box">
-            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
             <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
@@ -294,15 +299,14 @@
       <h3><i></i>Fluoxetine</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-fluoxetine.svg" alt="General use, Fluoxetine"></figure><div class="dl" data-dl="general-fluoxetine"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div>
           </div>
         </div>
         <div class="textcolor">
-          <div class="textcolor__box">
-            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
             <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
@@ -314,15 +318,14 @@
       <h3><i></i>Asparagus Soup</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-asparagus.svg" alt="General use, Asparagus Soup"></figure><div class="dl" data-dl="general-asparagus"></div></div>
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div>
           </div>
         </div>
         <div class="textcolor">
-          <div class="textcolor__box">
-            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+          <div class="eyebrow"><span class="en">Text Color</span></div><div class="textcolor__box">
             <p>Sample text</p><p>Sample text</p><p>Sample text</p><p>Sample text</p>
           </div>
         </div>
@@ -332,10 +335,9 @@
 
   <!-- 04 -->
   <section class="section" id="colors">
-    <h2 class="section__title"><span class="no">04</span><span class="en">Colors</span><span class="ko">색상</span></h2>
+    <h2 class="section__title"><span class="no">04</span><span class="en">Colors</span></h2>
     <div class="lede">
       <p class="en">The color system consists of one fixed main color and four auxiliary colors. HCDT Purple is always present. Select one auxiliary color according to the application; do not create a five-color logo.</p>
-      <p class="ko">색상 시스템은 하나의 고정 주색상과 네 가지 보조색으로 구성됩니다. HCDT Purple은 항상 사용하며, 적용 목적에 따라 하나의 보조색을 선택합니다. 다섯 색상을 하나의 로고에 동시에 사용하지 않습니다.</p>
     </div>
 
     <h3 class="sub">HCDT Colors</h3>
@@ -363,17 +365,15 @@
     <div class="note">
       <div>
         <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colours. Please check and use the specified values for each to avoid confusion.</p>
-        <p class="ko"><b>HCDT Verdigris</b>와 <b>UNIST Emerald</b>는 서로 다른 색상입니다. 혼동하지 않도록 각 색상의 지정된 값을 확인하여 사용해 주세요.</p>
       </div>
     </div>
   </section>
 
   <!-- 05 -->
   <section class="section" id="typography">
-    <h2 class="section__title"><span class="no">05</span><span class="en">Typography</span><span class="ko">타이포그래피</span></h2>
+    <h2 class="section__title"><span class="no">05</span><span class="en">Typography</span></h2>
     <div class="lede">
       <p class="en">Helvetica Neue is the primary typeface for English, and Spoqa Han Sans is the primary typeface for Korean. Use Regular for body text, Bold for headings and emphasis, and Light only for supporting information.</p>
-      <p class="ko">영문 기본 서체는 Helvetica Neue, 국문 기본 서체는 스포카 한 산스입니다. 본문에는 Regular, 제목과 강조에는 Bold, 보조 정보에는 Light를 사용합니다.</p>
     </div>
     <div class="type" style="margin-top:3rem">
       <div>
@@ -386,9 +386,9 @@
       <div>
         <div class="type__h">Spoqa Han Sans (4 Styles)</div>
         <div class="type__sub">For Korean</div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div><p class="spec__body ko-spec w-regular">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div><p class="spec__body ko-spec w-bold">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
-        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div><p class="spec__body ko-spec w-light">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div></div>
       </div>
     </div>
   </section>
@@ -486,6 +486,15 @@
   /* ▲ 여기만 바꾸면 됨 */
 
   var root = document.querySelector('.hcdt-vig') || document;
+
+  /* 새로고침할 때마다 보조색 4색 중 하나로 (UI와 메인 로고) */
+  var AUXES=[['verdigris','#64d8d8'],['terracotta','#e8b9aa'],['fluoxetine','#73d888'],['asparagus','#e8e041']];
+  var pick=AUXES[Math.floor(Math.random()*AUXES.length)];
+  (root===document?document.documentElement:root).style.setProperty('--ui',pick[1]);
+  [].slice.call(root.querySelectorAll('img[data-hero]')).forEach(function(h){
+    h.addEventListener('error',function(){ h.parentNode&&h.parentNode.removeChild(h); });
+    h.src=LOGO_BASE+'general-'+pick[0]+'.svg';
+  });
 
   var NAMES = {
     'full-navy':'HCDT_Full_EN_Navy','full-white':'HCDT_Full_EN_White',
