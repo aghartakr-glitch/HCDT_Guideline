@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Visual Identity Guideline – UNIST HCD+T</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+<style>
+/* ===== Tokens (UNIST Design Department theme 기준) ===== */
+:root{
+  --purple:#6b00ff; --purple-hover:#5600cc; --purple-soft:#974cff; --purple-pale:#d2b2ff;
+  --navy:#001b54; --black:#000; --white:#fff;
+  --verdigris:#64d8d8; --terracotta:#e8b9aa; --fluoxetine:#73d888; --asparagus:#e8e041; --emerald:#44c1c4;
+  --callout:rgba(191,191,191,.3); --warn:#f2765a;
+  --font-en:neue-haas-unica,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-ko:"Spoqa Han Sans Neo","Spoqa Han Sans",sans-serif;
+  --mono:ibm-plex-mono,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1280px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:7rem}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
+html[lang=ko] body{font-family:var(--font-ko);word-break:keep-all;-webkit-font-smoothing:initial}
+h1,h2,h3,h4{margin:0 0 1rem;line-height:1.2;font-weight:600}
+p{margin:0 0 1.5em}
+a{color:var(--purple);text-decoration:none}
+a:hover{text-decoration:underline}
+img,svg{max-width:100%;height:auto;vertical-align:middle}
+.wrap{padding:0 1rem}
+@media(min-width:783px){.wrap{max-width:var(--wrap);padding:0 4rem;margin:0 auto}}
+
+/* 영문 → 국문 순서로 함께 표시 (제목·탭·라벨은 영문만, 본문은 영문+국문) */
+span.ko{display:none}
+.badge span.ko{display:block;margin-top:.125rem}
+p.ko{font-family:var(--font-ko);word-break:keep-all}
+.lede p.en{margin-bottom:.75em}
+.lede p.ko{font-size:1rem;font-weight:400;opacity:.8}
+@media(min-width:783px){.lede p.ko{font-size:1.125rem}}
+.callout p.ko,.note p.ko{margin-top:.5rem}
+
+/* ===== Header ===== */
+.header{position:sticky;top:0;z-index:1150;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.header .wrap{display:flex;align-items:center;justify-content:space-between}
+.header__logo{display:block;height:3rem;padding:.5rem 0}
+.header__logo img{height:100%;width:auto}
+.header__right{display:flex;align-items:center;gap:2rem}
+.primary-menu{display:none;margin:0;padding:0;list-style:none;font-weight:600;font-size:1rem}
+.primary-menu li{margin:0 1rem}
+.primary-menu a{color:#000}
+@media(min-width:783px){.header{position:relative;padding-top:1.5rem}.header__logo{height:3.5rem;margin-bottom:1rem}.primary-menu{display:flex}}
+@media(min-width:1024px){.header{padding-top:2.5rem}.header__logo{height:4rem;margin-bottom:1.5rem}.primary-menu{font-size:1.125rem}.primary-menu li{margin:0 1.25rem}}
+
+/* ===== Section tabs (사이트 .tabs 스타일) ===== */
+.tabs{position:sticky;top:0;z-index:1140;background:rgba(255,255,255,.85);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.header + .tabs{top:0}
+@media(max-width:782px){.header{position:sticky}.tabs{top:3rem}}
+.tabs ul{display:flex;gap:1.5rem;margin:0;padding:0;list-style:none;overflow-x:auto;scrollbar-width:none}
+.tabs ul::-webkit-scrollbar{display:none}
+.tabs a{display:flex;align-items:center;white-space:nowrap;padding:.5rem 0;border-bottom:3px solid rgba(0,0,0,.2);color:rgba(0,0,0,.4);font-weight:600;line-height:1.2;font-size:1rem;transition:color 300ms,border-color 300ms}
+@media(min-width:783px){.tabs ul{gap:2rem}.tabs a{font-size:1.125rem}}
+.tabs a:hover{border-color:#000;color:#000;text-decoration:none}
+.tabs a.is-current{border-bottom-color:var(--purple);color:#000}
+
+/* ===== Page title ===== */
+.page__title{font-size:2.25rem;font-weight:600;margin:2rem 0 .5rem}
+@media(min-width:783px){.page__title{font-size:3.5rem}}
+.page__meta{font-size:.75rem;font-weight:500;opacity:.7;margin-bottom:2rem}
+.callout{position:relative;background:var(--callout);padding:16px 16px 16px 48px;font-size:1.125rem;max-width:960px}
+.callout::before{content:"";position:absolute;left:20px;top:22px;width:14px;height:14px;background:var(--purple);transform:rotate(45deg)}
+.callout p{margin:0 0 .5rem}.callout p:last-child{margin:0}
+@media(min-width:783px){.callout{padding:32px 32px 32px 80px;font-size:1.25rem}.callout::before{left:34px;top:42px}}
+
+/* ===== Sections ===== */
+.section{padding:1.5rem 0 1rem;border-top:1px solid rgba(0,0,0,.12);margin-top:3rem}
+@media(min-width:783px){.section{padding:3rem 0 1.5rem;margin-top:4rem}}
+.section__title{display:flex;align-items:baseline;gap:1rem;font-size:2rem;font-weight:600;margin-bottom:2rem}
+.section__title .no{color:var(--purple)}
+@media(min-width:783px){.section__title{font-size:3.75rem;gap:1.5rem}}
+.lede{max-width:760px;font-size:1.125rem;font-weight:500}
+@media(min-width:783px){.lede{font-size:1.375rem}}
+.lede p:last-child{margin-bottom:0}
+.sub{font-size:1.25rem;font-weight:600;margin:3rem 0 1rem}
+.eyebrow{font-size:.75rem;font-weight:600;text-transform:uppercase;opacity:.7;margin-bottom:.5rem;letter-spacing:.02em}
+.badge{display:inline-block;background:var(--warn);color:#000;font-size:.875rem;font-weight:500;padding:.5rem 1rem;margin-bottom:1.5rem;line-height:1.3}
+
+/* ===== Logo slots (승인 파일 자리) ===== */
+.slot{position:relative;display:flex;align-items:center;justify-content:center;margin:0;min-height:12rem;padding:2rem;width:100%}
+.slot img{display:block;width:100%;max-height:18rem;object-fit:contain}
+.slot--light{background:#fff;border:1px solid rgba(0,0,0,.15)}
+.slot--navy{background:var(--navy)}
+.slot--purple{background:var(--purple)}
+.slot--tight{min-height:9rem;padding:1.25rem}
+.slot .ph{display:flex;flex-direction:column;gap:.25rem;align-items:center;text-align:center;font-family:var(--mono);font-size:.75rem;color:rgba(0,0,0,.45);border:1px dashed rgba(0,0,0,.3);padding:1rem;width:100%}
+.slot--navy .ph{color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.4)}
+.slot figcaption{display:none}
+.pair-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
+@media(min-width:783px){.pair-grid{grid-template-columns:1fr 1fr}}
+.cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
+
+/* ===== Color pair cards (03) ===== */
+.pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
+.pair h3{font-size:1.75rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
+.pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
+.pair__body{display:grid;gap:2rem;grid-template-columns:1fr}
+@media(min-width:1024px){.pair__body{grid-template-columns:5fr 3fr 3fr}}
+.pair__logos{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:783px){.pair__logos{grid-template-columns:2fr 1fr}}
+.swatches{display:grid;grid-template-columns:1fr 1fr;gap:1rem;align-content:start}
+.sw{margin:0}.sw__chip{aspect-ratio:4/3;background:var(--c)}
+.sw__name{font-size:.875rem;font-weight:600;margin:.5rem 0 .25rem}
+dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
+dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono)}
+.textcolor p{margin:0 0 .25rem;color:var(--aux);font-size:1rem}
+.textcolor p:nth-child(2){font-weight:300}.textcolor p:nth-child(3){font-weight:400}.textcolor p:nth-child(4){font-weight:700}.textcolor p:nth-child(5){font-weight:900}
+.textcolor .eyebrow{color:#000}
+/* 연한 보조색은 흰 배경 가독성이 낮으므로 회색 바탕에서 보여줌 */
+.textcolor__box{background:#f4f4f6;padding:1rem}
+
+/* ===== Role chips (04, 05) ===== */
+.roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
+.role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
+.role i{width:1.5rem;height:1.5rem;display:block}
+
+/* ===== Color table (08) ===== */
+.cgrid{display:grid;gap:1.5rem 1rem;grid-template-columns:repeat(2,1fr)}
+@media(min-width:783px){.cgrid{grid-template-columns:repeat(5,1fr)}.cgrid--unist{grid-template-columns:repeat(5,1fr)}}
+.cgrid .sw__chip{aspect-ratio:3/2}
+.note{display:flex;gap:1rem;align-items:flex-start;margin:2rem 0 0;padding:1rem 1.25rem;border-left:3px solid var(--warn);background:var(--callout);font-size:.9375rem;font-weight:500;max-width:760px}
+.note p{margin:0 0 .25rem}.note p:last-child{margin:0}
+
+/* ===== Typography (09) ===== */
+.type{display:grid;gap:3rem;grid-template-columns:1fr}
+@media(min-width:783px){.type{grid-template-columns:1fr 1fr}}
+.type__h{font-size:.875rem;font-weight:600;margin-bottom:.125rem}
+.type__sub{font-size:.75rem;opacity:.7;margin-bottom:1.5rem}
+.spec{margin-bottom:1.75rem}
+.spec__label{font-size:.75rem;margin-bottom:.5rem}
+.spec__label b{font-weight:700}
+.spec__body{font-size:1.375rem;line-height:1.4;margin:0}
+.en-spec{font-family:"Helvetica Neue",neue-haas-unica,Helvetica,Arial,sans-serif}
+.ko-spec{font-family:var(--font-ko);word-break:keep-all}
+.w-regular{font-weight:400}.w-bold{font-weight:700}.w-light{font-weight:300}
+.type__rule{max-width:520px;font-size:.9375rem;font-weight:500;margin-top:1rem}
+
+/* ===== Footer (사이트 푸터) ===== */
+.footer{margin-top:7.5rem;background:var(--navy);color:#fff;padding:1.5rem 1rem 3rem;box-shadow:0 -3rem rgba(0,27,84,.4),0 -6rem rgba(0,27,84,.3)}
+@media(min-width:783px){.footer{padding:3rem 0}}
+.footer a{color:#fff}
+.footer__info{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem}
+@media(min-width:783px){.footer__info{max-width:var(--wrap);padding:0 4rem 2rem;margin:0 auto}}
+.footer__address{font-size:.75rem;line-height:1.4}
+@media(min-width:783px){.footer__address{font-size:1rem;flex:0 0 50%}}
+.footer__address p{margin:0 0 1rem}
+.footer__logo img{width:20rem;max-width:100%;height:auto;filter:brightness(0) invert(1)}
+.footer__copyright{margin:0;color:#b57fff;font-size:.75rem}
+@media(min-width:783px){.footer__copyright{text-align:center;font-size:.875rem;margin-top:1.5rem}}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="wrap">
+    <a class="header__logo" href="https://hcdt.unist.ac.kr/" aria-label="UNIST HCD+T">
+      <img src="https://hcdt.unist.ac.kr/wp-core/wp-content/themes/unistdesign/assets/logo-hcdt.svg" alt="UNIST HCD+T">
+    </a>
+    <div class="header__right">
+      <ul class="primary-menu">
+        <li><a href="https://hcdt.unist.ac.kr/category/story/">People</a></li>
+        <li><a href="https://hcdt.unist.ac.kr/category/work/">Work</a></li>
+        <li><a href="https://hcdt.unist.ac.kr/education/">Education</a></li>
+        <li><a href="https://hcdt.unist.ac.kr/labs/">Labs</a></li>
+        <li><a href="https://hcdt.unist.ac.kr/space/">Space</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- Section tabs -->
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <ul>
+      <li><a href="#full">01 <span class="en">&nbsp;Full</span><span class="ko">&nbsp;풀버전</span></a></li>
+      <li><a href="#full-ko">02 <span class="en">&nbsp;Korean</span><span class="ko">&nbsp;국문</span></a></li>
+      <li><a href="#other">03 <span class="en">&nbsp;Other Use</span><span class="ko">&nbsp;기타 사용</span></a></li>
+      <li><a href="#symbol">04 <span class="en">&nbsp;Symbol</span><span class="ko">&nbsp;심볼</span></a></li>
+      <li><a href="#wordmark">05 <span class="en">&nbsp;Wordmark</span><span class="ko">&nbsp;워드마크</span></a></li>
+      <li><a href="#space-full">06 <span class="en">&nbsp;Space: Full</span><span class="ko">&nbsp;여백: 풀버전</span></a></li>
+      <li><a href="#space-rest">07 <span class="en">&nbsp;Space: Rest</span><span class="ko">&nbsp;여백: 그 외</span></a></li>
+      <li><a href="#colors">08 <span class="en">&nbsp;Colors</span><span class="ko">&nbsp;색상</span></a></li>
+      <li><a href="#typography">09 <span class="en">&nbsp;Typography</span><span class="ko">&nbsp;타이포그래피</span></a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<div class="wrap">
+
+  <h1 class="page__title">Visual Identity Guideline</h1>
+  <p class="page__meta">Version 1.0 · November 2026</p>
+
+  <div class="callout">
+    <p class="en">This document is a reference guide. Always use approved logo files and templates downloaded from the HCDT website. Do not recreate, edit, screenshot, or extract artwork from this document.</p>
+    <p class="ko">본 문서는 참고용 가이드입니다. 로고와 템플릿은 반드시 HCDT 웹사이트에서 제공하는 승인 파일을 사용합니다. 본 문서의 로고를 재제작·수정·캡처·추출하여 사용하지 마십시오.</p>
+  </div>
+
+  <!-- 01 -->
+  <section class="section" id="full">
+    <h2 class="section__title"><span class="no">01</span><span class="en">Full Version</span><span class="ko">풀버전</span></h2>
+    <div class="lede">
+      <p class="en">The Full Version is the official lockup for formal documents and institutional communications and must always appear with the UNIST logo. Use UNIST Navy on a white background, or white on a UNIST Navy background. Auxiliary colours are not used in this version.</p>
+      <p class="ko">풀버전은 공식 문서 및 대외 커뮤니케이션을 위한 공식 조합형으로, 반드시 UNIST 로고와 함께 사용합니다. 흰색 배경에서는 UNIST Navy 단색으로, UNIST Navy 배경에서는 흰색 단색으로 적용합니다. 이 버전에는 보조색을 사용하지 않습니다.</p>
+    </div>
+    <div class="pair-grid" style="margin-top:2rem">
+      <figure class="slot slot--light"><img data-slot="assets/logo/full-navy.svg" src="assets/logo/full-navy.svg" alt="Full Version, UNIST Navy on white"></figure>
+      <figure class="slot slot--navy"><img data-slot="assets/logo/full-white.svg" src="assets/logo/full-white.svg" alt="Full Version, white on UNIST Navy"></figure>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="section" id="full-ko">
+    <h2 class="section__title"><span class="no">02</span><span class="en">Full Version: if Korean is necessary</span><span class="ko">풀버전: 국문이 필요한 경우</span></h2>
+    <div class="badge"><span class="en">Not recommended for general use. The English logo is preferred.</span><span class="ko">일반적인 사용은 권장하지 않습니다. 영문 로고 사용을 권장합니다.</span></div>
+    <div class="lede">
+      <p class="en">Use this version only when Korean-language identification is essential. It must always appear with the UNIST logo, in UNIST Indigo only. Do not use it as a standalone mark, short version, or auxiliary-color version.</p>
+      <p class="ko">국문 표기가 반드시 필요한 경우에만 사용합니다. 반드시 UNIST 로고와 함께 UNIST Indigo 단색으로 적용합니다. 단독 로고, 숏버전, 보조색 적용 버전으로 사용하지 않습니다.</p>
+    </div>
+    <div class="pair-grid" style="margin-top:2rem">
+      <figure class="slot slot--light"><img data-slot="assets/logo/full-ko-navy.svg" src="assets/logo/full-ko-navy.svg" alt="Korean Full Version on white"></figure>
+      <figure class="slot slot--navy"><img data-slot="assets/logo/full-ko-white.svg" src="assets/logo/full-ko-white.svg" alt="Korean Full Version on UNIST Navy"></figure>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="section" id="other">
+    <h2 class="section__title"><span class="no">03</span><span class="en">Other Use Cases</span><span class="ko">기타 사용 사례</span></h2>
+    <div class="lede">
+      <p class="en">These are approved color-pair versions for general departmental communication. Use one auxiliary color per logo application. Do not combine multiple auxiliary colors within one logo.</p>
+      <p class="ko">본 버전은 일반 학과 커뮤니케이션을 위한 승인된 색상 조합입니다. 하나의 로고 적용에는 하나의 보조색만 사용합니다. 여러 보조색을 하나의 로고에 함께 사용하지 않습니다.</p>
+    </div>
+
+    <!-- Verdigris -->
+    <article class="pair" style="--aux:var(--verdigris)">
+      <h3><i></i>Verdigris</h3>
+      <div class="pair__body">
+        <div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="pair__logos">
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/general-verdigris.svg" src="assets/logo/general-verdigris.svg" alt="General use, Verdigris"></figure>
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/limited-verdigris.svg" src="assets/logo/limited-verdigris.svg" alt="Limited space, Verdigris"></figure>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow"><span class="en">Colors</span><span class="ko">색상</span></div>
+          <div class="swatches">
+            <figure class="sw" style="--c:#6b00ff"><div class="sw__chip"></div><div class="sw__name">HCDT Purple</div>
+              <dl class="vals"><dt>RGB</dt><dd>107 / 0 / 255</dd><dt>HEX</dt><dd>#6B00FF</dd><dt>CMYK</dt><dd>80 / 79 / 0 / 0</dd></dl></figure>
+            <figure class="sw" style="--c:#64d8d8"><div class="sw__chip"></div><div class="sw__name">HCDT Verdigris</div>
+              <dl class="vals"><dt>RGB</dt><dd>100 / 216 / 216</dd><dt>HEX</dt><dd>#64D8D8</dd><dt>CMYK</dt><dd>57 / 0 / 25 / 0</dd></dl></figure>
+          </div>
+        </div>
+        <div class="textcolor">
+          <div class="textcolor__box">
+            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+            <p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Terracotta -->
+    <article class="pair" style="--aux:var(--terracotta)">
+      <h3><i></i>Terracotta</h3>
+      <div class="pair__body">
+        <div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="pair__logos">
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/general-terracotta.svg" src="assets/logo/general-terracotta.svg" alt="General use, Terracotta"></figure>
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/limited-terracotta.svg" src="assets/logo/limited-terracotta.svg" alt="Limited space, Terracotta"></figure>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow"><span class="en">Colors</span><span class="ko">색상</span></div>
+          <div class="swatches">
+            <figure class="sw" style="--c:#6b00ff"><div class="sw__chip"></div><div class="sw__name">HCDT Purple</div>
+              <dl class="vals"><dt>RGB</dt><dd>107 / 0 / 255</dd><dt>HEX</dt><dd>#6B00FF</dd><dt>CMYK</dt><dd>80 / 79 / 0 / 0</dd></dl></figure>
+            <figure class="sw" style="--c:#e8b9aa"><div class="sw__chip"></div><div class="sw__name">HCDT Terracotta</div>
+              <dl class="vals"><dt>RGB</dt><dd>232 / 185 / 170</dd><dt>HEX</dt><dd>#E8B9AA</dd><dt>CMYK</dt><dd>11 / 34 / 29 / 0</dd></dl></figure>
+          </div>
+        </div>
+        <div class="textcolor">
+          <div class="textcolor__box">
+            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+            <p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Fluoxetine -->
+    <article class="pair" style="--aux:var(--fluoxetine)">
+      <h3><i></i>Fluoxetine</h3>
+      <div class="pair__body">
+        <div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="pair__logos">
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/general-fluoxetine.svg" src="assets/logo/general-fluoxetine.svg" alt="General use, Fluoxetine"></figure>
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/limited-fluoxetine.svg" src="assets/logo/limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow"><span class="en">Colors</span><span class="ko">색상</span></div>
+          <div class="swatches">
+            <figure class="sw" style="--c:#6b00ff"><div class="sw__chip"></div><div class="sw__name">HCDT Purple</div>
+              <dl class="vals"><dt>RGB</dt><dd>107 / 0 / 255</dd><dt>HEX</dt><dd>#6B00FF</dd><dt>CMYK</dt><dd>80 / 79 / 0 / 0</dd></dl></figure>
+            <figure class="sw" style="--c:#73d888"><div class="sw__chip"></div><div class="sw__name">HCDT Fluoxetine</div>
+              <dl class="vals"><dt>RGB</dt><dd>115 / 216 / 136</dd><dt>HEX</dt><dd>#73D888</dd><dt>CMYK</dt><dd>56 / 0 / 60 / 0</dd></dl></figure>
+          </div>
+        </div>
+        <div class="textcolor">
+          <div class="textcolor__box">
+            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+            <p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Asparagus Soup -->
+    <article class="pair" style="--aux:var(--asparagus)">
+      <h3><i></i>Asparagus Soup</h3>
+      <div class="pair__body">
+        <div>
+          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span><span class="ko">기본형 / 제한 공간용</span></div>
+          <div class="pair__logos">
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/general-asparagus.svg" src="assets/logo/general-asparagus.svg" alt="General use, Asparagus Soup"></figure>
+            <figure class="slot slot--light slot--tight"><img data-slot="assets/logo/limited-asparagus.svg" src="assets/logo/limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure>
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow"><span class="en">Colors</span><span class="ko">색상</span></div>
+          <div class="swatches">
+            <figure class="sw" style="--c:#6b00ff"><div class="sw__chip"></div><div class="sw__name">HCDT Purple</div>
+              <dl class="vals"><dt>RGB</dt><dd>107 / 0 / 255</dd><dt>HEX</dt><dd>#6B00FF</dd><dt>CMYK</dt><dd>80 / 79 / 0 / 0</dd></dl></figure>
+            <figure class="sw" style="--c:#e8e041"><div class="sw__chip"></div><div class="sw__name">HCDT Asparagus Soup</div>
+              <dl class="vals"><dt>RGB</dt><dd>232 / 224 / 65</dd><dt>HEX</dt><dd>#E8E041</dd><dt>CMYK</dt><dd>17 / 9 / 80 / 0</dd></dl></figure>
+          </div>
+        </div>
+        <div class="textcolor">
+          <div class="textcolor__box">
+            <div class="eyebrow"><span class="en">Text Color</span><span class="ko">텍스트 색상</span></div>
+            <p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p><p>Sample text with auxiliary color.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 04 -->
+  <section class="section" id="symbol">
+    <h2 class="section__title"><span class="no">04</span><span class="en">HCDT Symbol</span><span class="ko">HCDT 심볼</span></h2>
+    <div class="lede">
+      <p class="en">The HCDT symbol is a fixed form constructed from repeated two-sided modules. In colour versions, the right-facing plane is always HCDT Purple, while the left-facing plane uses one selected auxiliary color. When forming the Full Version with the UNIST logo, the symbol is shown without an auxiliary-color plane.</p>
+      <p class="ko">HCDT 심볼은 양면 모듈의 반복으로 구성된 고정 형태입니다. 색상 적용 시 오른쪽 면은 항상 HCDT Purple을 사용하고, 왼쪽 면에는 하나의 보조색을 적용합니다. UNIST 로고와 함께 풀버전으로 사용할 때는 보조색 면 없이 사용합니다.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><i style="background:var(--purple)"></i><span class="en">Main Color — right-facing plane (HCDT Purple)</span><span class="ko">Main Color — 오른쪽 면 (HCDT Purple)</span></div>
+      <div class="role"><i style="background:var(--fluoxetine)"></i><span class="en">Sub Color — left-facing plane (one auxiliary color)</span><span class="ko">Sub Color — 왼쪽 면 (보조색 하나)</span></div>
+    </div>
+    <figure class="slot slot--light" style="min-height:22rem"><img data-slot="assets/logo/symbol.svg" src="assets/logo/symbol.svg" alt="HCDT symbol" style="max-height:26rem"></figure>
+  </section>
+
+  <!-- 05 -->
+  <section class="section" id="wordmark">
+    <h2 class="section__title"><span class="no">05</span><span class="en">Wordmark</span><span class="ko">워드마크</span></h2>
+    <div class="lede">
+      <p class="en">The wordmark is a fixed typographic lockup. Do not alter its typeface, weight, spacing, line breaks, or the position of the — and + elements. H, C, D, and T remain HCDT Purple; — and + use the selected auxiliary color.</p>
+      <p class="ko">워드마크는 고정된 조합형입니다. 서체, 굵기, 자간, 줄바꿈, —와 +의 위치를 임의로 변경하지 않습니다. H, C, D, T는 HCDT Purple으로 유지하며, —와 +에는 선택한 보조색을 적용합니다.</p>
+    </div>
+    <div class="roles">
+      <div class="role"><i style="background:var(--purple)"></i><span class="en">Main Color — H, C, D, T and the letters (HCDT Purple)</span><span class="ko">Main Color — H, C, D, T 및 글자 (HCDT Purple)</span></div>
+      <div class="role"><i style="background:var(--fluoxetine)"></i><span class="en">Sub Color — “—” and “+” (selected auxiliary color)</span><span class="ko">Sub Color — “—”와 “+” (선택한 보조색)</span></div>
+    </div>
+    <figure class="slot slot--light" style="min-height:16rem"><img data-slot="assets/logo/wordmark.svg" src="assets/logo/wordmark.svg" alt="HCDT wordmark" style="max-height:14rem"></figure>
+  </section>
+
+  <!-- 06 -->
+  <section class="section" id="space-full">
+    <h2 class="section__title"><span class="no">06</span><span class="en">Space and margins: for full version</span><span class="ko">보호 여백: 풀버전</span></h2>
+    <div class="lede">
+      <p class="en">The clear space is defined by D, the basic module unit. Keep at least D of clear space on all sides of the Full Version. No text, image, or graphic element may enter this area.</p>
+      <p class="ko">보호 여백은 기본 모듈 단위인 D를 기준으로 합니다. 풀버전의 모든 방향에 최소 D 이상의 여백을 확보해야 하며, 이 영역 안에는 텍스트·이미지·그래픽 요소를 배치하지 않습니다.</p>
+    </div>
+    <div class="pair-grid" style="margin-top:2rem">
+      <figure class="slot slot--light"><img data-slot="assets/logo/clearspace-full.svg" src="assets/logo/clearspace-full.svg" alt="Clear space diagram, Full Version"></figure>
+      <figure class="slot slot--light"><img data-slot="assets/logo/full-navy.svg" src="assets/logo/full-navy.svg" alt="Full Version"></figure>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="section" id="space-rest">
+    <h2 class="section__title"><span class="no">07</span><span class="en">Space and margins: for the rest</span><span class="ko">보호 여백: 그 외 버전</span></h2>
+    <div class="lede">
+      <p class="en">Keep at least D of clear space around both General Use and Limited Space versions. The Limited Space version must not be used at the same size as, or larger than, the General Use version.</p>
+      <p class="ko">기본형과 제한 공간용 모두 로고 주변에 최소 D 이상의 보호 여백을 확보합니다. 제한 공간용 버전은 기본형과 동일하거나 더 큰 크기로 사용하지 않습니다.</p>
+    </div>
+    <div class="pair-grid" style="margin-top:2rem">
+      <div>
+        <div class="eyebrow"><span class="en">For General Use</span><span class="ko">기본형</span></div>
+        <figure class="slot slot--light"><img data-slot="assets/logo/clearspace-general.svg" src="assets/logo/clearspace-general.svg" alt="Clear space, General Use"></figure>
+      </div>
+      <div>
+        <div class="eyebrow"><span class="en">For Use in Limited Space</span><span class="ko">제한 공간용</span></div>
+        <figure class="slot slot--light"><img data-slot="assets/logo/clearspace-limited.svg" src="assets/logo/clearspace-limited.svg" alt="Clear space, Limited Space"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="section" id="colors">
+    <h2 class="section__title"><span class="no">08</span><span class="en">Colors</span><span class="ko">색상</span></h2>
+    <div class="lede">
+      <p class="en">The color system consists of one fixed main color and four auxiliary colors. HCDT Purple is always present. Select one auxiliary color according to the application; do not create a five-color logo.</p>
+      <p class="ko">색상 시스템은 하나의 고정 주색상과 네 가지 보조색으로 구성됩니다. HCDT Purple은 항상 사용하며, 적용 목적에 따라 하나의 보조색을 선택합니다. 다섯 색상을 하나의 로고에 동시에 사용하지 않습니다.</p>
+    </div>
+
+    <h3 class="sub">HCDT Colors</h3>
+    <div class="cgrid">
+      <figure class="sw" style="--c:#6b00ff;margin:0"><div class="sw__chip"></div><div class="sw__name">HCDT Purple</div>
+        <dl class="vals"><dt>RGB</dt><dd>107 / 0 / 255</dd><dt>HEX</dt><dd>#6B00FF</dd><dt>CMYK</dt><dd>80 / 79 / 0 / 0</dd></dl></figure>
+      <figure class="sw" style="--c:#64d8d8;margin:0"><div class="sw__chip"></div><div class="sw__name">HCDT Verdigris</div>
+        <dl class="vals"><dt>RGB</dt><dd>100 / 216 / 216</dd><dt>HEX</dt><dd>#64D8D8</dd><dt>CMYK</dt><dd>57 / 0 / 25 / 0</dd></dl></figure>
+      <figure class="sw" style="--c:#e8b9aa;margin:0"><div class="sw__chip"></div><div class="sw__name">HCDT Terracotta</div>
+        <dl class="vals"><dt>RGB</dt><dd>232 / 185 / 170</dd><dt>HEX</dt><dd>#E8B9AA</dd><dt>CMYK</dt><dd>11 / 34 / 29 / 0</dd></dl></figure>
+      <figure class="sw" style="--c:#73d888;margin:0"><div class="sw__chip"></div><div class="sw__name">HCDT Fluoxetine</div>
+        <dl class="vals"><dt>RGB</dt><dd>115 / 216 / 136</dd><dt>HEX</dt><dd>#73D888</dd><dt>CMYK</dt><dd>56 / 0 / 60 / 0</dd></dl></figure>
+      <figure class="sw" style="--c:#e8e041;margin:0"><div class="sw__chip"></div><div class="sw__name">HCDT Asparagus Soup</div>
+        <dl class="vals"><dt>RGB</dt><dd>232 / 224 / 65</dd><dt>HEX</dt><dd>#E8E041</dd><dt>CMYK</dt><dd>17 / 9 / 80 / 0</dd></dl></figure>
+    </div>
+
+    <h3 class="sub">UNIST Colors</h3>
+    <div class="cgrid cgrid--unist">
+      <figure class="sw" style="--c:#001b54;margin:0"><div class="sw__chip"></div><div class="sw__name">UNIST Navy</div>
+        <dl class="vals"><dt>RGB</dt><dd>0 / 27 / 84</dd><dt>HEX</dt><dd>#001B54</dd><dt>CMYK</dt><dd>100 / 80 / 0 / 60</dd></dl></figure>
+      <figure class="sw" style="--c:#44c1c4;margin:0"><div class="sw__chip"></div><div class="sw__name">UNIST Emerald</div>
+        <dl class="vals"><dt>RGB</dt><dd>68 / 193 / 196</dd><dt>HEX</dt><dd>#44C1C4</dd><dt>CMYK</dt><dd>65 / 0 / 27 / 0</dd></dl></figure>
+    </div>
+
+    <div class="note">
+      <div>
+        <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colours. Please check and use the specified values for each to avoid confusion.</p>
+        <p class="ko"><b>HCDT Verdigris</b>와 <b>UNIST Emerald</b>는 서로 다른 색상입니다. 혼동하지 않도록 각 색상의 지정된 값을 확인하여 사용해 주세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="section" id="typography">
+    <h2 class="section__title"><span class="no">09</span><span class="en">Typography</span><span class="ko">타이포그래피</span></h2>
+    <div class="lede">
+      <p class="en">Helvetica Neue is the primary typeface for English, and Spoqa Han Sans is the primary typeface for Korean. Use Regular for body text, Bold for headings and emphasis, and Light only for supporting information.</p>
+      <p class="ko">영문 기본 서체는 Helvetica Neue, 국문 기본 서체는 스포카 한 산스입니다. 본문에는 Regular, 제목과 강조에는 Bold, 보조 정보에는 Light를 사용합니다.</p>
+    </div>
+    <div class="type" style="margin-top:3rem">
+      <div>
+        <div class="type__h">Helvetica Neue (14 Styles)</div>
+        <div class="type__sub">For English</div>
+        <div class="spec"><div class="spec__label">Helvetica Neue <b>Roman</b></div><p class="spec__body en-spec w-regular">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Helvetica Neue <b>Bold</b></div><p class="spec__body en-spec w-bold">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Helvetica Neue <b>Light</b></div><p class="spec__body en-spec w-light">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>abcdefghijklmnopqrstuvwxyz<br>1234567890</p></div>
+      </div>
+      <div>
+        <div class="type__h">Spoqa Han Sans (4 Styles)</div>
+        <div class="type__sub">For Korean</div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Regular</b></div><p class="spec__body ko-spec w-regular">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div><p class="spec__body ko-spec w-bold">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+        <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div><p class="spec__body ko-spec w-light">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer__info">
+    <div class="footer__address">
+      <p>Address<br>Bldg.104 9F – 10F<br>50 unist-gil, Eonyang-eup, Ulju-gun, Ulsan 44919<br>Republic of Korea</p>
+      <p>+82 52 217 3561~3<br>design@unist.ac.kr</p>
+    </div>
+    <div class="footer__address">
+      <p>연락처<br>울산광역시 울주군 언양읍<br>유니스트길 50, 44919<br>104동 9 – 10층 디자인학과</p>
+      <p>052 217 3561~3<br>design@unist.ac.kr</p>
+    </div>
+  </div>
+  <p class="footer__copyright" style="padding:0 1rem">© Design Department, UNIST</p>
+</footer>
+
+<script>
+(function(){
+  /* 로고 승인 파일이 없으면 자리 표시 */
+  document.querySelectorAll('img[data-slot]').forEach(function(img){
+    function ph(){
+      var d=document.createElement('div'); d.className='ph';
+      d.innerHTML='<span>APPROVED FILE</span><span>'+img.dataset.slot+'</span>';
+      img.replaceWith(d);
+    }
+    img.addEventListener('error',ph);
+    if(img.complete && img.naturalWidth===0) ph();
+  });
+
+  /* 현재 섹션 탭 표시 */
+  var links=[].slice.call(document.querySelectorAll('.tabs a'));
+  var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting){
+        links.forEach(function(a){a.classList.remove('is-current')});
+        var a=map[e.target.id]; if(a){a.classList.add('is-current'); a.scrollIntoView({block:'nearest',inline:'center'});}
+      }
+    });
+  },{rootMargin:'-30% 0px -65% 0px'});
+  document.querySelectorAll('section.section').forEach(function(s){io.observe(s)});
+})();
+</script>
+</body>
+</html>
