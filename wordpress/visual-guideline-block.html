@@ -89,6 +89,11 @@
 .hcdt-vig .dl a:hover{background:var(--ui);color:var(--purple);text-decoration:none}
 .hcdt-vig .dlall{margin-top:2.5rem;padding:1.25rem 0;border-top:1px solid rgba(0,0,0,.12)}
 .hcdt-vig .dlall .dl{margin:0 0 .75rem}
+.hcdt-vig .bgsel{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin:0 0 .75rem;font-size:.75rem}
+.hcdt-vig .bgsel span{font-weight:600;opacity:.7;margin-right:.25rem}
+.hcdt-vig .bgsel button{appearance:none;font:inherit;font-size:.75rem;font-weight:600;color:var(--purple);background:transparent;border:1px solid var(--purple);border-radius:9999em;padding:.1875rem .75rem;cursor:pointer}
+.hcdt-vig .bgsel button:hover{background:var(--ui);color:var(--purple)}
+.hcdt-vig .bgsel button[aria-pressed=true]{background:var(--purple);color:#fff}
 .hcdt-vig .dlall .cap{margin:.25rem 0 0;max-width:760px}
 .hcdt-vig .sw{margin:0}
 .hcdt-vig .sw__chip{aspect-ratio:4/3;background:var(--c)}
@@ -209,8 +214,13 @@
   <!-- Download all -->
   <div class="dlall">
     <div class="eyebrow"><span class="en">Download all logos</span></div>
+    <div class="bgsel" role="group" aria-label="Background for PNG and PDF">
+      <span>PNG · PDF background</span>
+      <button type="button" data-bg="bg" aria-pressed="true">With white background</button>
+      <button type="button" data-bg="t" aria-pressed="false">Transparent</button>
+    </div>
     <div class="dl" data-dlall></div>
-    <p class="cap en">SVG files are the originals without clear space. PNG and PDF files include a white background and the clear space (D).</p>
+    <p class="cap en">SVG files are the originals without clear space. PNG (4000 px on the longest side) and PDF files include the clear space (D). PNG and PDF follow the background choice above.</p>
   </div>
 
   <!-- 01 -->
@@ -484,10 +494,14 @@
   });
 
   /* 클릭하면 바로 저장 (다른 도메인에서도 저장되도록 blob으로 받음) */
+  var links = [], BG = 'bg';
   function link(label, url, name){
     var a = document.createElement('a');
-    a.textContent = label; a.href = url; a.setAttribute('download', name); a.rel = 'noopener';
+    var U = function(){ return typeof url === 'function' ? url() : url; }, N = function(){ return typeof name === 'function' ? name() : name; };
+    a.textContent = label; a.href = U(); a.setAttribute('download', N()); a.rel = 'noopener';
+    links.push(function(){ a.href = U(); a.setAttribute('download', N()); });
     a.addEventListener('click', function(e){
+      var url = U(), name = N();
       if(!window.fetch || !window.URL) return;
       e.preventDefault();
       fetch(url).then(function(r){ if(!r.ok) throw 0; return r.blob(); }).then(function(b){
@@ -501,14 +515,22 @@
   root.querySelectorAll('[data-dl]').forEach(function(box){
     var k = box.getAttribute('data-dl'), n = NAMES[k]; if(!n) return;
     box.appendChild(link('SVG', LOGO_BASE + k + '.svg', n + '.svg'));
-    box.appendChild(link('PNG', DL_BASE + 'png/' + k + '.png', n + '_clearspace_bg.png'));
-    box.appendChild(link('PDF', DL_BASE + 'pdf/' + k + '.pdf', n + '_clearspace_bg.pdf'));
+    box.appendChild(link('PNG', function(){ return DL_BASE + (BG==='bg' ? 'png/' : 'png-transparent/') + k + '.png'; }, function(){ return n + (BG==='bg' ? '_clearspace_bg.png' : '_clearspace.png'); }));
+    box.appendChild(link('PDF', function(){ return DL_BASE + (BG==='bg' ? 'pdf/' : 'pdf-transparent/') + k + '.pdf'; }, function(){ return n + (BG==='bg' ? '_clearspace_bg.pdf' : '_clearspace.pdf'); }));
   });
   root.querySelectorAll('[data-dlall]').forEach(function(box){
-    [['SVG ZIP','HCDT_logos_svg.zip'],['PNG ZIP · 1000px','HCDT_logos_png_1000px.zip'],
-     ['PNG ZIP · 2000px','HCDT_logos_png_2000px.zip'],['PNG ZIP · 4000px','HCDT_logos_png_4000px.zip'],
-     ['PDF ZIP','HCDT_logos_pdf.zip']].forEach(function(z){
-      box.appendChild(link(z[0], DL_BASE + 'zip/' + z[1], z[1]));
+    box.appendChild(link('SVG ZIP', DL_BASE + 'zip/HCDT_logos_svg.zip', 'HCDT_logos_svg.zip'));
+    ['png','pdf'].forEach(function(f){
+      var nm = function(){ return 'HCDT_logos_' + f + (BG==='bg' ? '_with-background' : '_transparent') + '.zip'; };
+      box.appendChild(link(f.toUpperCase() + ' ZIP', function(){ return DL_BASE + 'zip/' + nm(); }, nm));
+    });
+  });
+  /* 배경 선택: PNG·PDF 전체(개별·ZIP)에 적용 */
+  [].slice.call(root.querySelectorAll('[data-bg]')).forEach(function(b){
+    b.addEventListener('click', function(){
+      BG = b.getAttribute('data-bg');
+      [].slice.call(root.querySelectorAll('[data-bg]')).forEach(function(x){ x.setAttribute('aria-pressed', String(x === b)); });
+      links.forEach(function(f){ f(); });
     });
   });
 
