@@ -135,6 +135,23 @@
   .hcdt-vig #other .pair{margin-top:0}
   .hcdt-vig .type{gap:2rem}
 }
+
+/* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
+.hcdt-vig .limited{margin-top:3rem;border-top:3px solid var(--purple);padding-top:1.5rem}
+.hcdt-vig .limited h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem}
+.hcdt-vig .ltd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1rem}
+.hcdt-vig .ltd{min-width:0}
+.hcdt-vig .ltd-n{display:flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;margin-bottom:.5rem}
+.hcdt-vig .ltd-n i{width:.875rem;height:.875rem;background:var(--aux)}
+.hcdt-vig .ltd .slot{min-height:9rem;padding:1rem}
+.hcdt-vig .ltd .slot img{height:6.5rem;width:100%;max-height:none;object-fit:contain}
+.hcdt-vig .ltd .dl{gap:.25rem}
+.hcdt-vig .ltd .dl a,.hcdt-vig .ltd .dl a:hover{padding:.5rem .25rem;font-size:.75rem}
+@media(min-width:1024px){
+  .hcdt-vig .ltd-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .hcdt-vig #other .limited{grid-column:1/-1;margin-top:0}
+  .hcdt-vig .ltd .dl a{padding:.25rem .5rem;min-height:0}
+}
 .hcdt-vig .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
 .hcdt-vig .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
 .hcdt-vig .role i{width:1.5rem;height:1.5rem;display:block}
@@ -314,10 +331,9 @@
       <h3><i></i>Verdigris</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
+          <div class="eyebrow"><span class="en">For General Use</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-verdigris.svg" alt="General use, Verdigris"></figure><div class="dl" data-dl="general-verdigris"></div></div>
-            <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div>
           </div>
         </div>
       </div>
@@ -328,10 +344,9 @@
       <h3><i></i>Terracotta</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
+          <div class="eyebrow"><span class="en">For General Use</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-terracotta.svg" alt="General use, Terracotta"></figure><div class="dl" data-dl="general-terracotta"></div></div>
-            <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div>
           </div>
         </div>
       </div>
@@ -342,10 +357,9 @@
       <h3><i></i>Fluoxetine</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
+          <div class="eyebrow"><span class="en">For General Use</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-fluoxetine.svg" alt="General use, Fluoxetine"></figure><div class="dl" data-dl="general-fluoxetine"></div></div>
-            <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div>
           </div>
         </div>
       </div>
@@ -356,14 +370,22 @@
       <h3><i></i>Asparagus Soup</h3>
       <div class="pair__body">
         <div>
-          <div class="eyebrow"><span class="en">For General Use / For Use in Limited Space</span></div>
+          <div class="eyebrow"><span class="en">For General Use</span></div>
           <div class="pair__logos">
             <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="general-asparagus.svg" alt="General use, Asparagus Soup"></figure><div class="dl" data-dl="general-asparagus"></div></div>
-            <div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div>
           </div>
         </div>
       </div>
     </article>
+      <div class="limited">
+        <h3>For Use in Limited Space</h3>
+        <div class="ltd-grid">
+          <div class="ltd" style="--aux:var(--verdigris)"><div class="ltd-n"><i></i>Verdigris</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div></div>
+          <div class="ltd" style="--aux:var(--terracotta)"><div class="ltd-n"><i></i>Terracotta</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div></div>
+          <div class="ltd" style="--aux:var(--fluoxetine)"><div class="ltd-n"><i></i>Fluoxetine</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div></div>
+          <div class="ltd" style="--aux:var(--asparagus)"><div class="ltd-n"><i></i>Asparagus Soup</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div></div>
+        </div>
+      </div>
     </div>
   </section>
 
