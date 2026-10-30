@@ -106,6 +106,10 @@
 .hcdt-vig dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
 .hcdt-vig dl.vals dt{font-weight:500;opacity:.7}
 .hcdt-vig dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
+.hcdt-vig .cp{cursor:pointer;border-radius:3px;padding:0 .25rem;margin-left:-.25rem;transition:background-color 150ms}
+.hcdt-vig .cp:hover,.hcdt-vig .cp:focus-visible{background:linear-gradient(transparent 22%,var(--ui) 22%,var(--ui) 92%,transparent 92%);outline:0}
+.cp-toast{position:fixed;left:50%;bottom:1.5rem;transform:translateX(-50%);z-index:2147483647;background:#000;color:#fff;font:500 .875rem/1.3 var(--font-en,Helvetica,Arial,sans-serif);padding:.5rem 1rem;border-radius:9999em;opacity:0;pointer-events:none;transition:opacity 150ms}
+.cp-toast.on{opacity:1}
 
 /* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
 @media(max-width:782px){
@@ -555,6 +559,21 @@
   /* ▲ 여기만 바꾸면 됨 */
 
   var root = document.querySelector('.hcdt-vig') || document;
+
+  /* color values: click (or Enter) to copy, e.g. HEX #6B00FF, RGB 107, 0, 255 */
+  (function(){
+    var toast=null,tm;
+    function say(t){ if(!toast){ toast=document.createElement('div'); toast.className='cp-toast'; toast.setAttribute('role','status'); document.body.appendChild(toast); } toast.textContent=t; toast.classList.add('on'); clearTimeout(tm); tm=setTimeout(function(){ toast.classList.remove('on'); },1400); }
+    function legacy(t){ return new Promise(function(ok,no){ var a=document.createElement('textarea'); a.value=t; a.style.cssText='position:fixed;opacity:0'; document.body.appendChild(a); a.select(); try{ document.execCommand('copy')?ok():no(); }catch(e){ no(); } a.remove(); }); }
+    function copy(t){ if(navigator.clipboard&&window.isSecureContext) return navigator.clipboard.writeText(t).catch(function(){ return legacy(t); }); return legacy(t); }
+    [].slice.call(root.querySelectorAll('dl.vals dd')).forEach(function(d){
+      var v=d.textContent.trim().replace(/\s*\/\s*/g,', ');
+      d.classList.add('cp'); d.tabIndex=0; d.setAttribute('role','button'); d.title='Click to copy'; d.setAttribute('aria-label','Copy '+v);
+      function go(){ copy(v).then(function(){ say('Copied '+v); },function(){ say('Copy failed'); }); }
+      d.addEventListener('click',go);
+      d.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    });
+  })();
 
   /* 새로고침할 때마다 보조색 4색 중 하나로 (UI와 메인 로고) */
   var AUXES=[['verdigris','#64d8d8'],['terracotta','#e8b9aa'],['fluoxetine','#73d888'],['asparagus','#e8e041']];
