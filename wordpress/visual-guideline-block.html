@@ -134,6 +134,9 @@
   .hcdt-vig #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
   .hcdt-vig #other .pair{margin-top:0}
   .hcdt-vig .type{gap:2rem}
+  .hcdt-vig .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
+  .hcdt-vig .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
+  .hcdt-vig .sec-body .cgrid .sw__chip{aspect-ratio:auto;height:9rem}
 }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
