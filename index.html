@@ -247,14 +247,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 #tab-tools .p-slides img{width:84%;height:auto;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 1px 2px rgba(0,0,0,.1),0 8px 24px rgba(20,10,40,.12);opacity:0;transition:opacity .3s}
 #tab-tools .p-slides img.on{opacity:1}
 #tab-tools .p-letter img{height:86%;width:auto;top:7%;left:50%;box-shadow:0 1px 2px rgba(0,0,0,.1),0 8px 24px rgba(20,10,40,.1);transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .35s}
-#tab-tools .p-letter .l1,#tab-tools .p-letter .lg{transform:translateX(-50%);z-index:3}
-#tab-tools .p-letter .lg{opacity:0;z-index:4}
-#tab-tools .p-letter .l2{transform:translateX(-50%);z-index:2}
-#tab-tools .p-letter .l3{transform:translateX(-50%);z-index:1}
-#tab-tools .tl:hover .p-letter .lg,#tab-tools .tl:focus-visible .p-letter .lg{opacity:1}
-#tab-tools .tl:hover .p-letter .l1,#tab-tools .tl:hover .p-letter .lg,#tab-tools .tl:focus-visible .p-letter .l1,#tab-tools .tl:focus-visible .p-letter .lg{transform:translateX(-95%)}
-#tab-tools .tl:hover .p-letter .l2,#tab-tools .tl:focus-visible .p-letter .l2{transform:translateX(-45%) rotate(2deg)}
-#tab-tools .tl:hover .p-letter .l3,#tab-tools .tl:focus-visible .p-letter .l3{transform:translateX(5%) rotate(4deg)}
+#tab-tools .p-letter .l1{transform:translateX(-50%)}
 @media(prefers-reduced-motion:reduce){#tab-tools .tpic *{transition:none!important}}
 /* 도구를 이 화면 안에서 열기 */
 #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:0 1.75rem;margin:1.5rem 0 0;border-bottom:1px solid rgba(0,0,0,.15)}
@@ -507,10 +500,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
       </a></li>
     <li><a class="tl" href="https://aghartakr-glitch.github.io/HCPD_Paper_Generator/" data-anim="letter" data-name="Letter">
         <div class="tpic p-letter">
-          <img loading="lazy" class="l3" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letterL3.webp" alt="">
-          <img loading="lazy" class="l2" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letterL2.webp" alt="">
           <img loading="lazy" class="l1" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letter1.webp" alt="">
-          <img loading="lazy" class="lg" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letter1g.webp" alt="">
           <span class="pcap"></span>
         </div>
         <div class="ttxt"><span class="tk">02</span><h3>Letter</h3>
@@ -696,7 +686,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     },
     poster:function(pic){ return slideshow(pic,POSTERS,650); },
     slides:function(pic){ return slideshow(pic,SLIDES,800); },
-    letter:function(pic){ var cap=pic.querySelector('.pcap'); return {start:function(){},stop:function(){},label:function(){cap.textContent='3 pages · grid shown'}}; }
+    letter:function(pic){ var cap=pic.querySelector('.pcap'); return {start:function(){},stop:function(){},label:function(){cap.textContent='1 page'}}; }
   };
   function slideshow(pic,names,ms){
     var im=all(pic,'img'),cap=pic.querySelector('.pcap'),i=0,tm;

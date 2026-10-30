@@ -193,14 +193,7 @@
 .hcdt-vig #tab-tools .p-slides img{width:84%;height:auto;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 1px 2px rgba(0,0,0,.1),0 8px 24px rgba(20,10,40,.12);opacity:0;transition:opacity .3s}
 .hcdt-vig #tab-tools .p-slides img.on{opacity:1}
 .hcdt-vig #tab-tools .p-letter img{height:86%;width:auto;top:7%;left:50%;box-shadow:0 1px 2px rgba(0,0,0,.1),0 8px 24px rgba(20,10,40,.1);transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .35s}
-.hcdt-vig #tab-tools .p-letter .l1,.hcdt-vig #tab-tools .p-letter .lg{transform:translateX(-50%);z-index:3}
-.hcdt-vig #tab-tools .p-letter .lg{opacity:0;z-index:4}
-.hcdt-vig #tab-tools .p-letter .l2{transform:translateX(-50%);z-index:2}
-.hcdt-vig #tab-tools .p-letter .l3{transform:translateX(-50%);z-index:1}
-.hcdt-vig #tab-tools .tl:hover .p-letter .lg,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .lg{opacity:1}
-.hcdt-vig #tab-tools .tl:hover .p-letter .l1,.hcdt-vig #tab-tools .tl:hover .p-letter .lg,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .l1,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .lg{transform:translateX(-95%)}
-.hcdt-vig #tab-tools .tl:hover .p-letter .l2,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .l2{transform:translateX(-45%) rotate(2deg)}
-.hcdt-vig #tab-tools .tl:hover .p-letter .l3,.hcdt-vig #tab-tools .tl:focus-visible .p-letter .l3{transform:translateX(5%) rotate(4deg)}
+.hcdt-vig #tab-tools .p-letter .l1{transform:translateX(-50%)}
 @media(prefers-reduced-motion:reduce){.hcdt-vig #tab-tools .tpic *{transition:none!important}}
 .hcdt-vig #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:0 1.75rem;margin:1.5rem 0 0;border-bottom:1px solid rgba(0,0,0,.15)}
 .hcdt-vig #tab-tools .subtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.625rem 0;font:inherit;font-size:1rem;font-weight:500;color:rgba(0,0,0,.45);cursor:pointer}
@@ -433,10 +426,7 @@
       </a></li>
     <li><a class="tl" href="https://aghartakr-glitch.github.io/HCPD_Paper_Generator/" data-anim="letter" data-name="Letter">
         <div class="tpic p-letter">
-          <img loading="lazy" class="l3" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letterL3.webp" alt="">
-          <img loading="lazy" class="l2" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letterL2.webp" alt="">
           <img loading="lazy" class="l1" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letter1.webp" alt="">
-          <img loading="lazy" class="lg" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/letter1g.webp" alt="">
           <span class="pcap"></span>
         </div>
         <div class="ttxt"><span class="tk">02</span><h3>Letter</h3>
@@ -604,7 +594,7 @@
     },
     poster:function(pic){ return slideshow(pic,POSTERS,650); },
     slides:function(pic){ return slideshow(pic,SLIDES,800); },
-    letter:function(pic){ var cap=pic.querySelector('.pcap'); return {start:function(){},stop:function(){},label:function(){cap.textContent='3 pages · grid shown'}}; }
+    letter:function(pic){ var cap=pic.querySelector('.pcap'); return {start:function(){},stop:function(){},label:function(){cap.textContent='1 page'}}; }
   };
   function slideshow(pic,names,ms){
     var im=all(pic,'img'),cap=pic.querySelector('.pcap'),i=0,tm;
