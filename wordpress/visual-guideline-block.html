@@ -137,6 +137,11 @@
   .hcdt-vig .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
   .hcdt-vig .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
   .hcdt-vig .sec-body .cgrid .sw__chip{aspect-ratio:auto;height:9rem}
+  .hcdt-vig .intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start}
+  .hcdt-vig .intro .callout{margin:0!important;font-size:1rem;padding:1rem 1.25rem}
+  .hcdt-vig .intro .dlall{grid-column:2/4;margin:0;padding:0;border-top:0}
+  .hcdt-vig .intro .dlall .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+  .hcdt-vig .intro .dlall .dl a{display:flex;align-items:center;justify-content:center;padding:.625rem 1rem}
 }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
@@ -267,23 +272,25 @@
   </div>
 
 <div class="tabpanel" id="tab-logo" role="tabpanel">
+  <div class="intro">
   <div class="callout" style="margin-top:2.5rem">
-    <p class="en">This document is a reference guide. Always use approved logo files and templates downloaded from the HCDT website. Do not recreate, edit, screenshot, or extract artwork from this document.</p>
-  </div>
-
-
-  <!-- Download all -->
-  <div class="dlall">
-    <div class="eyebrow"><span class="en">Download all logos</span></div>
-    <div class="bgsel" role="group" aria-label="Background for PNG and PDF">
-      <span>Background for PNG · PDF</span>
-      <div class="seg">
-        <button type="button" data-bg="bg" aria-pressed="true"><i></i>White</button>
-        <button type="button" data-bg="t" aria-pressed="false"><i class="chk"></i>Transparent</button>
-      </div>
+      <p class="en">This document is a reference guide. Always use approved logo files and templates downloaded from the HCDT website. Do not recreate, edit, screenshot, or extract artwork from this document.</p>
     </div>
-    <div class="dl" data-dlall></div>
-    <p class="cap en">SVG files are the originals without clear space. PNG (4000 px on the longest side) and PDF files include the clear space (D). PNG and PDF follow the background choice above.</p>
+  
+  
+    <!-- Download all -->
+    <div class="dlall">
+      <div class="eyebrow"><span class="en">Download all logos</span></div>
+      <div class="bgsel" role="group" aria-label="Background for PNG and PDF">
+        <span>Background for PNG · PDF</span>
+        <div class="seg">
+          <button type="button" data-bg="bg" aria-pressed="true"><i></i>White</button>
+          <button type="button" data-bg="t" aria-pressed="false"><i class="chk"></i>Transparent</button>
+        </div>
+      </div>
+      <div class="dl" data-dlall></div>
+      <p class="cap en">SVG files are the originals without clear space. PNG (4000 px on the longest side) and PDF files include the clear space (D). PNG and PDF follow the background choice above.</p>
+    </div>
   </div>
 
   <!-- 01 -->
