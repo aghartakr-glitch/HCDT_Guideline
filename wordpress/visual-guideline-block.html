@@ -151,6 +151,9 @@
 .hcdt-vig .vtabs button[aria-selected=true] .n{color:var(--purple)}
 @media(min-width:783px){.hcdt-vig .vtabs button{font-size:1.5rem}}
 .hcdt-vig .tabpanel[hidden]{display:none}
+/* 모바일에서만 보이는 안내: 툴킷은 데스크탑 환경에서 이용 */
+.hcdt-vig .desktop-notice{display:none;margin:2rem 0 0}
+@media(max-width:782px){.hcdt-vig .desktop-notice{display:block}}
 .hcdt-vig #tab-tools .tools{list-style:none;margin:2.5rem 0 0;padding:0;display:grid;gap:3rem 2rem;grid-template-columns:minmax(0,1fr)}
 @media(min-width:620px){.hcdt-vig #tab-tools .tools{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(min-width:960px){.hcdt-vig #tab-tools .tools{grid-template-columns:repeat(3,minmax(0,1fr))}}
@@ -404,6 +407,10 @@
 </div>
 
 <div class="tabpanel" id="tab-tools" role="tabpanel" hidden>
+  <div class="callout desktop-notice" role="note">
+    <p class="en"><b>Please use the toolkit on a desktop computer.</b> The tools need a larger screen for editing and previews, so they are hard to use on a phone.</p>
+    <p class="ko">툴킷은 데스크탑 환경에서 이용해 주세요. 작은 모바일 화면에서는 편집과 미리보기가 불편할 수 있습니다.</p>
+  </div>
   <div class="subtabs" role="tablist" aria-label="Useful Template" hidden></div>
   <div id="tools-list">
     <ul class="tools" style="margin-top:2.5rem">
