@@ -333,7 +333,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   <section class="section" id="full">
     <h2 class="section__title"><span class="no">01</span><span class="en">Full Version</span></h2>
     <div class="lede">
-      <p class="en">The Full Version is the official lockup for formal documents and institutional communications and must always appear with the UNIST logo. Use UNIST Navy on a white background, or white on a UNIST Navy background. Auxiliary colours are not used in this version.</p>
+      <p class="en">The Full Version is the official lockup for formal documents and institutional communications and must always appear with the UNIST logo. Use UNIST Navy on a white background, or white on a UNIST Navy background. Auxiliary colors are not used in this version.</p>
     </div>
     <div class="pair-grid" style="margin-top:2rem">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-navy.svg" alt="Full Version, UNIST Navy on white"></figure><div class="dl" data-dl="full-navy"></div></div>
@@ -449,7 +449,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
     <div class="note">
       <div>
-        <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colours. Please check and use the specified values for each to avoid confusion.</p>
+        <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colors. Please check and use the specified values for each to avoid confusion.</p>
       </div>
     </div>
   </section>
@@ -549,7 +549,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
           <span class="pcap"></span>
         </div>
         <div class="ttxt"><span class="tk">05</span><h3>Logo Motion</h3>
-          <p>Symbol modules flip in one by one, then the wordmark fades in. Every approved version and color, ready to screen-record.</p>
+          <p>Ten motions for the symbol modules, then the wordmark fades in. Every approved version and color, ready to screen-record.</p>
           <div class="tchips"><span>1920 × 1080</span><span>16:9</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
@@ -724,7 +724,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     b.setAttribute('aria-controls','tool-view'); b.addEventListener('click',function(){ openTool(a.getAttribute('data-name')); });
     subBox.appendChild(b);
   });
-  /* content-tab behaviour (design system): arrow keys / Home / End, roving tabindex, selection kept in the address */
+  /* content-tab behavior (design system): arrow keys / Home / End, roving tabindex, selection kept in the address */
   subBox.addEventListener('keydown',function(e){
     var bs=[].slice.call(subBox.children), i=bs.indexOf(document.activeElement); if(i<0||['ArrowRight','ArrowLeft','Home','End'].indexOf(e.key)<0) return;
     e.preventDefault(); var n=e.key==='Home'?0:e.key==='End'?bs.length-1:(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length; bs[n].focus(); bs[n].click();
