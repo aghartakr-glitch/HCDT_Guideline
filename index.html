@@ -142,6 +142,17 @@ dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;
 dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
 /* 연한 보조색은 흰 배경 가독성이 낮으므로 회색 바탕에서 보여줌 */
 
+/* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
+@media(max-width:782px){
+  .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
+  .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
+  .pair__logos .logo-item{width:100%}
+  .pair__logos .dl{gap:.5rem}
+  .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+  .dl a,.dlall .dl a,.pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;min-height:2.75rem;padding:.5rem .75rem;font-size:.875rem;text-align:center}
+  .seg button{min-height:2.75rem}
+}
+
 /* ===== Role chips (04, 05) ===== */
 .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
 .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
@@ -155,14 +166,14 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 .note p{margin:0 0 .25rem}.note p:last-child{margin:0}
 
 /* ===== Typography (09) ===== */
-.type{display:grid;gap:3rem;grid-template-columns:1fr}
+.type{display:grid;gap:3rem;grid-template-columns:minmax(0,1fr)}
 @media(min-width:783px){.type{grid-template-columns:1fr 1fr}}
 .type__h{font-size:.875rem;font-weight:600;margin-bottom:.125rem}
 .type__sub{font-size:.75rem;opacity:.7;margin-bottom:1.5rem}
 .spec{margin-bottom:1.75rem}
 .spec__label{font-size:.75rem;margin-bottom:.5rem}
 .spec__label b{font-weight:700}
-.spec__body{font-size:1.375rem;line-height:1.4;margin:0}
+.spec__body{font-size:1.375rem;line-height:1.4;margin:0;overflow-wrap:anywhere}
 .en-spec{font-family:"Helvetica Neue",neue-haas-unica,Helvetica,Arial,sans-serif}
 .ko-spec{font-family:var(--font-ko);word-break:keep-all}
 .w-regular{font-weight:400}.w-bold{font-weight:700}.w-light{font-weight:300}
