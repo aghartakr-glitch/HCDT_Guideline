@@ -144,13 +144,31 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
 /* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
 @media(max-width:782px){
-  .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
-  .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
-  .pair__logos .logo-item{width:100%}
-  .pair__logos .dl{gap:.5rem}
   .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
   .dl a,.dlall .dl a,.pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;min-height:2.75rem;padding:.5rem .75rem;font-size:.875rem;text-align:center}
   .seg button{min-height:2.75rem}
+}
+
+/* 로고 쌍이 좁은 칸(3단 그리드의 1단 등)에 들어가면 세로로 쌓고, 버튼은 3열로 */
+@container pair (max-width:560px){
+  .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
+  .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
+  .pair__logos .logo-item{width:100%}
+  .pair__logos .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem}
+  .pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;min-height:2.75rem;padding:.5rem .75rem;font-size:.875rem;text-align:center}
+}
+/* 3단 그리드 (툴킷과 동일): 왼쪽 1단 = 제목·설명, 오른쪽 2단 폭 = 콘텐츠. 1단 → 2~3단 span 으로 쓰는 구조 */
+@media(min-width:1024px){
+  .section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start}
+  .sec-head{position:sticky;top:1.5rem;min-width:0}
+  .sec-head .section__title{font-size:1.75rem;margin-bottom:1rem}
+  .sec-head .lede{font-size:1.125rem}
+  .sec-body{grid-column:2/4;min-width:0}
+  .sec-body .pair-grid{margin-top:0!important}
+  .sec-body>.sub:first-child{margin-top:0}
+  #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
+  #other .pair{margin-top:0}
+  .type{gap:2rem}
 }
 
 /* ===== Role chips (04, 05) ===== */
@@ -324,35 +342,46 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
   <!-- 01 -->
   <section class="section" id="full">
+    <div class="sec-head">
     <h2 class="section__title"><span class="no">01</span><span class="en">Full Version</span></h2>
     <div class="lede">
       <p class="en">The Full Version is the official lockup for formal documents and institutional communications and must always appear with the UNIST logo. Use UNIST Navy on a white background, or white on a UNIST Navy background. Auxiliary colors are not used in this version.</p>
     </div>
+    </div>
+    <div class="sec-body">
     <div class="pair-grid" style="margin-top:2rem">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-navy.svg" alt="Full Version, UNIST Navy on white"></figure><div class="dl" data-dl="full-navy"></div></div>
       <div class="logo-item"><figure class="slot slot--navy"><img data-file="full-white.svg" alt="Full Version, white on UNIST Navy"></figure><div class="dl" data-dl="full-white"></div></div>
+    </div>
     </div>
   </section>
 
   <!-- 02 -->
   <section class="section" id="full-ko">
+    <div class="sec-head">
     <h2 class="section__title"><span class="no">02</span><span class="en">Full Version: if Korean is necessary</span></h2>
     <div class="badge"><span class="en">Not recommended for general use. The English logo is preferred.</span></div>
     <div class="lede">
       <p class="en">Use this version only when Korean-language identification is essential. It must always appear with the UNIST logo, in UNIST Indigo only. Do not use it as a standalone mark, short version, or auxiliary-color version.</p>
     </div>
+    </div>
+    <div class="sec-body">
     <div class="pair-grid" style="margin-top:2rem">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-ko-navy.svg" alt="Korean Full Version on white"></figure><div class="dl" data-dl="full-ko-navy"></div></div>
       <div class="logo-item"><figure class="slot slot--navy"><img data-file="full-ko-white.svg" alt="Korean Full Version on UNIST Navy"></figure><div class="dl" data-dl="full-ko-white"></div></div>
+    </div>
     </div>
   </section>
 
   <!-- 03 -->
   <section class="section" id="other">
+    <div class="sec-head">
     <h2 class="section__title"><span class="no">03</span><span class="en">Other Use Cases</span></h2>
     <div class="lede">
       <p class="en">These are approved color-pair versions for general departmental communication. Use one auxiliary color per logo application. Do not combine multiple auxiliary colors within one logo.</p>
     </div>
+    </div>
+    <div class="sec-body">
 
     <!-- Verdigris -->
     <article class="pair" style="--aux:var(--verdigris)">
@@ -409,14 +438,18 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
         </div>
       </div>
     </article>
+    </div>
   </section>
 
   <!-- 04 -->
   <section class="section" id="colors">
+    <div class="sec-head">
     <h2 class="section__title"><span class="no">04</span><span class="en">Colors</span></h2>
     <div class="lede">
       <p class="en">The color system consists of one fixed main color and four auxiliary colors. HCDT Purple is always present. Select one auxiliary color according to the application; do not create a five-color logo.</p>
     </div>
+    </div>
+    <div class="sec-body">
 
     <h3 class="sub">HCDT Colors</h3>
     <div class="cgrid">
@@ -445,14 +478,18 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
         <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colors. Please check and use the specified values for each to avoid confusion.</p>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- 05 -->
   <section class="section" id="typography">
+    <div class="sec-head">
     <h2 class="section__title"><span class="no">05</span><span class="en">Typography</span></h2>
     <div class="lede">
       <p class="en">Helvetica Neue is the primary typeface for English, and Spoqa Han Sans is the primary typeface for Korean. Use Regular for body text, Bold for headings and emphasis, and Light only for supporting information.</p>
     </div>
+    </div>
+    <div class="sec-body">
     <div class="type" style="margin-top:3rem">
       <div>
         <div class="type__h">Helvetica Neue (14 Styles)</div>
@@ -468,6 +505,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
         <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Bold</b></div><p class="spec__body ko-spec w-bold">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
         <div class="spec"><div class="spec__label">Spoqa Han Sans <b>Light</b></div><p class="spec__body ko-spec w-light">유니스트 인간중심디자인공학과<br>가나다라마바사아자차카타파하<br>1234567890</p></div>
       </div>
+    </div>
     </div>
   </section>
 
