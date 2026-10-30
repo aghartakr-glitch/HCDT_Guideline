@@ -726,7 +726,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261029i'; }
+    if(f.getAttribute('data-src')!==a.href){ f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261030a'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
