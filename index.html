@@ -325,7 +325,14 @@ html.embed main{padding-top:0!important}
 html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!important}
 </style>
 <script>
-(function(){ var m=/[?&]embed=(logo|tools|1)\b/.exec(location.search); if(m){ document.documentElement.classList.add('embed','embed-'+m[1]); } })();
+(function(){
+  var m=/[?&]embed=(logo|tools|1)\b/.exec(location.search); if(!m) return;
+  document.documentElement.classList.add('embed','embed-'+m[1]);
+  /* tell the WordPress page how tall this content is, so its iframe can fit it (see the iframe snippet) */
+  var last=0;
+  function send(){ var h=Math.ceil(document.documentElement.scrollHeight); if(h!==last){ last=h; parent.postMessage({hcdtHeight:h},'*'); } }
+  window.addEventListener('load',send); window.addEventListener('resize',send); setInterval(send,1000);
+})();
 </script>
 </head>
 <body>
