@@ -317,7 +317,15 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 }
 @media(max-width:999px){#tool-view .tv-wide{display:none}}
 #tool-view .tv-frame{display:block;width:100%;height:max(700px,calc(100vh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden}
+
+/* embed mode (?embed=1 | logo | tools): used inside a WordPress page, which supplies its own header and title */
+html.embed .header,html.embed .footer,html.embed .page__title{display:none!important}
+html.embed main{padding-top:0!important}
+html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!important}
 </style>
+<script>
+(function(){ var m=/[?&]embed=(logo|tools|1)\b/.exec(location.search); if(m){ document.documentElement.classList.add('embed','embed-'+m[1]); } })();
+</script>
 </head>
 <body>
 
@@ -747,7 +755,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
     [].slice.call(root.querySelectorAll('.tabpanel')).forEach(function(p){ p.hidden = (p.id !== id); });
   }
   tabBtns.forEach(function(b){ b.addEventListener('click', function(){ var id=b.getAttribute('data-tab'); showTab(id); if(id==='tab-tools'&&window.hcdtToolsHome) window.hcdtToolsHome(); }); });
-  if(/useful-template/.test(location.hash)){ showTab('tab-tools'); }
+  if(/useful-template/.test(location.hash) || /[?&]embed=tools\b/.test(location.search)){ showTab('tab-tools'); }
 
   /* 도구 미리보기 모션 (마우스를 올리면 재생) */
   var AUX=[['#64D8D8','Verdigris'],['#E8B9AA','Terracotta'],['#73D888','Fluoxetine'],['#E8E041','Asparagus Soup']];
