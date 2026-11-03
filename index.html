@@ -203,8 +203,9 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 .role i{width:1.5rem;height:1.5rem;display:block}
 
 /* ===== Color table (08) ===== */
-.cgrid{display:grid;gap:1.5rem 1rem;grid-template-columns:repeat(2,1fr)}
-@media(min-width:783px){.cgrid{grid-template-columns:repeat(5,1fr)}.cgrid--unist{grid-template-columns:repeat(5,1fr)}}
+.cgrid{display:grid;gap:1.5rem 1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(min-width:783px){.cgrid{grid-template-columns:repeat(5,minmax(0,1fr))}.cgrid--unist{grid-template-columns:repeat(5,minmax(0,1fr))}}
+@media(max-width:782px){.cgrid dl.vals dd{white-space:normal;overflow-wrap:anywhere}}
 .cgrid .sw__chip{aspect-ratio:3/2}
 .note{display:flex;gap:1rem;align-items:flex-start;margin:2rem 0 0;padding:1rem 1.25rem;border-left:4px solid var(--ui);background:color-mix(in srgb,var(--ui) 30%,#fff);font-size:.9375rem;font-weight:500;max-width:760px}
 .note p{margin:0 0 .25rem}.note p:last-child{margin:0}
