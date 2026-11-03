@@ -318,6 +318,15 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 @media(max-width:999px){#tool-view .tv-wide{display:none}}
 #tool-view .tv-frame{display:block;width:100%;height:max(700px,calc(100vh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden}
 
+/* tints: each color at 100 / 45 / 15 % over white */
+.tint-note{margin:0 0 16px;color:rgba(0,0,0,.7)}
+.tint-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px 20px}
+.tint-set h4{margin:0 0 10px;font-size:.875rem;font-weight:600}
+.tint-steps{display:grid;gap:8px}
+.tint-step{margin:0}
+.tint-step span{display:flex;align-items:center;justify-content:center;height:56px;border-radius:6px;font-weight:600;font-size:.9375rem}
+.tint-step figcaption{margin-top:4px;font-size:.75rem;color:rgba(0,0,0,.7)}
+
 /* embed mode (?embed=1 | logo | tools): used inside a WordPress page, which supplies its own header and title */
 html.embed .header,html.embed .footer,html.embed .page__title{display:none!important}
 html.embed main{padding-top:0!important}
@@ -522,6 +531,46 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
       <div>
         <p class="en"><b>HCDT Verdigris</b> and <b>UNIST Emerald</b> are distinct colors. Please check and use the specified values for each to avoid confusion.</p>
       </div>
+    </div>
+
+    <h3 class="sub">Tints</h3>
+    <p class="tint-note en">Three steps of each color: Full (100%), Medium (45%) and Light (15%). Use them for gradients and tinted backgrounds.</p>
+    <div class="tint-grid">
+      <div class="tint-set"><h4>HCDT Purple</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#6b00ff 100%,#fff);color:#fff">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#6b00ff 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#6b00ff 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>HCDT Verdigris</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#64d8d8 100%,#fff);color:#000">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#64d8d8 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#64d8d8 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>HCDT Terracotta</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8b9aa 100%,#fff);color:#000">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8b9aa 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8b9aa 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>HCDT Fluoxetine</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#73d888 100%,#fff);color:#000">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#73d888 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#73d888 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>HCDT Asparagus Soup</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8e041 100%,#fff);color:#000">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8e041 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#e8e041 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>UNIST Navy</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#001b54 100%,#fff);color:#fff">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#001b54 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#001b54 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
+      <div class="tint-set"><h4>UNIST Emerald</h4><div class="tint-steps">
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#44c1c4 100%,#fff);color:#000">Sample Text</span><figcaption>Full 100%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#44c1c4 45%,#fff);color:#000">Sample Text</span><figcaption>Medium 45%</figcaption></figure>
+        <figure class="tint-step"><span style="background:color-mix(in srgb,#44c1c4 15%,#fff);color:#000">Sample Text</span><figcaption>Light 15%</figcaption></figure>
+      </div></div>
     </div>
     </div>
   </section>
