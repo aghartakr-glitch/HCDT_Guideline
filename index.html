@@ -685,14 +685,24 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
     });
   })();
 
-  /* 새로고침할 때마다 보조색 4색 중 하나로 (UI와 메인 로고) */
+  /* 보조색은 페이지 전체에서 하나만 사용한다. iframe이면 WordPress 부모가 정한 색을 받는다. */
   var AUXES=[['verdigris','#64d8d8'],['terracotta','#e8b9aa'],['fluoxetine','#73d888'],['asparagus','#e8e041']];
-  var pick=AUXES[Math.floor(Math.random()*AUXES.length)];
-  (root===document?document.documentElement:root).style.setProperty('--ui',pick[1]);
-  [].slice.call(root.querySelectorAll('img[data-hero]')).forEach(function(h){
-    h.addEventListener('error',function(){ h.parentNode&&h.parentNode.removeChild(h); });
-    h.src=LOGO_BASE+'general-'+pick[0]+'.svg';
-  });
+  function auxPick(hex){ hex=String(hex||'').toLowerCase(); return AUXES.filter(function(x){return x[1]===hex})[0]||null; }
+  function applyAux(hex){
+    var next=auxPick(hex); if(!next)return false; pick=next;
+    (root===document?document.documentElement:root).style.setProperty('--ui',pick[1]);
+    [].slice.call(root.querySelectorAll('img[data-hero]')).forEach(function(h){
+      if(!h.dataset.auxError){h.dataset.auxError='1';h.addEventListener('error',function(){ h.parentNode&&h.parentNode.removeChild(h); });}
+      h.src=LOGO_BASE+'general-'+pick[0]+'.svg';
+    });
+    try{if(typeof sendAux==='function')sendAux();}catch(e){}
+    return true;
+  }
+  var inherited=window.unistdesignSub&&window.unistdesignSub.hex;
+  var pick=auxPick(inherited)||AUXES[Math.floor(Math.random()*AUXES.length)];
+  applyAux(pick[1]);
+  window.addEventListener('message',function(e){var d=e.data;if(e.source===parent&&d&&d.hcdtAux)applyAux(d.hcdtAux);});
+  if(window.parent!==window)try{parent.postMessage({hcdtRequestAux:1},'*');}catch(e){}
 
   var NAMES = {
     'full-navy':'HCDT_Full_EN_Navy','full-white':'HCDT_Full_EN_White',
