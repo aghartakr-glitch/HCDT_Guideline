@@ -135,19 +135,20 @@
   .hcdt-vig .seg button{min-height:2.75rem}
 }
 
-/* 로고 쌍이 좁은 칸(3단 그리드의 1단 등)에 들어가면 세로로 쌓고, 버튼은 3열로 */
+/* 로고 쌍이 좁은 칸에 들어가면 세로로 쌓고, 버튼은 3열로 */
 @container pair (max-width:560px){
   .hcdt-vig .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
   .hcdt-vig .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
   .hcdt-vig .pair__logos .logo-item{width:100%}
   }
-/* 3단 그리드 (툴킷과 동일): 왼쪽 1단 = 제목·설명, 오른쪽 2단 폭 = 콘텐츠. 1단 → 2~3단 span 으로 쓰는 구조 */
+/* 공유 12단 그리드: 제목·설명 4단, 콘텐츠 8단 */
 @media(min-width:1024px){
-  .hcdt-vig .section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start}
+  .hcdt-vig .section{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start}
   .hcdt-vig .sec-head{position:sticky;top:1.5rem;min-width:0}
   .hcdt-vig .sec-head .section__title{font-size:1.75rem;margin-bottom:1rem}
   .hcdt-vig .sec-head .lede{font-size:1.125rem}
-  .hcdt-vig .sec-body{grid-column:2/4;min-width:0}
+  .hcdt-vig .sec-head{grid-column:1/span 4}
+  .hcdt-vig .sec-body{grid-column:5/-1;min-width:0}
   .hcdt-vig .sec-body .pair-grid{margin-top:0!important}
   .hcdt-vig .sec-body>.sub:first-child{margin-top:0}
   .hcdt-vig #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
@@ -156,9 +157,10 @@
   .hcdt-vig .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
   .hcdt-vig .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
   .hcdt-vig .sec-body .cgrid .sw__chip{aspect-ratio:auto;height:9rem}
-  .hcdt-vig .intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start;margin-top:3rem}
+  .hcdt-vig .intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start;margin-top:3rem}
   .hcdt-vig .intro .callout{margin:0!important;font-size:1rem;padding:1rem 1.25rem}
-  .hcdt-vig .intro .dlall{grid-column:2/4;margin:0;padding:0;border-top:0}
+  .hcdt-vig .intro .callout{grid-column:1/span 4}
+  .hcdt-vig .intro .dlall{grid-column:5/-1;margin:0;padding:0;border-top:0}
   }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
@@ -541,7 +543,7 @@
           <div class="tchips"><span>16:9</span><span>PPTX</span><span>PDF</span><span>PNG</span><span>JSON</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
-    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=11af7f7" data-anim="poster" data-name="Poster">
+    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261109q" data-anim="poster" data-name="Poster">
         <div class="tpic p-poster">
           <img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster1.webp?v=6" alt="" class="on"><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster3.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster4.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster5.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster6.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc0.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc1.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc3.webp?v=6" alt="">
           <span class="pcap"></span>
@@ -761,7 +763,7 @@
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261109k'; }
+    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261109q'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
