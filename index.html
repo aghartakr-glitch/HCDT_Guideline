@@ -176,11 +176,12 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   }
 /* 3단 그리드 (툴킷과 동일): 왼쪽 1단 = 제목·설명, 오른쪽 2단 폭 = 콘텐츠. 1단 → 2~3단 span 으로 쓰는 구조 */
 @media(min-width:1024px){
-  .section{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start}
+  .section{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start}
   .sec-head{position:sticky;top:1.5rem;min-width:0}
   .sec-head .section__title{font-size:1.75rem;margin-bottom:1rem}
   .sec-head .lede{font-size:1.125rem}
-  .sec-body{grid-column:2/4;min-width:0}
+  .sec-head{grid-column:1/span 4}
+  .sec-body{grid-column:5/-1;min-width:0}
   .sec-body .pair-grid{margin-top:0!important}
   .sec-body>.sub:first-child{margin-top:0}
   #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
@@ -189,9 +190,10 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
   .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
   .sec-body .cgrid .sw__chip{aspect-ratio:auto;height:9rem}
-  .intro{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 2rem;align-items:start;margin-top:3rem}
+  .intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start;margin-top:3rem}
   .intro .callout{margin:0!important;font-size:1rem;padding:1rem 1.25rem}
-  .intro .dlall{grid-column:2/4;margin:0;padding:0;border-top:0}
+  .intro .callout{grid-column:1/span 4}
+  .intro .dlall{grid-column:5/-1;margin:0;padding:0;border-top:0}
   }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
@@ -337,6 +339,9 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 /* embed mode (?embed=1 | logo | tools): used inside a WordPress page, which supplies its own header and title */
 html.embed .header,html.embed .footer,html.embed .page__title{display:none!important}
 html.embed main{padding-top:0!important}
+/* WordPress owns the global 12-column page margin. Embedded content starts at
+   the iframe edge so its columns align with the parent's overlay. */
+html.embed .wrap{max-width:none!important;padding-inline:0!important}
 html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!important}
 </style>
 <script>
@@ -629,7 +634,7 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
           <div class="tchips"><span>16:9</span><span>PPTX</span><span>PDF</span><span>PNG</span><span>JSON</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
-    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=11af7f7" data-anim="poster" data-name="Poster">
+    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261109p" data-anim="poster" data-name="Poster">
         <div class="tpic p-poster">
           <img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster1.webp?v=6" alt="" class="on"><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster3.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster4.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster5.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster6.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc0.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc1.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc3.webp?v=6" alt="">
           <span class="pcap"></span>
