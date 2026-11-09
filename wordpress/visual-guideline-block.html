@@ -9,9 +9,16 @@
   --font-en:neue-haas-unica,"Helvetica Neue",Helvetica,Arial,sans-serif;
   --font-ko:"Spoqa Han Sans Neo","Spoqa Han Sans",sans-serif;
   --mono:ibm-plex-mono,SFMono-Regular,Menlo,Consolas,monospace;
-  --wrap:1280px;
+  --grid-cols:4;
+  --grid-gap:1rem;
+  --grid-margin:1rem;
+  --grid-max:1280px;
+  --wrap:calc(var(--grid-max) + (var(--grid-margin) * 2));
   --ui:#64d8d8;
+  width:100%;max-width:var(--wrap);margin-inline:auto;padding-inline:var(--grid-margin);
 }
+@media(min-width:783px){.hcdt-vig{--grid-cols:12;--grid-margin:4rem}}
+@media(min-width:1024px){.hcdt-vig{--grid-gap:1.5rem}}
 .hcdt-vig *,.hcdt-vig *::before,.hcdt-vig *::after{box-sizing:border-box}
 .hcdt-vig{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
 .hcdt-vig h1,.hcdt-vig h2,.hcdt-vig h3,.hcdt-vig h4,.hcdt-vig h5,.hcdt-vig h6{margin:0 0 1rem;line-height:1.2;font-weight:500}
@@ -116,7 +123,15 @@
 
 /* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
 @media(max-width:782px){
+  .hcdt-vig{max-width:100%;overflow-x:hidden}
+  .hcdt-vig .intro,.hcdt-vig .callout,.hcdt-vig .dlall,.hcdt-vig .section,.hcdt-vig .sec-head,.hcdt-vig .sec-body{min-width:0;max-width:100%}
+  .hcdt-vig .callout,.hcdt-vig .cap,.hcdt-vig .lede p{overflow-wrap:anywhere}
+  .hcdt-vig .bgsel{display:grid;grid-template-columns:1fr;align-items:start;gap:.5rem}
+  .hcdt-vig .bgsel .seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0}
+  .hcdt-vig .bgsel .seg button{min-width:0;padding-inline:.5rem}
+  .hcdt-vig .dlall .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;width:100%}
   .hcdt-vig .dl a,.hcdt-vig .dlall .dl a,.hcdt-vig .pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
+  .hcdt-vig .dlall .dl a{min-width:0;width:100%;padding-inline:.25rem}
   .hcdt-vig .seg button{min-height:2.75rem}
 }
 
@@ -584,7 +599,10 @@
   function auxPick(hex){ hex=String(hex||'').toLowerCase(); return AUXES.filter(function(x){return x[1]===hex})[0]||null; }
   function applyAux(hex){
     var next=auxPick(hex); if(!next)return false; pick=next;
-    (root===document?document.documentElement:root).style.setProperty('--ui',pick[1]);
+    root.style.setProperty('--ui',pick[1]);
+    document.documentElement.style.setProperty('--sub',pick[1]);
+    document.documentElement.style.setProperty('--ui',pick[1]);
+    window.unistdesignSub=Object.assign({},window.unistdesignSub||{},{hex:pick[1]});
     [].slice.call(root.querySelectorAll('img[data-hero]')).forEach(function(h){
       if(!h.dataset.auxError){h.dataset.auxError='1';h.addEventListener('error',function(){ h.parentNode&&h.parentNode.removeChild(h); });}
       h.src=LOGO_BASE+'general-'+pick[0]+'.svg';
@@ -592,7 +610,7 @@
     try{if(typeof sendAux==='function')sendAux();}catch(e){}
     return true;
   }
-  var inherited=window.unistdesignSub&&window.unistdesignSub.hex;
+  var inherited=(window.unistdesignSub&&window.unistdesignSub.hex)||getComputedStyle(document.documentElement).getPropertyValue('--sub').trim();
   var pick=auxPick(inherited)||AUXES[Math.floor(Math.random()*AUXES.length)];
   applyAux(pick[1]);
 
