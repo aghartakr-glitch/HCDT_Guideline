@@ -28,9 +28,19 @@
     window.unistdesignSub = Object.assign({}, window.unistdesignSub || {}, { hex: hex });
     frames().forEach(send);
   }
+  function fit(source, value) {
+    var height = Math.ceil(Number(value));
+    if (!Number.isFinite(height) || height < 200 || height > 20000) return;
+    frames().forEach(function (frame) {
+      if (frame.contentWindow !== source) return;
+      frame.style.height = height + 'px';
+      frame.setAttribute('height', String(height));
+    });
+  }
   function bind() { frames().forEach(function (f) { f.addEventListener('load', function () { send(f); }); send(f); }); }
   window.addEventListener('message', function (event) {
     var d = event.data || {};
+    if (d.hcdtHeight) { fit(event.source, d.hcdtHeight); return; }
     if (d.hcdtRequestAux) { frames().forEach(send); return; }
     if (d.hcdtAuxChange) apply(d.hcdtAuxChange);
   });
