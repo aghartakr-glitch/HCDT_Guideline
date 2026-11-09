@@ -204,13 +204,18 @@
 .hcdt-vig .vtabs{display:flex;gap:2rem;border-bottom:1px solid rgba(0,0,0,.15);margin:2rem 0 0}
 /* ===== Toggle buttons = Component Library content tabs (.unist-tabs__tab) ===== */
 .hcdt-vig .vtabs,.hcdt-vig #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:.625rem;border:0;padding:4px 8px 8px 4px}
-.hcdt-vig .seg{display:inline-flex;gap:.625rem;padding:4px 8px 8px 4px;border:0;border-radius:0;background:none}
-.hcdt-vig .vtabs button,.hcdt-vig .seg button,.hcdt-vig #tab-tools .subtabs button{appearance:none;display:inline-flex;align-items:center;gap:.5rem;box-sizing:border-box;margin:0;padding:.45rem .9rem;border:1.5px solid #6b00ff;border-radius:.5rem;background:#fff;color:#000;font:inherit;font-size:1rem;font-weight:600;line-height:1.25;white-space:nowrap;cursor:pointer;transition:background-color 150ms,box-shadow 150ms,transform 150ms}
-.hcdt-vig .vtabs button:hover,.hcdt-vig .seg button:hover,.hcdt-vig #tab-tools .subtabs button:hover{background:color-mix(in srgb,var(--ui) 20%,#fff);box-shadow:5px 5px 0 var(--ui);transform:translate(-2px,-2px)}
-.hcdt-vig .vtabs button:active,.hcdt-vig .seg button:active,.hcdt-vig #tab-tools .subtabs button:active{box-shadow:none;transform:none}
-.hcdt-vig .vtabs button[aria-selected=true],.hcdt-vig #tab-tools .subtabs button[aria-selected=true],.hcdt-vig .seg button[aria-pressed=true]{background:color-mix(in srgb,var(--ui) 45%,transparent)}
-.hcdt-vig .vtabs button:focus-visible,.hcdt-vig .seg button:focus-visible,.hcdt-vig #tab-tools .subtabs button:focus-visible{outline:2px solid #000;outline-offset:2px}
+.hcdt-vig .vtabs button,.hcdt-vig #tab-tools .subtabs button{appearance:none;display:inline-flex;align-items:center;gap:.5rem;box-sizing:border-box;margin:0;padding:.45rem .9rem;border:1.5px solid #6b00ff;border-radius:.5rem;background:#fff;color:#000;font:inherit;font-size:1rem;font-weight:600;line-height:1.25;white-space:nowrap;cursor:pointer;transition:background-color 150ms,box-shadow 150ms,transform 150ms}
+.hcdt-vig .vtabs button:hover:hover,.hcdt-vig #tab-tools .subtabs button:hover{background:color-mix(in srgb,var(--ui) 20%,#fff);box-shadow:5px 5px 0 var(--ui);transform:translate(-2px,-2px)}
+.hcdt-vig .vtabs button:active:active,.hcdt-vig #tab-tools .subtabs button:active{box-shadow:none;transform:none}
+.hcdt-vig .vtabs button[aria-selected=true],.hcdt-vig #tab-tools .subtabs button[aria-selected=true]{background:color-mix(in srgb,var(--ui) 45%,transparent)}
+.hcdt-vig .vtabs button:focus-visible:focus-visible,.hcdt-vig #tab-tools .subtabs button:focus-visible{outline:2px solid #000;outline-offset:2px}
 .hcdt-vig .vtabs button .n{color:inherit;font-weight:600}
+/* Two-way choice = Component Library .unist-segmented (pill radio group) */
+.hcdt-vig .seg{display:inline-flex;box-sizing:border-box;flex-wrap:nowrap;max-width:100%;padding:3px;margin:0;border:1.5px solid #6b00ff;border-radius:9999em;gap:0;background:#fff}
+.hcdt-vig .seg button{appearance:none;display:flex;align-items:center;justify-content:center;gap:.5rem;margin:0;padding:.5rem 1.25rem;border:0;border-radius:9999em;background:transparent;color:#000;font:inherit;font-size:1rem;font-weight:600;line-height:1.2;cursor:pointer;transition:background-color 150ms}
+.hcdt-vig .seg button:hover:not([aria-pressed=true]){background:color-mix(in srgb,var(--ui) 20%,#fff);box-shadow:none;transform:none}
+.hcdt-vig .seg button[aria-pressed=true]{background:color-mix(in srgb,var(--ui) 45%,transparent);box-shadow:inset 0 0 0 1.5px #6b00ff;color:#6b00ff}
+.hcdt-vig .seg button:focus-visible{outline:2px solid #000;outline-offset:2px}
 .hcdt-vig .tabpanel[hidden]{display:none}
 /* 모바일에서만 보이는 안내: 툴킷은 데스크탑 환경에서 이용 */
 .hcdt-vig .desktop-notice{display:none;margin:2rem 0 0}
