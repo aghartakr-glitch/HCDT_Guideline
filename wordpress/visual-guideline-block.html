@@ -94,10 +94,6 @@
 .hcdt-vig .bgsel{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem;margin:0 0 1rem;font-size:.75rem}
 .hcdt-vig .bgsel>span{font-weight:600;opacity:.7}
 .hcdt-vig .seg{display:inline-flex;gap:2px;padding:.25rem;border:1px solid rgba(0,0,0,.2);border-radius:9999em;background:#fff}
-.hcdt-vig .seg button{appearance:none;display:inline-flex;align-items:center;gap:.5rem;font:inherit;font-size:.875rem;font-weight:600;line-height:1.2;color:#000;background:transparent;border:0;border-radius:9999em;padding:.375rem 1rem .375rem .75rem;cursor:pointer;transition:background-color 150ms,color 150ms}
-.hcdt-vig .seg button:hover{background:color-mix(in srgb,var(--ui) 30%,#fff)}
-.hcdt-vig .seg button[aria-pressed=true]{background:var(--purple);color:#fff}
-.hcdt-vig .seg button:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 .hcdt-vig .seg i{width:1rem;height:1rem;border-radius:50%;border:1px solid rgba(0,0,0,.35);background:#fff}
 .hcdt-vig .seg i.chk{background:conic-gradient(#bbb 25%,#fff 0 50%,#bbb 0 75%,#fff 0) 0 0/.5rem .5rem}
 .hcdt-vig .dlall .dl a{background:var(--purple);color:#fff;border:1px solid var(--purple)}
@@ -132,7 +128,6 @@
   .hcdt-vig .dlall .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;width:100%}
   .hcdt-vig .dl a,.hcdt-vig .dlall .dl a,.hcdt-vig .pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
   .hcdt-vig .dlall .dl a{min-width:0;width:100%;padding-inline:.25rem}
-  .hcdt-vig .seg button{min-height:2.75rem}
 }
 
 /* 로고 쌍이 좁은 칸에 들어가면 세로로 쌓고, 버튼은 3열로 */
@@ -207,12 +202,15 @@
 .hcdt-vig ::selection{background:var(--ui);color:#000}
 .hcdt-vig .vtabs{margin-top:1.5rem}
 .hcdt-vig .vtabs{display:flex;gap:2rem;border-bottom:1px solid rgba(0,0,0,.15);margin:2rem 0 0}
-.hcdt-vig .vtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.75rem 0;font:inherit;font-size:1.125rem;font-weight:600;color:rgba(0,0,0,.45);cursor:pointer;display:flex;gap:.625rem;align-items:baseline}
+/* ===== Toggle buttons = Component Library content tabs (.unist-tabs__tab) ===== */
+.hcdt-vig .vtabs,.hcdt-vig #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:.625rem;border:0;padding:4px 8px 8px 4px}
+.hcdt-vig .seg{display:inline-flex;gap:.625rem;padding:4px 8px 8px 4px;border:0;border-radius:0;background:none}
+.hcdt-vig .vtabs button,.hcdt-vig .seg button,.hcdt-vig #tab-tools .subtabs button{appearance:none;display:inline-flex;align-items:center;gap:.5rem;box-sizing:border-box;margin:0;padding:.45rem .9rem;border:1.5px solid #6b00ff;border-radius:.5rem;background:#fff;color:#000;font:inherit;font-size:1rem;font-weight:600;line-height:1.25;white-space:nowrap;cursor:pointer;transition:background-color 150ms,box-shadow 150ms,transform 150ms}
+.hcdt-vig .vtabs button:hover,.hcdt-vig .seg button:hover,.hcdt-vig #tab-tools .subtabs button:hover{background:color-mix(in srgb,var(--ui) 20%,#fff);box-shadow:5px 5px 0 var(--ui);transform:translate(-2px,-2px)}
+.hcdt-vig .vtabs button:active,.hcdt-vig .seg button:active,.hcdt-vig #tab-tools .subtabs button:active{box-shadow:none;transform:none}
+.hcdt-vig .vtabs button[aria-selected=true],.hcdt-vig #tab-tools .subtabs button[aria-selected=true],.hcdt-vig .seg button[aria-pressed=true]{background:color-mix(in srgb,var(--ui) 45%,transparent)}
+.hcdt-vig .vtabs button:focus-visible,.hcdt-vig .seg button:focus-visible,.hcdt-vig #tab-tools .subtabs button:focus-visible{outline:2px solid #000;outline-offset:2px}
 .hcdt-vig .vtabs button .n{color:inherit;font-weight:600}
-.hcdt-vig .vtabs button:hover{color:#000;border-bottom-color:var(--ui)}
-.hcdt-vig .vtabs button[aria-selected=true]{color:#000;border-bottom-color:var(--purple)}
-.hcdt-vig .vtabs button[aria-selected=true] .n{color:var(--purple)}
-@media(min-width:783px){.hcdt-vig .vtabs button{font-size:1.5rem}}
 .hcdt-vig .tabpanel[hidden]{display:none}
 /* 모바일에서만 보이는 안내: 툴킷은 데스크탑 환경에서 이용 */
 .hcdt-vig .desktop-notice{display:none;margin:2rem 0 0}
@@ -260,10 +258,6 @@
 .hcdt-vig #tab-tools .p-letter img{transform:translateX(-50%);opacity:0}
 .hcdt-vig #tab-tools .p-letter img.on{opacity:1}
 .hcdt-vig #tab-tools .subtabs{display:flex;flex-wrap:wrap;gap:0 1.75rem;margin:1.5rem 0 0;border-bottom:1px solid rgba(0,0,0,.15)}
-.hcdt-vig #tab-tools .subtabs button{appearance:none;background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-1px;padding:.625rem 0;font:inherit;font-size:1rem;font-weight:500;color:rgba(0,0,0,.45);cursor:pointer}
-.hcdt-vig #tab-tools .subtabs button:hover{color:#000;border-bottom-color:var(--ui)}
-.hcdt-vig #tab-tools .subtabs button[aria-selected=true]{color:#000;border-bottom-color:var(--ui)}
-.hcdt-vig #tab-tools .subtabs button:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 .hcdt-vig #tab-tools .subtabs[hidden]{display:none}
 .hcdt-vig :is(a,button,[role=button],summary):focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 .hcdt-vig #tool-view .tv-bar{display:none}
