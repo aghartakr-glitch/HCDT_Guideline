@@ -1,6 +1,6 @@
 <!-- HCDT Visual Identity Guideline · Visual Guideline (WordPress Custom HTML block) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
-<link rel="stylesheet" href="https://aghartakr-glitch.github.io/HCDT_Guideline/shared/hcdt-embed.css?v=20261111a">
+<link rel="stylesheet" href="https://aghartakr-glitch.github.io/HCDT_Guideline/shared/hcdt-embed.css?v=20261111b">
 <style>
 .hcdt-vig{
   --purple:#6b00ff; --purple-hover:#5600cc; --purple-soft:#974cff; --purple-pale:#d2b2ff;
@@ -70,6 +70,17 @@
 .hcdt-vig .pair-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
 @media(min-width:783px){.hcdt-vig .pair-grid{grid-template-columns:1fr 1fr}}
 .hcdt-vig .cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
+/* ===== Logo card: ONE component for General Use and Limited Space =====
+   title (fixed row) / usage label (fixed row) / preview frame (one aspect ratio) / download actions. No fixed widths, no flex:none. */
+.hcdt-vig .pair,.hcdt-vig .ltd{--card-title-h:2.5rem;--card-label-h:1.5rem;min-width:0;margin:0;display:grid;grid-template-rows:var(--card-title-h) var(--card-label-h) auto;row-gap:.75rem;align-content:start;border-top:3px solid var(--aux);padding-top:var(--space-3,1rem)}
+.hcdt-vig .pair__body,.hcdt-vig .pair__body>div,.hcdt-vig .pair__logos{display:contents}
+.hcdt-vig .pair>h3,.hcdt-vig .ltd>.ltd-n{display:flex;align-items:center;gap:.75rem;margin:0;font-size:1.25rem;font-weight:600;line-height:1.2}
+.hcdt-vig .pair>h3 i,.hcdt-vig .ltd>.ltd-n i{flex:none;width:1.25rem;height:1.25rem;background:var(--aux)}
+.hcdt-vig .pair .eyebrow,.hcdt-vig .ltd .eyebrow{margin:0;align-self:center;line-height:1.2}
+.hcdt-vig .pair .logo-item,.hcdt-vig .ltd .logo-item{display:grid;grid-template-rows:auto auto;row-gap:.625rem;min-width:0}
+.hcdt-vig .pair .slot,.hcdt-vig .ltd .slot{width:100%;min-height:0;height:auto;aspect-ratio:16/5;padding:1.25rem;display:grid;place-items:center}
+.hcdt-vig .pair .slot img,.hcdt-vig .ltd .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
+.hcdt-vig .pair .dl,.hcdt-vig .ltd .dl{margin:0;min-height:2rem}
 @media(min-width:1024px){
   .hcdt-vig .section:has(>.sec-body>.pair-grid){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap,1.5rem);align-items:start}
   .hcdt-vig .section:has(>.sec-body>.pair-grid)>.sec-head{grid-column:1/span 4}
@@ -80,24 +91,24 @@
   .hcdt-vig .section:has(>.sec-body>.pair-grid) .pair-grid>.logo-item{display:grid;grid-template-rows:12rem auto;align-content:start}
   .hcdt-vig .section:has(>.sec-body>.pair-grid) .pair-grid .slot{height:12rem;min-height:0}
 }
-.hcdt-vig .pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
-.hcdt-vig .pair h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
-.hcdt-vig .pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
-.hcdt-vig .pair{container:pair/inline-size}
-.hcdt-vig .pair__body{display:grid;gap:2rem;grid-template-columns:minmax(0,1fr)}
-.hcdt-vig .pair__logos{display:flex;gap:1rem;align-items:flex-start}
+
+
+
+
+
+
 .hcdt-vig .swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;align-content:start;max-width:300px}
 .hcdt-vig .swatches .sw__chip{aspect-ratio:16/9}
 .hcdt-vig .swatches .sw__name{font-size:.875rem}
 .hcdt-vig .swatches dl.vals{font-size:.75rem;gap:.0625rem .5rem}
-.hcdt-vig .pair__body{--ih:clamp(2.5rem,calc((100cqi - 6rem) / 5.0044),8rem)}
-.hcdt-vig .pair__logos .slot{min-height:0;padding:1.25rem;height:calc(var(--ih) + 2.5rem);flex:none;width:auto}
-.hcdt-vig .pair__logos .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
-.hcdt-vig .pair__logos .logo-item:nth-child(1) .slot{width:calc(var(--ih) * 4.443 + 2.5rem)}
-.hcdt-vig .pair__logos .logo-item:nth-child(2) .slot{width:calc(var(--ih) * 0.5614 + 2.5rem)}
-.hcdt-vig .pair__logos .logo-item{flex:none;min-width:0}
-.hcdt-vig .pair__logos .dl{gap:.25rem}
-.hcdt-vig .pair__logos .dl{max-width:100%}
+
+
+
+
+
+
+
+
 .hcdt-vig .logo-item{min-width:0}
 .hcdt-vig .dl{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem}
 .hcdt-vig .dl a{display:inline-flex;align-items:center;justify-content:center;gap:.25rem;height:2rem;min-width:3.75rem;box-sizing:border-box;padding:0 .75rem;white-space:nowrap;border:1px solid var(--purple);border-radius:9999em;color:var(--purple);font-size:.875rem;font-weight:600;line-height:1;background:transparent;transition:background-color 150ms,color 150ms}
@@ -116,9 +127,9 @@
 .hcdt-vig .sw{margin:0}
 .hcdt-vig .sw__chip{aspect-ratio:4/3;background:var(--c)}
 .hcdt-vig .sw__name{font-size:.875rem;font-weight:600;margin:.5rem 0 .25rem}
-.hcdt-vig dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
+.hcdt-vig dl.vals{display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:.125rem .75rem;margin:0;font-size:.75rem}
 .hcdt-vig dl.vals dt{font-weight:500;opacity:.7}
-.hcdt-vig dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
+.hcdt-vig dl.vals dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}
 .hcdt-vig .cp{position:relative;justify-self:start;cursor:pointer;border-radius:3px;padding:0 .25rem;margin-left:-.25rem;transition:background-color 150ms}
 .hcdt-vig .cp:hover,.hcdt-vig .cp:focus-visible{background:linear-gradient(transparent 22%,var(--c,var(--ui)) 22%,var(--c,var(--ui)) 92%,transparent 92%);outline:0}
 .hcdt-vig .cp.cp--dark:hover,.hcdt-vig .cp.cp--dark:focus-visible{color:#fff}
@@ -130,23 +141,19 @@
 
 /* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
 @media(max-width:782px){
-  .hcdt-vig{max-width:100%;overflow-x:hidden}
+  .hcdt-vig{max-width:100%}
   .hcdt-vig .intro,.hcdt-vig .callout,.hcdt-vig .dlall,.hcdt-vig .section,.hcdt-vig .sec-head,.hcdt-vig .sec-body{min-width:0;max-width:100%}
   .hcdt-vig .callout,.hcdt-vig .cap,.hcdt-vig .lede p{overflow-wrap:anywhere}
   .hcdt-vig .bgsel{display:grid;grid-template-columns:1fr;align-items:start;gap:.5rem}
   .hcdt-vig .bgsel .seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0}
   .hcdt-vig .bgsel .seg button{min-width:0;padding-inline:.5rem}
   .hcdt-vig .dlall .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;width:100%}
-  .hcdt-vig .dl a,.hcdt-vig .dlall .dl a,.hcdt-vig .pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
+  .hcdt-vig .dl a,.hcdt-vig .dlall .dl a,.hcdt-vig .pair .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
   .hcdt-vig .dlall .dl a{min-width:0;width:100%;padding-inline:.25rem}
 }
 
 /* 로고 쌍이 좁은 칸에 들어가면 세로로 쌓고, 버튼은 3열로 */
-@container pair (max-width:560px){
-  .hcdt-vig .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
-  .hcdt-vig .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
-  .hcdt-vig .pair__logos .logo-item{width:100%}
-  }
+
 /* 공유 12단 그리드: 제목·설명 4단, 콘텐츠 8단 */
 @media(min-width:1024px){
   .hcdt-vig .section{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start}
@@ -157,8 +164,8 @@
   .hcdt-vig .sec-body{grid-column:5/-1;min-width:0}
   .hcdt-vig .sec-body .pair-grid{margin-top:0!important}
   .hcdt-vig .sec-body>.sub:first-child{margin-top:0}
-  .hcdt-vig #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
-  .hcdt-vig #other .pair{margin-top:0}
+  .hcdt-vig #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem var(--grid-gap,1.5rem)}
+  
   .hcdt-vig .type{gap:2rem}
   .hcdt-vig .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
   .hcdt-vig .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
@@ -170,15 +177,15 @@
   }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
-.hcdt-vig .limited{margin-top:3rem;border-top:3px solid var(--purple);padding-top:1.5rem}
+.hcdt-vig .limited{margin-top:3rem;border-top:1px solid var(--line-structural,rgba(0,0,0,.22));padding-top:1.5rem}
 .hcdt-vig .limited h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem}
-.hcdt-vig .ltd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1rem}
-.hcdt-vig .ltd{min-width:0}
-.hcdt-vig .ltd-n{display:flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;margin-bottom:.5rem}
-.hcdt-vig .ltd-n i{width:.875rem;height:.875rem;background:var(--aux)}
-.hcdt-vig .ltd .slot{min-height:9rem;padding:1rem}
-.hcdt-vig .ltd .slot img{height:6.5rem;width:100%;max-height:none;object-fit:contain}
-.hcdt-vig .ltd .dl{gap:.25rem}
+.hcdt-vig .ltd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem var(--grid-gap,1.5rem)}
+
+
+
+
+
+
 @media(min-width:1024px){
   .hcdt-vig .ltd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hcdt-vig #other .limited{grid-column:1/-1;margin-top:0}
@@ -188,14 +195,14 @@
 .hcdt-vig .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
 .hcdt-vig .role i{width:1.5rem;height:1.5rem;display:block}
 .hcdt-vig .cgrid{display:grid;gap:1.5rem 1rem;grid-template-columns:repeat(2,1fr)}
-@media(min-width:783px){.hcdt-vig .cgrid{grid-template-columns:repeat(5,1fr)}
-.hcdt-vig .cgrid--unist{grid-template-columns:repeat(5,1fr)}}
+.hcdt-vig .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
 .hcdt-vig .cgrid .sw__chip{aspect-ratio:3/2}
 .hcdt-vig .note{display:flex;gap:1rem;align-items:flex-start;margin:2rem 0 0;padding:1rem 1.25rem;border-left:4px solid var(--ui);background:color-mix(in srgb,var(--ui) 30%,#fff);font-size:.9375rem;font-weight:500;max-width:760px}
 .hcdt-vig .note p{margin:0 0 .25rem}
 .hcdt-vig .note p:last-child{margin:0}
 .hcdt-vig .type{display:grid;gap:3rem;grid-template-columns:minmax(0,1fr)}
-@media(min-width:783px){.hcdt-vig .type{grid-template-columns:1fr 1fr}}
+@media(min-width:783px){.hcdt-vig .type{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hcdt-vig .type>*{min-width:0}
 .hcdt-vig .type__h{font-size:.875rem;font-weight:600;margin-bottom:.125rem}
 .hcdt-vig .type__sub{font-size:.75rem;opacity:.7;margin-bottom:1.5rem}
 .hcdt-vig .spec{margin-bottom:1.75rem}
@@ -203,7 +210,7 @@
 .hcdt-vig .spec__label b{font-weight:700}
 .hcdt-vig .spec{container-type:inline-size}
 .hcdt-vig .spec__body{font-size:1.375rem;line-height:1.4;margin:0;overflow-wrap:anywhere}
-.hcdt-vig .spec__body.en-spec,.hcdt-vig .spec__body.ko-spec{font-size:clamp(.75rem,4.4cqi,1.375rem);overflow-wrap:normal;white-space:nowrap}
+.hcdt-vig .spec__body.en-spec,.hcdt-vig .spec__body.ko-spec{font-size:clamp(.875rem,4.4cqi,1.375rem);overflow-wrap:anywhere}
 .hcdt-vig .en-spec{font-family:"Helvetica Neue",neue-haas-unica,Helvetica,Arial,sans-serif}
 .hcdt-vig .ko-spec{font-family:var(--font-ko);word-break:keep-all}
 .hcdt-vig .w-regular{font-weight:400}
@@ -430,10 +437,10 @@
       <div class="limited">
         <h3>For Use in Limited Space</h3>
         <div class="ltd-grid">
-          <div class="ltd" style="--aux:var(--verdigris)"><div class="ltd-n"><i></i>Verdigris</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div></div>
-          <div class="ltd" style="--aux:var(--terracotta)"><div class="ltd-n"><i></i>Terracotta</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div></div>
-          <div class="ltd" style="--aux:var(--fluoxetine)"><div class="ltd-n"><i></i>Fluoxetine</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div></div>
-          <div class="ltd" style="--aux:var(--asparagus)"><div class="ltd-n"><i></i>Asparagus Soup</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div></div>
+          <div class="ltd" style="--aux:var(--verdigris)"><div class="ltd-n"><i></i>Verdigris</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div></div>
+          <div class="ltd" style="--aux:var(--terracotta)"><div class="ltd-n"><i></i>Terracotta</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div></div>
+          <div class="ltd" style="--aux:var(--fluoxetine)"><div class="ltd-n"><i></i>Fluoxetine</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div></div>
+          <div class="ltd" style="--aux:var(--asparagus)"><div class="ltd-n"><i></i>Asparagus Soup</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div></div>
         </div>
       </div>
     </div>
@@ -559,7 +566,7 @@
           <div class="tchips"><span>16:9</span><span>PPTX</span><span>PDF</span><span>PNG</span><span>JSON</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
-    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261110p7" data-anim="poster" data-name="Poster">
+    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261111p8" data-anim="poster" data-name="Poster">
         <div class="tpic p-poster">
           <img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster1.webp?v=6" alt="" class="on"><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster3.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster4.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster5.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster6.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc0.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc1.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc3.webp?v=6" alt="">
           <span class="pcap"></span>
@@ -780,7 +787,7 @@
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261110r9'; }
+    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261111r10'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');

@@ -100,6 +100,17 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .pair-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
 @media(min-width:783px){.pair-grid{grid-template-columns:1fr 1fr}}
 .cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
+/* ===== Logo card: ONE component for General Use and Limited Space =====
+   title (fixed row) / usage label (fixed row) / preview frame (one aspect ratio) / download actions. No fixed widths, no flex:none. */
+.pair,.ltd{--card-title-h:2.5rem;--card-label-h:1.5rem;min-width:0;margin:0;display:grid;grid-template-rows:var(--card-title-h) var(--card-label-h) auto;row-gap:.75rem;align-content:start;border-top:3px solid var(--aux);padding-top:var(--space-3,1rem)}
+.pair__body,.pair__body>div,.pair__logos{display:contents}
+.pair>h3,.ltd>.ltd-n{display:flex;align-items:center;gap:.75rem;margin:0;font-size:1.25rem;font-weight:600;line-height:1.2}
+.pair>h3 i,.ltd>.ltd-n i{flex:none;width:1.25rem;height:1.25rem;background:var(--aux)}
+.pair .eyebrow,.ltd .eyebrow{margin:0;align-self:center;line-height:1.2}
+.pair .logo-item,.ltd .logo-item{display:grid;grid-template-rows:auto auto;row-gap:.625rem;min-width:0}
+.pair .slot,.ltd .slot{width:100%;min-height:0;height:auto;aspect-ratio:16/5;padding:1.25rem;display:grid;place-items:center}
+.pair .slot img,.ltd .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
+.pair .dl,.ltd .dl{margin:0;min-height:2rem}
 @media(min-width:1024px){
   .section:has(>.sec-body>.pair-grid){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap,1.5rem);align-items:start}
   .section:has(>.sec-body>.pair-grid)>.sec-head{grid-column:1/span 4}
@@ -112,25 +123,25 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 }
 
 /* ===== Color pair cards (03) ===== */
-.pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
-.pair h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
-.pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
-.pair{container:pair/inline-size}
-.pair__body{display:grid;gap:2rem;grid-template-columns:minmax(0,1fr)}
-.pair__logos{display:flex;gap:1rem;align-items:flex-start}
+
+
+
+
+
+
 .swatches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;align-content:start;max-width:300px}
 .swatches .sw__chip{aspect-ratio:16/9}
 .swatches .sw__name{font-size:.875rem}
 .swatches dl.vals{font-size:.75rem;gap:.0625rem .5rem}
 /* 기본형·제한공간형 로고는 같은 높이 (이미지 높이 --ih 를 폭에서 계산: 4.443 + 0.5614 = 비율 합) */
-.pair__body{--ih:clamp(2.5rem,calc((100cqi - 6rem) / 5.0044),8rem)}
-.pair__logos .slot{min-height:0;padding:1.25rem;height:calc(var(--ih) + 2.5rem);flex:none;width:auto}
-.pair__logos .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
-.pair__logos .logo-item:nth-child(1) .slot{width:calc(var(--ih) * 4.443 + 2.5rem)}
-.pair__logos .logo-item:nth-child(2) .slot{width:calc(var(--ih) * 0.5614 + 2.5rem)}
-.pair__logos .logo-item{flex:none;min-width:0}
-.pair__logos .dl{gap:.25rem}
-.pair__logos .dl{max-width:100%}
+
+
+
+
+
+
+
+
 .logo-item{min-width:0}
 .dl{display:flex;flex-wrap:wrap;gap:.375rem;margin-top:.625rem}
 .dl a{display:inline-flex;align-items:center;justify-content:center;gap:.25rem;height:2rem;min-width:3.75rem;box-sizing:border-box;padding:0 .75rem;white-space:nowrap;border:1px solid var(--purple);border-radius:9999em;color:var(--purple);font-size:.875rem;font-weight:600;line-height:1;background:transparent;transition:background-color 150ms,color 150ms}
@@ -148,8 +159,8 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .dlall .cap{margin:.25rem 0 0;max-width:760px}
 .sw{margin:0}.sw__chip{aspect-ratio:4/3;background:var(--c)}
 .sw__name{font-size:.875rem;font-weight:600;margin:.5rem 0 .25rem}
-dl.vals{display:grid;grid-template-columns:auto 1fr;gap:.125rem .75rem;margin:0;font-size:.75rem}
-dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono);white-space:nowrap}
+dl.vals{display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:.125rem .75rem;margin:0;font-size:.75rem}
+dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}
 .cp{position:relative;justify-self:start;cursor:pointer;border-radius:3px;padding:0 .25rem;margin-left:-.25rem;transition:background-color 150ms}
 .cp:hover,.cp:focus-visible{background:linear-gradient(transparent 22%,var(--c,var(--ui)) 22%,var(--c,var(--ui)) 92%,transparent 92%);outline:0}
 .cp.cp--dark:hover,.cp.cp--dark:focus-visible{color:#fff}
@@ -162,23 +173,19 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
 /* 모바일: 로고 쌍을 세로로 쌓고(가로 넘침 방지), 다운로드 버튼은 손가락으로 누르기 쉬운 크기로 */
 @media(max-width:782px){
-  html,body{max-width:100%;overflow-x:hidden}
+  html,body{max-width:100%;}
   .wrap,.intro,.callout,.dlall,.section,.sec-head,.sec-body{min-width:0;max-width:100%}
   .callout,.cap,.lede p{overflow-wrap:anywhere}
   .bgsel{display:grid;grid-template-columns:1fr;align-items:start;gap:.5rem}
   .bgsel .seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;min-width:0}
   .bgsel .seg button{min-width:0;padding-inline:.5rem}
   .dlall .dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;width:100%}
-  .dl a,.dlall .dl a,.pair__logos .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
+  .dl a,.dlall .dl a,.pair .dl a{display:flex;align-items:center;justify-content:center;gap:.25rem;height:2.75rem;min-width:4rem;padding:0 .75rem;text-align:center}
   .dlall .dl a{min-width:0;width:100%;padding-inline:.25rem}
 }
 
 /* 로고 쌍이 좁은 칸(3단 그리드의 1단 등)에 들어가면 세로로 쌓고, 버튼은 3열로 */
-@container pair (max-width:560px){
-  .pair__body{--ih:clamp(2.5rem,calc((100cqi - 2.5rem) / 4.443),7rem)}
-  .pair__logos{flex-direction:column;align-items:stretch;gap:1.5rem}
-  .pair__logos .logo-item{width:100%}
-  }
+
 /* 3단 그리드 (툴킷과 동일): 왼쪽 1단 = 제목·설명, 오른쪽 2단 폭 = 콘텐츠. 1단 → 2~3단 span 으로 쓰는 구조 */
 @media(min-width:1024px){
   .section{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start}
@@ -189,8 +196,8 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   .sec-body{grid-column:5/-1;min-width:0}
   .sec-body .pair-grid{margin-top:0!important}
   .sec-body>.sub:first-child{margin-top:0}
-  #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2rem}
-  #other .pair{margin-top:0}
+  #other .sec-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem var(--grid-gap,1.5rem)}
+  
   .type{gap:2rem}
   .sec-body .cgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem}
   .sec-body .cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
@@ -202,15 +209,15 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   }
 
 /* 축약형(제한 공간용) 로고는 따로 모아 한 줄에 (좁은 로고라 1단에 2개씩) */
-.limited{margin-top:3rem;border-top:3px solid var(--purple);padding-top:1.5rem}
+.limited{margin-top:3rem;border-top:1px solid var(--line-structural,rgba(0,0,0,.22));padding-top:1.5rem}
 .limited h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem}
-.ltd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 1rem}
-.ltd{min-width:0}
-.ltd-n{display:flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:600;margin-bottom:.5rem}
-.ltd-n i{width:.875rem;height:.875rem;background:var(--aux)}
-.ltd .slot{min-height:9rem;padding:1rem}
-.ltd .slot img{height:6.5rem;width:100%;max-height:none;object-fit:contain}
-.ltd .dl{gap:.25rem}
+.ltd-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem var(--grid-gap,1.5rem)}
+
+
+
+
+
+
 @media(min-width:1024px){
   .ltd-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   #other .limited{grid-column:1/-1;margin-top:0}
@@ -224,7 +231,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
 /* ===== Color table (08) ===== */
 .cgrid{display:grid;gap:1.5rem 1rem;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(min-width:783px){.cgrid{grid-template-columns:repeat(5,minmax(0,1fr))}.cgrid--unist{grid-template-columns:repeat(5,minmax(0,1fr))}}
+.cgrid:not(.cgrid--unist)>.sw:first-child{grid-column:1/-1}
 @media(max-width:782px){.cgrid dl.vals dd{white-space:normal;overflow-wrap:anywhere}}
 .cgrid .sw__chip{aspect-ratio:3/2}
 .note{display:flex;gap:1rem;align-items:flex-start;margin:2rem 0 0;padding:1rem 1.25rem;border-left:4px solid var(--ui);background:color-mix(in srgb,var(--ui) 30%,#fff);font-size:.9375rem;font-weight:500;max-width:760px}
@@ -232,7 +239,8 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 
 /* ===== Typography (09) ===== */
 .type{display:grid;gap:3rem;grid-template-columns:minmax(0,1fr)}
-@media(min-width:783px){.type{grid-template-columns:1fr 1fr}}
+@media(min-width:783px){.type{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.type>*{min-width:0}
 .type__h{font-size:.875rem;font-weight:600;margin-bottom:.125rem}
 .type__sub{font-size:.75rem;opacity:.7;margin-bottom:1.5rem}
 .spec{margin-bottom:1.75rem}
@@ -240,7 +248,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 .spec__label b{font-weight:700}
 .spec{container-type:inline-size}
 .spec__body{font-size:1.375rem;line-height:1.4;margin:0;overflow-wrap:anywhere}
-.spec__body.en-spec,.spec__body.ko-spec{font-size:clamp(.75rem,4.4cqi,1.375rem);overflow-wrap:normal;white-space:nowrap}
+.spec__body.en-spec,.spec__body.ko-spec{font-size:clamp(.875rem,4.4cqi,1.375rem);overflow-wrap:anywhere}
 .en-spec{font-family:"Helvetica Neue",neue-haas-unica,Helvetica,Arial,sans-serif}
 .ko-spec{font-family:var(--font-ko);word-break:keep-all}
 .w-regular{font-weight:400}.w-bold{font-weight:700}.w-light{font-weight:300}
@@ -371,7 +379,7 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
   if(window.ResizeObserver) new ResizeObserver(send).observe(document.body); else setInterval(send,1000);
 })();
 </script>
-<link rel="stylesheet" href="shared/hcdt-embed.css?v=20261111a">
+<link rel="stylesheet" href="shared/hcdt-embed.css?v=20261111b">
 </head>
 <body>
 
@@ -523,10 +531,10 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
       <div class="limited">
         <h3>For Use in Limited Space</h3>
         <div class="ltd-grid">
-          <div class="ltd" style="--aux:var(--verdigris)"><div class="ltd-n"><i></i>Verdigris</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div></div>
-          <div class="ltd" style="--aux:var(--terracotta)"><div class="ltd-n"><i></i>Terracotta</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div></div>
-          <div class="ltd" style="--aux:var(--fluoxetine)"><div class="ltd-n"><i></i>Fluoxetine</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div></div>
-          <div class="ltd" style="--aux:var(--asparagus)"><div class="ltd-n"><i></i>Asparagus Soup</div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div></div>
+          <div class="ltd" style="--aux:var(--verdigris)"><div class="ltd-n"><i></i>Verdigris</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-verdigris.svg" alt="Limited space, Verdigris"></figure><div class="dl" data-dl="limited-verdigris"></div></div></div>
+          <div class="ltd" style="--aux:var(--terracotta)"><div class="ltd-n"><i></i>Terracotta</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-terracotta.svg" alt="Limited space, Terracotta"></figure><div class="dl" data-dl="limited-terracotta"></div></div></div>
+          <div class="ltd" style="--aux:var(--fluoxetine)"><div class="ltd-n"><i></i>Fluoxetine</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-fluoxetine.svg" alt="Limited space, Fluoxetine"></figure><div class="dl" data-dl="limited-fluoxetine"></div></div></div>
+          <div class="ltd" style="--aux:var(--asparagus)"><div class="ltd-n"><i></i>Asparagus Soup</div><div class="eyebrow"><span class="en">For Use in Limited Space</span></div><div class="logo-item"><figure class="slot slot--light slot--tight"><img data-file="limited-asparagus.svg" alt="Limited space, Asparagus Soup"></figure><div class="dl" data-dl="limited-asparagus"></div></div></div>
         </div>
       </div>
     </div>
@@ -652,7 +660,7 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
           <div class="tchips"><span>16:9</span><span>PPTX</span><span>PDF</span><span>PNG</span><span>JSON</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
-    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261110p7" data-anim="poster" data-name="Poster">
+    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261111p8" data-anim="poster" data-name="Poster">
         <div class="tpic p-poster">
           <img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster1.webp?v=6" alt="" class="on"><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster3.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster4.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster5.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster6.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc0.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc1.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc3.webp?v=6" alt="">
           <span class="pcap"></span>
@@ -890,7 +898,7 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261110r9'; }
+    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261111r10'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false; if(window.hcdtSendHeight) window.hcdtSendHeight();
   }
   var tvFrame=root.querySelector('#tool-view iframe');
