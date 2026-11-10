@@ -1,0 +1,26 @@
+<!doctype html>
+<!-- HCDT loading icon (the brand 3D shape: auxiliary-colour face + purple trapezoid face, turning around its vertical axis).
+     Copy the <style> and the <i class="hx-prism"> element. Nothing else is needed: no image, no library. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HCDT loader</title>
+<style>
+  :root{ --sub:#64d8d8; }            /* auxiliary colour: Verdigris #64D8D8 · Terracotta #E8B9AA · Fluoxetine #73D888 · Asparagus Soup #E8E041 */
+
+  .hx-prism{position:relative;display:inline-block;width:26px;height:30px;transform-origin:50% 50%;animation:hx-prism-turn 1.4s ease-in-out infinite}
+  .hx-prism::before,.hx-prism::after{content:"";position:absolute;inset:0}
+  .hx-prism::before{background:#6b00ff;clip-path:polygon(100% 20%,100% 80%,23.7% 100%,23.7% 0)}
+  .hx-prism::after{background:var(--sub);clip-path:polygon(0 16.5%,0 83.5%,23.7% 100%,23.7% 0)}
+  @keyframes hx-prism-turn{0%{transform:perspective(160px) rotateY(0)}100%{transform:perspective(160px) rotateY(360deg)}}
+  @media (prefers-reduced-motion:reduce){.hx-prism{animation:none}}
+
+  /* demo only */
+  body{margin:0;min-height:100vh;display:grid;place-items:center;font-family:Helvetica,Arial,sans-serif}
+</style>
+</head>
+<body>
+  <i class="hx-prism" role="status" aria-label="Loading"></i>
+</body>
+</html>
