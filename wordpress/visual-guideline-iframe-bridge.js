@@ -57,6 +57,11 @@
     window.unistdesignSub = Object.assign({}, window.unistdesignSub || {}, { hex: hex });
     frames().forEach(send);
   }
+  /* tell the embedded guideline how tall the visible viewport is, so editor frames can be sized to it */
+  function sendViewport() {
+    frames().forEach(function (f) { try { f.contentWindow.postMessage({ hcdtViewport: { h: window.innerHeight } }, '*'); } catch (_) {} });
+  }
+  window.addEventListener('resize', sendViewport);
   function fit(source, value) {
     var height = Math.ceil(Number(value));
     if (!Number.isFinite(height) || height < 200 || height > 20000) return;
@@ -68,7 +73,8 @@
   }
   function bind() {
     installPageLayout();
-    frames().forEach(function (f) { f.addEventListener('load', function () { send(f); }); send(f); });
+    frames().forEach(function (f) { f.addEventListener('load', function () { send(f); sendViewport(); }); send(f); });
+    sendViewport();
   }
   window.addEventListener('message', function (event) {
     var d = event.data || {};
