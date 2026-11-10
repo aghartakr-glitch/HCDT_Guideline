@@ -327,6 +327,17 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 #tool-view .tv-name{font-weight:600;font-size:.9375rem;display:none;margin-right:auto}
 #tool-view .tv-frame{display:block;width:100%;height:clamp(680px,calc(100dvh - 8rem),900px);border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden;visibility:hidden}
 #tool-view .tv-frame.is-ready{visibility:visible}
+/* Loader = the brand 3D shape: auxiliary-colour face + purple trapezoid face (from the logo artwork), turning around its vertical axis */
+.hx-prism{position:relative;display:inline-block;width:26px;height:30px;transform-origin:50% 50%;animation:hx-prism-turn 1.4s ease-in-out infinite}
+.hx-prism::before,.hx-prism::after{content:"";position:absolute;inset:0}
+.hx-prism::before{background:#6b00ff;clip-path:polygon(100% 20%,100% 80%,23.7% 100%,23.7% 0)}
+.hx-prism::after{background:var(--sub,var(--ui,#64d8d8));clip-path:polygon(0 16.5%,0 83.5%,23.7% 100%,23.7% 0)}
+@keyframes hx-prism-turn{0%{transform:perspective(160px) rotateY(0)}100%{transform:perspective(160px) rotateY(360deg)}}
+@media(prefers-reduced-motion:reduce){.hx-prism{animation:none}}
+#tool-view{position:relative}
+#tool-view .hx-loader{position:absolute;inset:0;display:none;align-items:center;justify-content:center;pointer-events:none}
+#tool-view .tv-frame:not(.is-ready)~.hx-loader{display:flex}
+
 
 /* embed mode (?embed=1 | logo | tools): used inside a WordPress page, which supplies its own header and title */
 html.embed .header,html.embed .footer,html.embed .page__title{display:none!important}
@@ -651,6 +662,7 @@ html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!impor
   <div id="tool-view" role="tabpanel" hidden>
     <div class="tv-bar" hidden><span class="tv-name"></span></div>
     <iframe class="tv-frame" title="HCDT tool" allow="clipboard-write; fullscreen"></iframe>
+    <div class="hx-loader" aria-hidden="true"><i class="hx-prism"></i></div>
   </div>
 </div>
 

@@ -273,6 +273,17 @@
 .hcdt-vig #tool-view .tv-name{font-weight:600;font-size:.9375rem;display:none;margin-right:auto}
 .hcdt-vig #tool-view .tv-frame{display:block;width:100%;height:clamp(680px,calc(100dvh - 10rem),900px);border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden;visibility:hidden}
 .hcdt-vig #tool-view .tv-frame.is-ready{visibility:visible}
+/* Loader = the brand 3D shape: auxiliary-colour face + purple trapezoid face (from the logo artwork), turning around its vertical axis */
+.hcdt-vig .hx-prism{position:relative;display:inline-block;width:26px;height:30px;transform-origin:50% 50%;animation:hx-prism-turn 1.4s ease-in-out infinite}
+.hcdt-vig .hx-prism::before,.hcdt-vig .hx-prism::after{content:"";position:absolute;inset:0}
+.hcdt-vig .hx-prism::before{background:#6b00ff;clip-path:polygon(100% 20%,100% 80%,23.7% 100%,23.7% 0)}
+.hcdt-vig .hx-prism::after{background:var(--sub,var(--ui,#64d8d8));clip-path:polygon(0 16.5%,0 83.5%,23.7% 100%,23.7% 0)}
+@keyframes hx-prism-turn{0%{transform:perspective(160px) rotateY(0)}100%{transform:perspective(160px) rotateY(360deg)}}
+@media(prefers-reduced-motion:reduce){.hcdt-vig .hx-prism{animation:none}}
+.hcdt-vig #tool-view{position:relative}
+.hcdt-vig #tool-view .hx-loader{position:absolute;inset:0;display:none;align-items:center;justify-content:center;pointer-events:none}
+.hcdt-vig #tool-view .tv-frame:not(.is-ready)~.hx-loader{display:flex}
+
 
 .hcdt-vig{font-family:neue-haas-unica,"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:1rem;font-weight:300;line-height:1.5;color:#000;padding-bottom:4rem}
 .hcdt-vig .ko-font,.hcdt-vig p.ko{font-family:"Spoqa Han Sans Neo","Spoqa Han Sans",sans-serif;word-break:keep-all}
@@ -562,6 +573,7 @@
   <div id="tool-view" role="tabpanel" hidden>
     <div class="tv-bar" hidden><span class="tv-name"></span></div>
     <iframe class="tv-frame" title="HCDT tool" allow="clipboard-write; fullscreen"></iframe>
+    <div class="hx-loader" aria-hidden="true"><i class="hx-prism"></i></div>
   </div>
 </div>
 </div>
