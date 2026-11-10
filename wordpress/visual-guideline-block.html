@@ -1,5 +1,6 @@
 <!-- HCDT Visual Identity Guideline · Visual Guideline (WordPress Custom HTML block) -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/css/SpoqaHanSansNeo.css">
+<link rel="stylesheet" href="https://aghartakr-glitch.github.io/HCDT_Guideline/shared/hcdt-embed.css?v=20261111a">
 <style>
 .hcdt-vig{
   --purple:#6b00ff; --purple-hover:#5600cc; --purple-soft:#974cff; --purple-pale:#d2b2ff;
@@ -49,7 +50,7 @@
 .hcdt-vig .sub{font-size:1.25rem;font-weight:600;margin:3rem 0 1rem}
 .hcdt-vig .eyebrow{font-size:.75rem;font-weight:600;text-transform:uppercase;opacity:.7;margin-bottom:.5rem;letter-spacing:.02em}
 .hcdt-vig .badge{display:inline-block;background:color-mix(in srgb,var(--ui) 30%,#fff);border-left:4px solid var(--ui);color:#000;font-size:.875rem;font-weight:500;padding:.5rem 1rem;margin-bottom:1.5rem;line-height:1.3}
-.hcdt-vig .slot{position:relative;display:flex;align-items:center;justify-content:center;margin:0;min-height:12rem;padding:2rem;width:100%}
+.hcdt-vig .slot{position:relative;display:flex;align-items:center;justify-content:center;margin:0;min-height:12rem;padding:2rem;width:100%;border:1px solid var(--line-structural,rgba(0,0,0,.22))}
 .hcdt-vig .slot img{display:block;width:100%;max-height:18rem;object-fit:contain}
 .hcdt-vig .slot--light{background:#fff}
 .hcdt-vig .slot--navy{background:var(--navy)}
@@ -69,6 +70,16 @@
 .hcdt-vig .pair-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
 @media(min-width:783px){.hcdt-vig .pair-grid{grid-template-columns:1fr 1fr}}
 .hcdt-vig .cap{font-size:.75rem;font-weight:500;opacity:.7;margin:.5rem 0 0}
+@media(min-width:1024px){
+  .hcdt-vig .section:has(>.sec-body>.pair-grid){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap,1.5rem);align-items:start}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid)>.sec-head{grid-column:1/span 4}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid)>.sec-head .section__title{margin-bottom:var(--space-4,1.5rem)}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid)>.sec-head .lede{font-size:1.125rem;max-width:none}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid)>.sec-body{grid-column:5/-1}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid) .pair-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--grid-gap,1.5rem);margin:0}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid) .pair-grid>.logo-item{display:grid;grid-template-rows:12rem auto;align-content:start}
+  .hcdt-vig .section:has(>.sec-body>.pair-grid) .pair-grid .slot{height:12rem;min-height:0}
+}
 .hcdt-vig .pair{border-top:3px solid var(--aux);margin-top:3rem;padding-top:1.5rem}
 .hcdt-vig .pair h3{font-size:calc(1.3rem + .6vw);margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem}
 .hcdt-vig .pair h3 i{display:inline-block;width:1.25rem;height:1.25rem;background:var(--aux)}
@@ -271,7 +282,7 @@
 .hcdt-vig :is(a,button,[role=button],summary):focus-visible{outline:2px solid var(--purple);outline-offset:2px}
 .hcdt-vig #tool-view .tv-bar{display:none}
 .hcdt-vig #tool-view .tv-name{font-weight:600;font-size:.9375rem;display:none;margin-right:auto}
-.hcdt-vig #tool-view .tv-frame{display:block;width:100%;height:clamp(680px,calc(100dvh - 10rem),900px);border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden;visibility:hidden}
+.hcdt-vig #tool-view .tv-frame{display:block;width:100%;height:max(640px,calc(100dvh - 8rem));border:1px solid rgba(0,0,0,.15);background:#fff;overflow:hidden;visibility:hidden}
 .hcdt-vig #tool-view .tv-frame.is-ready{visibility:visible}
 /* Loader = the brand 3D shape: auxiliary-colour face + purple trapezoid face (from the logo artwork), turning around its vertical axis */
 .hcdt-vig .hx-prism{position:relative;display:inline-block;width:26px;height:30px;transform-origin:50% 50%;animation:hx-prism-turn 1.4s ease-in-out infinite}
@@ -331,7 +342,7 @@
     </div>
     </div>
     <div class="sec-body">
-    <div class="pair-grid" style="margin-top:2rem">
+    <div class="pair-grid">
       <div class="logo-item"><figure class="slot slot--light"><img data-file="full-navy.svg" alt="Full Version, UNIST Navy on white"></figure><div class="dl" data-dl="full-navy"></div></div>
       <div class="logo-item"><figure class="slot slot--navy"><img data-file="full-white.svg" alt="Full Version, white on UNIST Navy"></figure><div class="dl" data-dl="full-white"></div></div>
     </div>
@@ -548,7 +559,7 @@
           <div class="tchips"><span>16:9</span><span>PPTX</span><span>PDF</span><span>PNG</span><span>JSON</span></div>
           <span class="tgo">Open<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2 7h9M7.5 3.5 11 7l-3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></div>
       </a></li>
-    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261110p6" data-anim="poster" data-name="Poster">
+    <li><a class="tl" href="https://aghartakr-glitch.github.io/HCDT_Poster_Generator/?build=20261110p7" data-anim="poster" data-name="Poster">
         <div class="tpic p-poster">
           <img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster1.webp?v=6" alt="" class="on"><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster3.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster4.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster5.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/poster6.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc0.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc1.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc2.webp?v=6" alt=""><img loading="lazy" src="https://aghartakr-glitch.github.io/HCDT_Toolkit/thumbs/posterc3.webp?v=6" alt="">
           <span class="pcap"></span>
@@ -769,10 +780,30 @@
     var a=toolLinks.filter(function(x){return x.getAttribute('data-name')===name})[0]; if(!a) return;
     var v=root.querySelector('#tool-view'), f=v.querySelector('iframe');
     syncTabs(name); setUrl(slug(name));
-    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261110r8'; }
+    if(f.getAttribute('data-src')!==a.href){ f.classList.remove('is-ready'); f.style.height=''; f.setAttribute('data-src',a.href); f.src=a.href+(a.href.indexOf('?')<0?'?':'&')+'v=20261110r9'; }
     root.querySelector('#tools-list').hidden=true; v.hidden=false; subBox.hidden=false;
   }
   var tvFrame=root.querySelector('#tool-view iframe');
+  /* tool-frame:start */
+/* HCDT tool frame sizing: the ONE implementation used by index.html and wordpress/visual-guideline-block.html.
+   Edit this file, then run: node scripts/sync-tool-frame.js   (it inlines this file between the tool-frame markers of both pages). */
+(function () {
+  var vpH = 0, last = { app: false, h: 0 };
+  /* top window: its own viewport. Inside the WordPress iframe: the height the bridge reports (hcdtViewport), else the screen. */
+  function viewportH() {
+    if (window.parent === window) return window.innerHeight;
+    return vpH || ((window.screen && screen.availHeight) || 900) - 120;
+  }
+  /* editors (Poster, Slides) use the visible viewport minus the sticky header and the tab row; no fixed 680-900px cap */
+  function editorH() { return Math.max(640, Math.min(1400, viewportH() - 96)); }
+  window.hcdtToolFrame = {
+    height: function (frame) { frame.style.height = (last.app ? editorH() : Math.max(480, last.h + 2)) + 'px'; },
+    onViewport: function (frame, d) { vpH = +d.h || 0; this.height(frame); },
+    onFrame: function (frame, d) { last = { app: !!d.app, h: d.h || 0 }; this.height(frame); }
+  };
+})();
+/* tool-frame:end */
+  window.addEventListener('resize',function(){ hcdtToolFrame.height(tvFrame); });
   function sendAux(){ try{ var c=getComputedStyle(tvFrame).getPropertyValue('--ui').trim(); if(/^#[0-9a-f]{6}$/i.test(c)&&tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtAux:c,hcdtTipOK:1},'*'); }catch(e){} }
   var tvL='en';
   function sendLang(){ try{ if(tvFrame.contentWindow) tvFrame.contentWindow.postMessage({hcdtLang:tvL},'*'); }catch(e){} }
@@ -781,8 +812,7 @@
     var d=e.data; if(!d||e.source!==tvFrame.contentWindow) return;
     if(d.hcdtAuxChange){ applyAux(d.hcdtAuxChange); return; }
     if(!d.hcdtFrame) return;
-    if(d.app) tvFrame.style.height=Math.max(680,Math.min(900,d.h||window.innerHeight-160))+'px';
-    else if(d.h) tvFrame.style.height=Math.max(480,d.h+2)+'px';
+    hcdtToolFrame.onFrame(tvFrame,d);
     sendAux();
   });
   /* tooltips from the tool iframe are drawn here so they can sit above the button */
