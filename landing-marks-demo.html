@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HCDT landing marks demo</title>
+<style>
+  :root{--purple:#6b00ff;--aux:#64d8d8}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:neue-haas-unica,"Helvetica Neue",Helvetica,Arial,sans-serif;color:#000;background:#fff}
+
+  /* ---------- test panel ---------- */
+  .panel{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid rgba(0,0,0,.22);padding:10px 24px;display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center}
+  .panel b{font-size:.8125rem;letter-spacing:.02em;margin-right:8px}
+  .grp{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+  .panel button{font:inherit;font-size:.875rem;font-weight:600;border:1.5px solid var(--purple);background:#fff;border-radius:.5rem;padding:.3rem .75rem;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .panel button:hover{background:color-mix(in srgb,var(--aux) 20%,#fff)}
+  .panel button[aria-pressed=true]{background:color-mix(in srgb,var(--c,var(--aux)) 45%,transparent)}
+  .panel button i{width:12px;height:12px;border-radius:50%;background:var(--c);border:1px solid rgba(0,0,0,.25)}
+  .panel label{font-size:.875rem;display:inline-flex;align-items:center;gap:8px}
+  .panel input[type=range]{width:120px;accent-color:var(--purple)}
+
+  /* ---------- sample department web ---------- */
+  .util{background:#e8f7f9;font-size:.8125rem;display:flex;justify-content:flex-end;gap:28px;padding:10px 40px;color:#333}
+  header.site{display:flex;align-items:center;gap:64px;padding:18px 40px 22px}
+  .logo{display:flex;align-items:center;gap:12px;color:var(--purple);font-weight:800;font-size:.8125rem;line-height:1.05;letter-spacing:.01em}
+  .logo i{width:46px;height:46px;border-radius:50%;background:radial-gradient(circle,var(--purple) 1.4px,transparent 1.6px) 0 0/6px 6px,radial-gradient(circle,var(--aux) 1.4px,transparent 1.6px) 3px 3px/6px 6px}
+  nav.main{display:flex;gap:56px;font-weight:600;font-size:1.0625rem}
+  .zig{height:9px;background-color:var(--aux);background-image:linear-gradient(135deg,var(--purple) 25%,transparent 25%),linear-gradient(225deg,var(--purple) 25%,transparent 25%);background-size:18px 18px;background-position:0 0}
+  .fx{position:relative;overflow:hidden;cursor:crosshair;touch-action:none;background:#ddd}
+  .fx>img{display:block;width:100%;height:100%;object-fit:cover}
+  .fx canvas{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none}
+  .hero{height:min(62vw,560px)}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(107,0,255,.25),rgba(107,0,255,.8))}
+  /* text always sits ABOVE the marks and has a soft shadow so it stays readable on top of the pile */
+  .hero .txt,.cap{text-shadow:0 1px 2px rgba(0,0,0,.35),0 2px 16px rgba(0,0,0,.4);transition:text-shadow .25s ease-out}
+  .fx:hover .txt,.fx:hover .cap{text-shadow:0 1px 2px rgba(0,0,0,.5),0 2px 16px rgba(0,0,0,.58)}   /* a little stronger while the marks rise (hover) */
+  .hero .txt{position:absolute;left:0;right:0;bottom:40px;z-index:5;text-align:center;color:#fff;padding:0 6%}
+  .hero h1{margin:0 0 14px;font-size:clamp(1.75rem,4.6vw,3.5rem);line-height:1.1}
+  .hero p{margin:0 auto;max-width:56ch;font-weight:500;font-size:clamp(.875rem,1.4vw,1.125rem)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:0}
+  .card{aspect-ratio:4/3}
+  .card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.78));z-index:1}
+  .tag{position:absolute;left:14px;top:14px;z-index:5;background:#fff;border-radius:999px;padding:.2rem .8rem;font-size:.8125rem;font-weight:700;letter-spacing:.03em;pointer-events:none}
+  .tag.story{background:var(--purple);color:#fff}
+  .cap{position:absolute;left:20px;right:20px;bottom:16px;z-index:5;color:#fff;pointer-events:none}
+  .cap h3{margin:0 0 4px;font-size:1.25rem;line-height:1.2}
+  .cap small{font-size:.8125rem;opacity:.9}
+  .notes{padding:40px;border-top:1px solid rgba(0,0,0,.22)}
+  .notes h2{margin:0 0 1rem;font-size:1.25rem}
+  .notes .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+  .notes h3{margin:0 0 .5rem;font-size:1rem;color:var(--purple)}
+  .notes ul{margin:0;padding-left:1.1rem;font-size:.9375rem;line-height:1.55}
+  .notes li{margin-bottom:.5rem}
+  .notes li b{font-weight:700}
+  footer{padding:32px 40px;font-size:.8125rem;opacity:.65}
+  @media(max-width:700px){header.site{gap:20px;padding:14px 16px}nav.main{display:none}.util{padding:8px 16px}.panel{padding:8px 12px}}
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <div class="grp"><b>Motion</b>
+    <button type="button" data-mode="trail" aria-pressed="true">1 · Light trail</button>
+    <button type="button" data-mode="drop" aria-pressed="false">2 · Drop &amp; pile</button>
+    <button type="button" data-mode="rise" aria-pressed="false">3 · Rise from the bottom</button>
+    <button type="button" data-mode="stack" aria-pressed="false">4 · Stack (as on the landing page)</button>
+  </div>
+  <div class="grp"><b>Auxiliary colour</b>
+    <button type="button" data-aux="#64d8d8" style="--c:#64d8d8" aria-pressed="true"><i></i>Verdigris</button>
+    <button type="button" data-aux="#e8b9aa" style="--c:#e8b9aa" aria-pressed="false"><i></i>Terracotta</button>
+    <button type="button" data-aux="#73d888" style="--c:#73d888" aria-pressed="false"><i></i>Fluoxetine</button>
+    <button type="button" data-aux="#e8e041" style="--c:#e8e041" aria-pressed="false"><i></i>Asparagus Soup</button>
+  </div>
+</div>
+
+<div class="util"><span>Space Booking</span><span>Useful Forms</span><span>Visual Identity</span></div>
+<header class="site">
+  <div class="logo"><i></i><span>HUMAN—CENTERED<br>DESIGN+TECHNOLOGY</span></div>
+  <nav class="main"><span>People</span><span>Work</span><span>Education</span><span>Labs</span><span>Space</span></nav>
+</header>
+<div class="zig"></div>
+
+<section class="fx hero" data-fx>
+  <img src="demo-photos/p6.jpg" alt="">
+  <div class="txt"><h1>Audacious impact for the future</h1><p>With insurmountable challenges our humanity faces today, the world needs more innovators that can go beyond conventional dichotomy of art and engineering and/or design and technology.</p></div>
+</section>
+
+<section class="cards">
+  <article class="fx card" data-fx><img src="demo-photos/p1.jpg" alt=""><span class="tag">NEWS</span><div class="cap"><h3>Six HCD+T doctoral researchers receive NRF research grants</h3><small>2026/09/12</small></div></article>
+  <article class="fx card" data-fx><img src="demo-photos/p2.jpg" alt=""><span class="tag story">STORY</span><div class="cap"><h3>Design Show 2026 opens at UNIST</h3><small>2026/08/30</small></div></article>
+  <article class="fx card" data-fx><img src="demo-photos/p3.webp" alt=""><span class="tag story">STORY</span><div class="cap"><h3>Designing the Context to Bring Technology Down to Earth</h3><small>2026/08/26</small></div></article>
+  <article class="fx card" data-fx><img src="demo-photos/p4.jpg" alt=""><span class="tag">NEWS</span><div class="cap"><h3>Visiting Aalto University</h3><small>2026/08/18</small></div></article>
+  <article class="fx card" data-fx><img src="demo-photos/p5.jpg" alt=""><span class="tag story">STORY</span><div class="cap"><h3>Field trip to Helsinki Central Library Oodi</h3><small>2026/08/12</small></div></article>
+  <article class="fx card" data-fx><img src="demo-photos/p6.jpg" alt=""><span class="tag">NEWS</span><div class="cap"><h3>Inspiration Library: a new space for the lab</h3><small>2026/07/30</small></div></article>
+</section>
+<section class="notes" aria-label="What is applied">
+  <h2>What is applied · 적용한 내용</h2>
+  <div class="cols">
+    <div>
+      <h3>English</h3>
+      <ul>
+        <li><b>Four motions</b>, switchable in the test panel: 1 Light trail (follows the cursor, fades out), 2 Drop &amp; pile (a batch falls from the top, bounces a little and comes to rest), 3 Rise from the bottom (a pile shoots up from the bottom edge at random spots and random angles, slight overlap allowed), 4 Stack (the same algorithm as the hover on the landing page: sand-pile stacking from the bottom, no gaps, lower marks first).</li>
+        <li><b>Three shapes, all drawn in code</b>: “+”, “−” and the logo trapezoid (purple face + auxiliary-colour face). Every mark has the same size and scales with the photo width.</li>
+        <li><b>One colour set</b>: purple + one auxiliary colour (Verdigris, Terracotta, Fluoxetine or Asparagus Soup), chosen in the panel; existing marks recolour at once.</li>
+        <li><b>Fixed middle amount</b>: the number of marks and the height of the pile are set to a middle value (about the bottom 40% of a photo), and marks may overlap slightly in motion 3.</li>
+        <li><b>Clears fast</b>: when the cursor leaves a photo, all marks are gone in about 0.15 s.</li>
+        <li><b>Text stays readable</b>: titles, dates and tags sit above the marks, and a soft two-layer drop shadow is placed behind the text (a tight 1px edge plus a wide, faint glow), so the text reads clearly even where the pile is dense, while the shadow stays subtle on the empty areas of the photo.</li>
+        <li>Respects “reduce motion”: marks appear without animation.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>한국어</h3>
+      <ul>
+        <li><b>네 가지 모션</b>을 테스트 패널에서 바꿔 볼 수 있어요: 1 가벼운 흔적(커서를 따라가며 사라짐), 2 떨어져 쌓이기(한꺼번에 위에서 떨어져 조금 튕기다 멈춤), 3 아래에서 올라오기(바닥에서 랜덤한 자리·각도로 한꺼번에 올라옴, 약간 겹침 허용), 4 쌓기(랜딩 페이지 호버와 같은 알고리즘: 바닥부터 모래더미처럼 빈틈 없이, 아래쪽부터 나타남).</li>
+        <li><b>모양 세 가지를 모두 코드로 그림</b>: “+”, “−”, 로고 사다리꼴(보라 면 + 보조색 면). 모든 마크는 크기가 같고 사진 폭에 비례해요.</li>
+        <li><b>색은 한 세트</b>: 보라 + 보조색 하나(Verdigris, Terracotta, Fluoxetine, Asparagus Soup 중 선택). 패널에서 고르면 이미 나온 마크도 바로 바뀌어요.</li>
+        <li><b>중간 양으로 고정</b>: 마크 개수와 쌓이는 높이를 중간값(사진 아래쪽 약 40%)으로 정했고, 3번에서는 마크가 살짝 겹칠 수 있어요.</li>
+        <li><b>빨리 사라짐</b>: 커서가 사진 밖으로 나가면 약 0.15초 만에 모두 사라져요.</li>
+        <li><b>글자가 잘 보이게</b>: 제목·날짜·태그를 마크 위 층에 두고, 글자 뒤에 은은한 드롭섀도우를 두 겹으로 차등 적용했어요(또렷한 1px 가장자리 + 넓게 퍼지는 옅은 그림자). 마크가 많이 쌓인 곳에서도 글자가 읽히고, 사진의 빈 곳에서는 그림자가 눈에 띄지 않아요.</li>
+        <li>“움직임 줄이기” 설정을 존중해요: 애니메이션 없이 바로 나타나요.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<footer>Sample department page for testing. Move the cursor over any photo; the panel above switches the motion and colour.</footer>
+
+<script>
+(function(){
+  var PURPLE='#6b00ff', AUX='#64d8d8', MODE='trail';
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function rnd(a,b){return a+Math.random()*(b-a)}
+  function pick(a){return a[Math.floor(Math.random()*a.length)]}
+  function amount(){return 5}        /* fixed middle value: how many marks / how high the pile goes */
+  function overlap(){return true}    /* fixed: slight overlap */
+
+  /* ---------- test panel ---------- */
+  var items=[];
+  [].forEach.call(document.querySelectorAll('[data-mode]'),function(b){b.addEventListener('click',function(){
+    MODE=b.getAttribute('data-mode');
+    [].forEach.call(document.querySelectorAll('[data-mode]'),function(x){x.setAttribute('aria-pressed',String(x===b))});
+    items.forEach(function(it){it.reset()});
+  })});
+  [].forEach.call(document.querySelectorAll('[data-aux]'),function(b){b.addEventListener('click',function(){
+    AUX=b.getAttribute('data-aux');document.documentElement.style.setProperty('--aux',AUX);
+    [].forEach.call(document.querySelectorAll('[data-aux]'),function(x){x.setAttribute('aria-pressed',String(x===b))});
+  })});
+
+  /* ---------- one mark: "+", "−" or the logo trapezoid (aux face + purple face), drawn in code. ALL marks have the same size. ---------- */
+  function drawMark(c,m,alpha,scale){
+    var s=m.s*(scale==null?1:scale);c.save();c.translate(m.x,m.y);c.rotate(m.a);c.globalAlpha=alpha==null?1:alpha;
+    if(m.t==='trap'){
+      var w=s*.87,h=s,x0=-w/2,y0=-h/2,p;
+      var P=function(px,py){return [x0+px*w,y0+py*h]};
+      c.fillStyle=AUX;c.beginPath();p=P(0,.165);c.moveTo(p[0],p[1]);p=P(0,.835);c.lineTo(p[0],p[1]);p=P(.237,1);c.lineTo(p[0],p[1]);p=P(.237,0);c.lineTo(p[0],p[1]);c.fill();
+      c.fillStyle=PURPLE;c.beginPath();p=P(1,.2);c.moveTo(p[0],p[1]);p=P(1,.8);c.lineTo(p[0],p[1]);p=P(.237,1);c.lineTo(p[0],p[1]);p=P(.237,0);c.lineTo(p[0],p[1]);c.fill();
+    }else{
+      var t=s*.22,L=s*.9;c.fillStyle=m.cr==='a'?AUX:PURPLE;
+      c.fillRect(-L/2,-t/2,L,t);if(m.t==='plus')c.fillRect(-t/2,-L/2,t,L);
+    }
+    c.restore();
+  }
+  function unit(W){return Math.min(W*.085,56)}                 /* one size for every mark */
+  function newMark(x,y,W){var t=pick(['plus','minus','trap']);return {t:t,x:x,y:y,s:unit(W),a:0,cr:Math.random()<.5?'p':'a',vx:0,vy:0,va:0,r:unit(W)*.5,born:performance.now()}}
+
+  /* ---------- every photo gets a canvas; the active motion decides what happens ---------- */
+  [].forEach.call(document.querySelectorAll('[data-fx]'),function(el){
+    var cv=document.createElement('canvas');el.appendChild(cv);var c=cv.getContext('2d');
+    var W=1,H=1,dpr=1,inside=false,leaveAt=0,last=null;
+    var trail=[],bodies=[],pending=[],pile=[],stk=[];
+    function size(){var r=el.getBoundingClientRect(),oW=W,oH=H;dpr=Math.min(2,window.devicePixelRatio||1);W=r.width;H=r.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);return [oW,oH]}
+    size();
+    function pos(e){var r=el.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}}
+    function reset(){trail=[];bodies=[];pending=[];pile=[];stk=[];leaveAt=0;inside=false}
+
+    /* 1 · light trail: several marks per step, they fade out on their own */
+    function onMoveTrail(p){
+      if(last&&Math.hypot(p.x-last.x,p.y-last.y)<Math.max(22,unit(W)*.7))return;
+      last=p;var n=1+Math.round(amount()/3);
+      for(var i=0;i<n;i++){var m=newMark(p.x+rnd(-1,1)*unit(W)*1.6,p.y+rnd(-1,1)*unit(W)*1.6,W);m.a=rnd(-Math.PI/2,Math.PI/2);trail.push(m)}
+      while(trail.length>40+amount()*14)trail.shift();
+    }
+    /* 2 · drop & pile: a whole batch falls from the top at once, bounces a little and comes to rest */
+    function dropBatch(){
+      var n=8+amount()*5,now=performance.now();
+      for(var i=0;i<n;i++){
+        var m=newMark(rnd(unit(W)*.6,W-unit(W)*.6),-unit(W)*rnd(.6,3),W);
+        m.vx=rnd(-40,40)*W/600;m.vy=rnd(60,200);m.va=rnd(-2.5,2.5);m.at=now+rnd(0,450);
+        pending.push(m);
+      }
+    }
+    /* 3 · rise from the bottom: random spots (no overlap unless allowed), random angles, random order, up to the chosen height */
+    function riseBatch(){
+      pile=[];var s=unit(W),r=s*.52,now=performance.now(),top=H*(1-amount()*.08),fails=0,placed=[],gap=overlap()?r*1.45:r*2.04;   /* slight overlap: centres at least 1.45 radii apart */
+      while(fails<120&&placed.length<400){
+        var x=rnd(r,W-r),y=H-r,hit=true;
+        while(hit&&y-r>=top){hit=placed.some(function(p){return Math.hypot(p.x-x,p.y-y)<gap});if(hit)y-=r*.25}
+        if(hit||y-r<top){fails++;continue}
+        fails=0;placed.push({x:x,y:y});
+        var m=newMark(x,0,W);m.a=m.t==='trap'?rnd(-Math.PI,Math.PI):rnd(-Math.PI/2,Math.PI/2);
+        m.ty=y;m.started=now+rnd(0,800)+(1-y/H)*200;pile.push(m);
+      }
+    }
+    /* 4 · stack: same algorithm as the hover on the real landing page (theme file landing-new.js, "rain-stack"):
+       sand-pile height map (a mark that lands on a bump rolls down to the lower side, so there are no gaps), the bottom row spread evenly over the width,
+       stops when the AVERAGE height reaches 62% of the photo, +/- rotated up to +-30deg, exactly 1/3 in the auxiliary colour, lower marks fade in first (whole pile ~0.35s). */
+    function stackBatch(){
+      stk=[];var size=unit(W),box=size*.72,goal=H*amount()*.07,heights=new Float32Array(Math.ceil(W)+2),list=[],now=performance.now();
+      function topAt(x){var top=0,from=Math.max(0,Math.floor(x-box/2)),to=Math.min(heights.length-1,Math.ceil(x+box/2));for(var i=from;i<=to;i++)top=Math.max(top,heights[i]);return top}
+      function clampX(x){return Math.min(W-box/2,Math.max(box/2,x))}
+      function mean(){var sum=0;for(var i=0;i<heights.length;i++)sum+=heights[i];return sum/heights.length}
+      var floorCount=Math.ceil(W/(box*.9)),floorXs=[];
+      for(var i=0;i<floorCount;i++)floorXs.push(box/2+i*(W-box)/Math.max(1,floorCount-1));
+      floorXs.sort(function(){return Math.random()-.5});
+      for(var n=0;n<400&&(n<floorCount||mean()<goal);n++){
+        var x=clampX(n<floorCount?floorXs[n]:Math.random()*W);
+        for(var roll=0;roll<30;roll++){
+          var here=topAt(x),left=topAt(clampX(x-box*.5)),right=topAt(clampX(x+box*.5));
+          if(left<here-1&&left<=right)x=clampX(x-box*.5);else if(right<here-1)x=clampX(x+box*.5);else break;
+        }
+        var top=topAt(x);if(top+box>H*.9)continue;
+        var from=Math.max(0,Math.floor(x-box/2)),to=Math.min(heights.length-1,Math.ceil(x+box/2));
+        for(var k=from;k<=to;k++)heights[k]=top+box*.85;
+        list.push({x:x,y:top+box/2,a:(Math.random()-.5)*60*Math.PI/180});
+      }
+      list.sort(function(a,b){return (a.y-b.y)||(Math.random()-.5)});                  /* lower marks first */
+      var step=Math.min(7,350/Math.max(1,list.length));
+      var aux={};list.map(function(_,i){return i}).sort(function(){return Math.random()-.5}).slice(0,Math.round(list.length/3)).forEach(function(i){aux[i]=1});
+      list.forEach(function(it,i){
+        var m=newMark(it.x,H-it.y,W);m.s=size;m.r=size*.5;m.a=it.a;m.cr=aux[i]?'a':'p';m.start=now+i*step;stk.push(m);
+      });
+    }
+    function enter(){inside=true;leaveAt=0;last=null;if(MODE==='drop')dropBatch();else if(MODE==='rise')riseBatch();else if(MODE==='stack')stackBatch()}
+    el.addEventListener('pointerenter',enter);
+    el.addEventListener('pointermove',function(e){if(!inside)enter();if(MODE==='trail')onMoveTrail(pos(e))});
+    el.addEventListener('pointerleave',function(){inside=false;leaveAt=performance.now();last=null});
+    if(window.ResizeObserver)new ResizeObserver(function(){var o=size(),kx=W/o[0],ky=H/o[1];[trail,bodies,pending,pile].forEach(function(a){a.forEach(function(m){m.x*=kx;m.y*=ky;if(m.ty!=null)m.ty*=ky;m.s=unit(W);m.r=m.s*.5})});stk=[]}).observe(el);
+
+    var G=1500,REST=.42;
+    function step(now,dt){
+      c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,W,H);
+      var fade=1;                                                  /* when the cursor leaves, everything is gone almost at once (about 0.15s) */
+      if(!inside&&leaveAt){fade=Math.max(0,1-(now-leaveAt)/150);if(fade<=0){trail=[];bodies=[];pending=[];pile=[];stk=[];leaveAt=0}}
+      if(MODE==='trail'){
+        var LIFE=2300;trail=trail.filter(function(m){return now-m.born<LIFE});
+        trail.forEach(function(m){var age=(now-m.born)/LIFE,pop=Math.min(1,(now-m.born)/140),al=age>.55?1-(age-.55)/.45:1;drawMark(c,m,al*fade,reduce?1:1-Math.pow(1-pop,3))});
+      }else if(MODE==='drop'){
+        pending=pending.filter(function(m){if(now>=m.at){bodies.push(m);return false}return true});
+        if(bodies.length>260)bodies.splice(0,bodies.length-260);
+        if(!reduce){
+          bodies.forEach(function(m){
+            m.vy+=G*(W/600)*dt;m.vx*=1-1.2*dt;m.va*=1-5*dt;m.x+=m.vx*dt;m.y+=m.vy*dt;m.a+=m.va*dt;
+            if(m.y+m.r>H){m.y=H-m.r;m.vy*=-REST;m.vx*=.6;m.va*=.35;if(Math.abs(m.vy)<60*(W/600)){m.vy=0;m.vx*=.8}}
+            if(m.x-m.r<0){m.x=m.r;m.vx*=-REST;m.va*=.5}if(m.x+m.r>W){m.x=W-m.r;m.vx*=-REST;m.va*=.5}
+          });
+          for(var it=0;it<3;it++)for(var i=0;i<bodies.length;i++)for(var j=i+1;j<bodies.length;j++){
+            var a=bodies[i],b=bodies[j],dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||.001,min=(a.r+b.r)*.92;
+            if(d<min){var nx=dx/d,ny=dy/d,push=(min-d)/2;a.x-=nx*push;a.y-=ny*push;b.x+=nx*push;b.y+=ny*push;
+              var rv=(b.vx-a.vx)*nx+(b.vy-a.vy)*ny;if(rv<0){var imp=-(1+REST*.6)*rv/2;a.vx-=imp*nx;a.vy-=imp*ny;b.vx+=imp*nx;b.vy+=imp*ny;a.vx*=.9;b.vx*=.9;a.va*=.8;b.va*=.8}}
+          }
+          bodies.forEach(function(m){if(Math.hypot(m.vx,m.vy)<14*(W/600)&&Math.abs(m.va)<.25){m.vx=0;m.vy=0;m.va=0}});
+        }else bodies.forEach(function(m){if(m.y<m.r)m.y=H-m.r});
+        bodies.forEach(function(m){drawMark(c,m,fade)});
+      }else if(MODE==='stack'){
+        stk.forEach(function(m){var t0=now-m.start;if(t0<0)return;drawMark(c,m,fade*(reduce?1:Math.min(1,t0/90)))});
+      }else{
+        pile.forEach(function(m){
+          var t0=now-m.started;if(t0<0)return;
+          var q=reduce?1:Math.min(1,t0/460),ease=1+2.2*Math.pow(q-1,3)+1.2*Math.pow(q-1,2),from=H+m.s;
+          m.y=from+(m.ty-from)*ease;m.s=unit(W);drawMark(c,m,fade);
+        });
+      }
+    }
+    items.push({reset:reset,step:step});
+  });
+
+  var prev=performance.now();
+  (function frame(now){var dt=Math.min(.033,(now-prev)/1000);prev=now;items.forEach(function(it){it.step(now,dt)});requestAnimationFrame(frame)})(prev);
+})();
+</script>
+</body>
+</html>

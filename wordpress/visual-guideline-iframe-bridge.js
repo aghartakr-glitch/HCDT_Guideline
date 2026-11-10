@@ -64,7 +64,7 @@
   window.addEventListener('resize', sendViewport);
   function fit(source, value) {
     var height = Math.ceil(Number(value));
-    if (!Number.isFinite(height) || height < 200 || height > 20000) return;
+    if (!Number.isFinite(height) || height < 200 || height > 60000) return;
     frames().forEach(function (frame) {
       if (frame.contentWindow !== source) return;
       frame.style.height = height + 'px';

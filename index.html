@@ -25,7 +25,7 @@
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:2rem}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.5;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
+body{margin:0;font-family:var(--font-en);font-size:1rem;font-weight:300;line-height:1.4;color:#000;background:#fff;-webkit-font-smoothing:antialiased}
 html[lang=ko] body{font-family:var(--font-ko);word-break:keep-all;-webkit-font-smoothing:initial}
 h1,h2,h3,h4,h5,h6{margin:0 0 1rem;line-height:1.2;font-weight:500}
 h1{font-weight:600}
@@ -62,9 +62,9 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .page__title{font-size:2.25rem;font-weight:600;margin:2rem 0 .5rem}
 @media(min-width:783px){.page__title{font-size:3.5rem}}
 .page__meta{font-size:.75rem;font-weight:500;opacity:.7;margin-bottom:2rem}
-.callout{position:relative;background:color-mix(in srgb,var(--ui) 30%,#fff);border-left:4px solid var(--ui);padding:1rem 1.25rem;font-size:1.125rem;max-width:960px;color:#000}
+.callout{position:relative;background:color-mix(in srgb,var(--ui) 30%,#fff);border-left:4px solid var(--ui);padding:1rem 1.25rem;font-size:1rem;line-height:1.4;max-width:960px;color:#000}
 .callout p{margin:0 0 .5rem}.callout p:last-child{margin:0}
-@media(min-width:783px){.callout{padding:1.25rem 1.5rem;font-size:1.25rem}}
+@media(min-width:783px){.callout{padding:1.25rem 1.5rem;font-size:1.125rem}}
 
 /* ===== Sections ===== */
 .section{padding:1.5rem 0 1rem;border-top:1px solid rgba(0,0,0,.12);margin-top:3rem}
@@ -72,8 +72,8 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .section__title{display:flex;align-items:baseline;gap:1rem;font-size:1.75rem;font-weight:500;margin-bottom:2rem}
 .section__title .no{color:var(--purple)}
 @media(min-width:783px){.section__title{font-size:2.25rem;gap:1rem}}
-.lede{max-width:760px;font-size:1.125rem;font-weight:500}
-@media(min-width:783px){.lede{font-size:1.375rem}}
+.lede{max-width:760px;font-size:1rem;line-height:1.4;font-weight:500}
+@media(min-width:783px){.lede{font-size:1.125rem}}
 .lede p:last-child{margin-bottom:0}
 .sub{font-size:1.25rem;font-weight:600;margin:3rem 0 1rem}
 .eyebrow{font-size:.75rem;font-weight:600;text-transform:uppercase;opacity:.7;margin-bottom:.5rem;letter-spacing:.02em}
@@ -108,8 +108,11 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .pair>h3 i,.ltd>.ltd-n i{flex:none;width:1.25rem;height:1.25rem;background:var(--aux)}
 .pair .eyebrow,.ltd .eyebrow{margin:0;align-self:center;line-height:1.2}
 .pair .logo-item,.ltd .logo-item{display:grid;grid-template-rows:auto auto;row-gap:.625rem;min-width:0}
-.pair .slot,.ltd .slot{width:100%;min-height:0;height:auto;aspect-ratio:16/5;padding:1.25rem;display:grid;place-items:center}
-.pair .slot img,.ltd .slot img{width:100%;height:100%;max-height:none;object-fit:contain}
+/* logos sit on the page white, on the card grid (no frame): every card has one preview row of the same height and the logo is left-aligned.
+   The vertical logo is for narrow spaces, so it is drawn SMALLER than the horizontal one. */
+.pair .slot,.ltd .slot{width:100%;min-height:6.5rem;height:6.5rem;aspect-ratio:auto;padding:0;border:0;background:transparent;display:flex;align-items:center;justify-content:flex-start}
+.pair .slot img,.ltd .slot img{display:block;width:auto;max-width:100%;height:auto;max-height:4.5rem;object-fit:contain;object-position:left center}
+.ltd .slot img{max-height:6rem}
 .pair .dl,.ltd .dl{margin:0;min-height:2rem}
 @media(min-width:1024px){
   .section:has(>.sec-body>.pair-grid){display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap,1.5rem);align-items:start}
@@ -161,6 +164,7 @@ p.ko{font-family:var(--font-ko);word-break:keep-all}
 .sw__name{font-size:.875rem;font-weight:600;margin:.5rem 0 .25rem}
 dl.vals{display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:.125rem .75rem;margin:0;font-size:.75rem}
 dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono);overflow-wrap:anywhere}
+@media(max-width:560px){dl.vals{grid-template-columns:2.75rem minmax(0,1fr);column-gap:.25rem}dl.vals dd{font-size:.75rem;line-height:1.4}}
 .cp{position:relative;justify-self:start;cursor:pointer;border-radius:3px;padding:0 .25rem;margin-left:-.25rem;transition:background-color 150ms}
 .cp:hover,.cp:focus-visible{background:linear-gradient(transparent 22%,var(--c,var(--ui)) 22%,var(--c,var(--ui)) 92%,transparent 92%);outline:0}
 .cp.cp--dark:hover,.cp.cp--dark:focus-visible{color:#fff}
@@ -191,7 +195,7 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
   .section{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--grid-gap);align-items:start}
   .sec-head{position:sticky;top:1.5rem;min-width:0}
   .sec-head .section__title{font-size:1.75rem;margin-bottom:1rem}
-  .sec-head .lede{font-size:1.125rem}
+  .sec-head .lede{font-size:1rem}
   .sec-head{grid-column:1/span 4}
   .sec-body{grid-column:5/-1;min-width:0}
   .sec-body .pair-grid{margin-top:0!important}
@@ -366,6 +370,8 @@ html.embed main{padding-top:0!important}
 /* WordPress owns the global 12-column page margin. Embedded content starts at
    the iframe edge so its columns align with the parent's overlay. */
 html.embed .wrap{max-width:var(--grid-max);padding-inline:0}
+/* embedded in the WordPress page: the page scrolls, the frame never does (no second scrollbar); the frame's height follows the content */
+html.embed,html.embed body{overflow:hidden}
 html.embed.embed-logo #t-tools,html.embed.embed-tools #t-logo{display:none!important}
 </style>
 <script>
