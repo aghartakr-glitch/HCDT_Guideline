@@ -197,7 +197,9 @@
 @media(max-width:560px){.hcdt-vig .ltd-grid{grid-template-columns:minmax(0,1fr)}}
 /* one row of four cards for General Use and Limited Space; the group titles replace the per-card label */
 .hcdt-vig .grp{grid-column:1/-1;margin:0;padding-top:0;font-size:calc(1.3rem + .6vw);font-weight:500;line-height:1.2}
-@media(min-width:1024px){.hcdt-vig #other .sec-body{grid-template-columns:repeat(4,minmax(0,1fr))}.hcdt-vig .ltd-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hcdt-vig .pair,.hcdt-vig .ltd{--card-title-h:3rem}.hcdt-vig .pair>h3,.hcdt-vig .ltd>.ltd-n{font-size:1.125rem}}
+/* General Use: two cards per row (large). Limited Space: four per row, logo centred in its card */
+@media(min-width:1024px){.hcdt-vig .ltd-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.hcdt-vig .ltd{--card-title-h:3rem}.hcdt-vig .ltd>.ltd-n{font-size:1.125rem}}
+.hcdt-vig .ltd .slot{justify-content:center}.hcdt-vig .ltd .slot img{object-position:center}
 .hcdt-vig .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
 .hcdt-vig .role{display:flex;align-items:center;gap:.75rem;font-size:.875rem;font-weight:500}
 .hcdt-vig .role i{width:1.5rem;height:1.5rem;display:block}

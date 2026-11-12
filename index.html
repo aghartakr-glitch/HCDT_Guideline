@@ -229,7 +229,9 @@ dl.vals dt{font-weight:500;opacity:.7}dl.vals dd{margin:0;font-family:var(--mono
 @media(max-width:560px){.ltd-grid{grid-template-columns:minmax(0,1fr)}}
 /* one row of four cards for General Use and Limited Space; the group titles replace the per-card label */
 .grp{grid-column:1/-1;margin:0;padding-top:0;font-size:calc(1.3rem + .6vw);font-weight:500;line-height:1.2}
-@media(min-width:1024px){#other .sec-body{grid-template-columns:repeat(4,minmax(0,1fr))}.ltd-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.pair,.ltd{--card-title-h:3rem}.pair>h3,.ltd>.ltd-n{font-size:1.125rem}}
+/* General Use: two cards per row (large). Limited Space: four per row, logo centred in its card */
+@media(min-width:1024px){.ltd-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.ltd{--card-title-h:3rem}.ltd>.ltd-n{font-size:1.125rem}}
+.ltd .slot{justify-content:center}.ltd .slot img{object-position:center}
 
 /* ===== Role chips (04, 05) ===== */
 .roles{display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0 2rem}
